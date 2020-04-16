@@ -1,0 +1,57 @@
+ion-content {
+  --padding-top: 15px;
+  --padding-bottom: 40px;
+
+  ion-label {
+    &.fca-quiz {
+      font-size: 20px;
+    }
+  }
+
+  ion-item {
+    &.error {
+      width: 100%;
+
+      ion-label {
+        color: red;
+        padding: 0 10px;
+      }
+    }
+
+    &.success {
+      width: 100%;
+
+      ion-label {
+        color: #30c500;
+        padding: 0 10px;
+      }
+    }
+  }
+
+  .input-content {
+    ion-item {
+      width: 100%;
+      font-size: 12px;
+      padding: 10px 0px 0px;
+
+      ion-input {
+        --padding-start: 7px;
+      }
+    }
+
+    ion-label {
+      &.error-txt {
+        font-size: 10px;
+        color: red;
+      }
+    }
+  }
+}
+
+ion-header {
+  ion-label {
+    &.header-txt {
+      padding-right: 34px;
+    }
+  }
+}

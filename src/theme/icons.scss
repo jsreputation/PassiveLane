@@ -1,0 +1,337 @@
+ion-icon {
+    &.my-deal-icon {
+        background-image: url("assets/icon/my-deal.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        width: 35px;
+    }
+    &.invest-icon {
+        background-image: url("assets/icon/invest.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+    }
+    &.activity-icon {
+        background-image: url("assets/icon/activity.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        height: 28px;
+    }
+    &.pay-icon {
+        background-image: url("assets/icon/pay.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        height: 26px;
+    }
+    &.cache-out-icon {
+        background-image: url("assets/icon/cache-out.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+    }
+    &.phone-icon {
+        background-image: url("assets/icon/phone.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+    }
+    &.profile-icon {
+        background-image: url("assets/icon/profile.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+    }
+    &.logout-icon {
+        background-image: url("assets/icon/logout.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        height: 15px;
+    }
+    &.reset-pwd-icon {
+        background-image: url("assets/icon/reset-pwd.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+    }
+    &.warning-icon {
+        background-image: url("assets/icon/warning.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+    }
+    &.gallery-icon {
+        background-image: url("assets/icon/gallery.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+    }
+    &.person {
+        margin: 0px 0px -21px 10px;
+        background-image: url("assets/icon/person.svg");
+        background-repeat: no-repeat;
+        width: 14px;
+    }
+    &.lock {
+        margin: 0px 0px -21px 10px;
+        background-image: url("assets/icon/lock.svg");
+        background-repeat: no-repeat;
+        width: 14px;
+    }
+    &.id-icon {
+        margin: 0px 0px -21px 10px;
+        background-image: url("assets/icon/id.svg");
+        background-repeat: no-repeat;
+        width: 14px;
+    }
+    &.mail-box {
+        margin: 0px 0px -21px 10px;
+        background-image: url("assets/icon/mail-box.svg");
+        background-repeat: no-repeat;
+        width: 14px;
+    }
+    &.phone {
+        margin: 0px 0px -21px 10px;
+        background-image: url("assets/icon/phone.svg");
+        background-repeat: no-repeat;
+        width: 14px;
+    }
+    &.success-icon {
+        background-image: url("assets/icon/check.svg");
+        background-repeat: no-repeat;
+        display: block;
+        width: 48px;
+        height: 48px;
+        margin: 66.6px auto 23.9px;
+        background-position: center;
+        background-color: #48B02C;
+        border-radius: 41px;
+    }
+    &.created-success-icon {
+        background-image: url("assets/icon/created-success-icon.svg");
+        display: block;
+        background-repeat: no-repeat;
+        width: 73.47px;
+        height: 67px;
+        margin: 26px auto 14px;
+        background-size: contain;
+        background-position: center;
+    }
+    &.forgot-password-icon {
+        background-image: url("assets/icon/reset-pwd.svg");
+        display: block;
+        background-repeat: no-repeat;
+        width: 60px;
+        height: 60px;
+        margin: 26px auto 14px;
+        background-size: contain;
+        background-position: center;
+    }
+    &.opportunities-icon {
+        background-image: url("assets/icon/opportunities-icon.svg");
+        display: block;
+        background-repeat: no-repeat;
+        width: 186.62px;
+        height: 155.01px;
+        margin: 0 auto;
+        background-size: contain;
+        background-position: center;
+    }
+    &.profit {
+        background-image: url("assets/icon/profit.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 27px;
+    }
+    &.duration {
+        background-image: url("assets/icon/duration.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 27px;
+    }
+    &.pound {
+        background-image: url("assets/icon/pound.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 27px;
+    }
+    &.arrow-right {
+        background-image: url("assets/icon/arrow-right.svg");
+        background-repeat: no-repeat;
+        width: 16px;
+        background-position: center;
+    }
+    &.arrow-left {
+        background-image: url("assets/icon/arrow-left.svg");
+        background-repeat: no-repeat;
+        width: 18px;
+        height: 18px;
+        background-size: contain;
+        background-position: center;
+    }
+    &.arrow-down {
+        background-image: url("assets/icon/arrow-down.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 32px;
+        height: 32px;
+        margin-left: 7px;
+        border-radius: 35px;
+    }
+    &.arrow-up {
+        background-image: url("assets/icon/arrow-up.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 32px;
+        height: 32px;
+        margin-left: 7px;
+        border-radius: 35px;
+    }
+    &.question-icon {
+        background-image: url("assets/icon/question.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        height: 10px;
+    }
+    &.black-question-icon {
+        background-image: url("assets/icon/black-question.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        height: 14px;
+    }
+    &.share-icon {
+        background-image: url("assets/icon/share.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        width: 22px;
+        height: 22px;
+        margin-left: 10px;
+        border: 1px solid white;
+    }
+}
+ion-icon:active{
+    &.share-icon{
+        border-radius: 7px;
+        border: 1px solid #bfbfbf;
+    }
+}
+
+ion-menu-button {
+    &.menu {
+        background-image: url('assets/icon/menu.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        width: 22px;
+        margin-right: 7px;
+        color: transparent;
+    }
+}
+
+ion-menu-button {
+    &.white-menu {
+        background-image: url('assets/icon/white-menu.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        width: 22px;
+        margin-right: 7px;
+        color: transparent;
+    }
+}
+
+ion-img {
+    &.logo-img {
+        margin: 66.6px auto;
+        width: 160px;
+        height: auto;
+    }
+}
+
+._logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 70px auto;
+    ._logo-icon {
+        height: 60px;
+        display: flex;
+        .first {
+            width: 5px;
+            height: 100%;
+            background-color: #38d0d2;
+            margin-right: 3px;
+            position: relative;
+        }
+        .second {
+            width: 9px;
+            height: 100%;
+            background-color: #3a8093;
+            margin-right: 5px;
+            position: relative;
+        }
+        .last {
+            width: 13px;
+            height: 100%;
+            background-color: #241943;
+            position: relative;
+        }
+
+        .white-second{
+            width: 9px;
+            height: 100%;
+            margin-right: 5px;
+            background-color: #224c57;
+            position: relative;
+        }
+    }
+    ion-label {
+        &.logo-title {
+            font-size: 31px;
+            color: #424242;
+            line-height: 35px;
+            padding-left: 15px;
+            text-align: left;
+        }
+        &.white-logo-title {
+            font-size: 31px;
+            color: white;
+            line-height: 35px;
+            padding-left: 15px;
+            text-align: left;
+        }
+    }
+}
+
+.card-bg-icon {
+    background-image: url("assets/icon/card-bg.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.verify-logo{
+    background-image: url('assets/img/verify.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 130px;
+    height: 130px;
+    margin-bottom: 20px;
+}
+
+.email-verify-logo{
+    background-image: url('assets/img/email-verify-logo.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 110px;
+    height: 110px;
+    margin-bottom: 20px;
+}

@@ -1,0 +1,51 @@
+<ion-header #ionHeader mode="ios">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)='fn_back()' color="dark" mode="ios">
+                <ion-icon class="arrow-left"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-label #headerTxt class="header-txt">Qualification Criteria</ion-label>
+
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content #scrollArea (ionScroll)="scroll($event)" [scrollEvents]="true" mode="ios">
+
+    <ion-fab *ngIf="!is_verify" vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button routerLink="/verify">
+            <ion-icon name="person"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+    <div #headerTitle class="description-header">
+        <ion-label class="header-label">Qualification Criteria</ion-label>
+    </div>
+    <app-stepper [max]="4" [min]="1" [value]="2"></app-stepper>
+    <div class="content">
+        <div class="description">
+            <ion-label>
+                To qualify as a Sophistication investor you must meet at least one of the Criteria below. <br> Please
+                select all criteria that you meet:
+            </ion-label>
+        </div>
+    </div>
+    <ion-list class="custom" mode="ios">
+        <ion-item *ngFor="let qualificationCriteria of qualificationCriterias" lines="none" mode="ios">
+            <ion-label>{{ qualificationCriteria.val}}</ion-label>
+            <ion-checkbox (ionChange)="onSelect(qualificationCriteria.isChecked, qualificationCriteria.id, qualificationCriteria.turn)" [(ngModel)]="qualificationCriteria.isChecked" mode='ios'
+                          slot="start"></ion-checkbox>
+        </ion-item>
+        <div *ngIf="qualificationCriterias_descriptions?.length > 0" class="list-content">
+            <ul>
+                <li *ngFor="let qc_description of qualificationCriterias_descriptions" class="qc-description">
+                    {{ qc_description }}
+                </li>
+            </ul>
+        </div>
+    </ion-list>
+
+
+    <ion-button (click)='gotoExperience_RiskAwareness()' class="normal bg-blue" mode="ios">Next</ion-button>
+</ion-content>

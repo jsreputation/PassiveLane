@@ -1,0 +1,65 @@
+<ion-header #ionHeader mode="ios">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)='fn_back()' color="dark" mode="ios">
+        <ion-icon class="arrow-left"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-label #headerTxt class="header-txt">Investment Amount</ion-label>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content #scrollArea (ionScroll)="scroll($event)" [scrollEvents]="true" mode="ios">
+  <div #headerTitle class="description-header">
+    <ion-label class="header-label">Investment Amount</ion-label>
+  </div>
+  <app-stepper [max]="3" [min]="1" [value]="1"></app-stepper>
+  <ion-list *ngIf="deal_info.type !== 'Equity'">
+    <ion-item lines="none" mode='ios'>
+      <ion-icon class="profit"></ion-icon>
+      <ion-label class="content-txt">{{investimentDetails.roi_text}}:</ion-label>
+      <ion-label class="value-txt">{{investimentDetails.roi_percentage}}%</ion-label>
+    </ion-item>
+    <ion-item lines="none" mode='ios'>
+      <ion-icon class="duration"></ion-icon>
+      <ion-label class="content-txt">Contract Duration:</ion-label>
+      <ion-label class="value-txt">{{investimentDetails.contract_duration}}</ion-label>
+    </ion-item>
+    <ion-item lines="none" mode='ios'>
+      <ion-icon class="pound"></ion-icon>
+      <ion-label class="content-txt">{{investimentDetails.cash_out_text}}</ion-label>
+      <ion-label class="value-txt">{{investimentDetails.cash_out_available}}</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="deal_info.type === 'Equity'">
+    <ion-item lines="none" mode='ios'>
+      <ion-icon class="profit"></ion-icon>
+      <ion-label class="content-txt">Share price :</ion-label>
+      <ion-label class="value-txt">{{investimentDetails.share_price}}%</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-row>
+    <ion-label class="limit-amount">Min Amount : <span>£{{investimentDetails.min_amount}}</span></ion-label>
+    <ion-label class="limit-amount">Max Amount : <span>£{{investimentDetails.max_amount}}</span></ion-label>
+  </ion-row>
+  <div class="bg-amount-list">
+    <div class="amount-list" lines="none">
+      <ion-label class="amount-header">Enter Investment Amount</ion-label>
+      <ion-input (ionBlur)="fn_focus($event, investimentDetails.min_amount, investimentDetails.max_amount)" #amountInput (ionInput)="userTyping(amountInput.value, investimentDetails.min_amount, investimentDetails.max_amount)" type="number"></ion-input>
+      <ion-label *ngIf="isError" class="error-txt">
+        Please input investment amount!
+      </ion-label>
+      <ion-label *ngIf="!isError && isValidError" class="error-txt">
+        Please input correct amount!
+      </ion-label>
+    </div>
+    <ion-label class="amount">£{{ amountVal }}</ion-label>
+  </div>
+  <ion-label class="amount-description">Estimated cash out profit available after 12 month:</ion-label>
+  <ion-label class="amount-value">£{{ sumAmount }}</ion-label>
+
+  <ion-button [disabled]="!sumAmount" (click)='gotoPaymentOptions()' class="normal bg-blue" mode="ios">Next</ion-button>
+</ion-content>

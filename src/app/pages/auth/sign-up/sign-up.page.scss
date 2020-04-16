@@ -1,0 +1,128 @@
+ion-content {
+  --padding-bottom: 40px;
+
+  .signup-content {
+    margin-top: 49.4px;
+
+    ion-label {
+      &.signup {
+        display: block;
+        padding: 0 12.3px;
+        margin-left: 44px;
+        font-size: 30px;
+        border-left: 6px solid #3a8093;
+        color: #3a8093;
+        line-height: 36px;
+      }
+
+      &.forgot {
+        display: block;
+        text-align: right;
+        padding-right: 44px;
+        font-size: 10px;
+        color: #3a8093cc;
+        margin-bottom: 26.1px;
+      }
+
+      &.terms {
+        padding: 15.9px 45px 0;
+        display: block;
+        text-align: center;
+        font-size: 12px;
+        left: 0;
+        right: 0;
+      }
+    }
+
+    ion-list {
+      margin-top: 11%;
+      margin-bottom: 12%;
+
+      .input-item {
+        min-height: 65px;
+
+        .validation-errors {
+          padding: 0 50px;
+
+          .error-message {
+            padding: 5px 10px 0;
+            font-size: 10px;
+            color: #d12a27;
+          }
+        }
+
+        ion-item {
+          --padding-start: 45px;
+          --padding-end: 45px;
+          --border-color: #D1D0D5;
+
+          .phone-prefix {
+            max-width: 50px;
+          }
+
+          ion-input {
+            --padding-start: 19px;
+            --padding-bottom: 0px;
+            font-size: 14px;
+          }
+
+          ion-select{
+            min-width: calc(100% - 25px);
+            font-size: 14px;
+            --padding-bottom: 0;
+          }
+
+          ion-datetime{
+            font-size: 13px;
+            --padding-bottom: 0px;
+          }
+
+          ion-icon {
+            &.eye-icon {
+              font-size: 18px;
+              --ion-color-base: #ACACB7 !important;
+              padding-top: 8px;
+            }
+            &.nomal-icon{
+              margin: 0px 0px -10px 5px;
+              font-size: 20px;
+              color: #c2c3cc;
+            }
+          }
+        }
+
+        ion-item + ion-item {
+          margin-top: 18px;
+        }
+      }
+    }
+
+    ion-icon{
+      &.calendar{
+        font-size: 16px;
+        color: gray;
+        padding-left: 9px;
+        padding-bottom: 0px;
+        margin-bottom: -7px;
+      }
+    }
+
+    ion-button {
+      display: block;
+    }
+  }
+
+  div.accident {
+    padding-top: 60px;
+    font-size: 14px;
+    width: 100%;
+    text-align: center;
+
+    ion-label {
+      &.sign-in {
+        color: #3a8093;
+      }
+    }
+  }
+}
+

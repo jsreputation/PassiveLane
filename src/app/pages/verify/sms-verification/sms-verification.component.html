@@ -1,0 +1,70 @@
+<ion-header #ionHeader mode="ios">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/verify" color="dark" mode="ios">
+        <ion-icon class="arrow-left"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-label #headerTxt class="header-txt">SMS Verification</ion-label>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content #scrollArea (ionScroll)="scroll($event)" [scrollEvents]="true" mode="ios">
+  <form [formGroup]="validate_form" class="custom-body">
+    <div class="flex-custom">
+      <div #headerTitle>
+        <ion-label class="mdl-title color-blue"> SMS Verification </ion-label>
+      </div>
+
+      <div>
+        <div class="ion-text-center">
+          <ion-icon class="verify-logo"></ion-icon>
+        </div>
+        <ion-label class="mdl-content-txt">
+         Verify your phone number.
+        </ion-label>
+        <ion-list *ngIf="!user_name_info.is_phonenumber">
+          <div class="input-item">
+            <ion-item mode='ios'>
+              <ion-icon name="pin" class="nomal-icon"></ion-icon>
+              <ion-select formControlName="country" (ionChange)="onChange()">
+                <ion-select-option *ngFor="let _country of countries" [value]="_country.country">{{_country.countryName}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </div>
+          <div class="input-item">
+            <ion-item mode='ios'>
+              <ion-icon class="phone"></ion-icon>
+              <ion-input (keypress)="userTypingForm($event)" class="phone-prefix" formControlName="phone_prefix" name="phone_prefix" placeholder="+" type="tel" readonly>
+              </ion-input>
+              <ion-input (keypress)="userTypingForm($event)" formControlName="phone" name="phone"
+                         placeholder="Enter your phone number" type="number">
+              </ion-input>
+            </ion-item>
+            <div class="validation-errors">
+              <ng-container *ngFor="let validation of validation_messages.phone_prefix">
+                <div *ngIf="validate_form.get('phone_prefix').hasError(validation.type) && (validate_form.get('phone_prefix').dirty || validate_form.get('phone_prefix').touched || submitState)"
+                     class="error-message">
+                  <ion-label>{{ validation.message }}</ion-label>
+                </div>
+              </ng-container>
+              <ng-container *ngFor="let validation of validation_messages.phone">
+                <div *ngIf="validate_form.get('phone').hasError(validation.type) && (validate_form.get('phone').dirty || validate_form.get('phone').touched || submitState)"
+                     class="error-message">
+                  <ion-label>{{ validation.message }}</ion-label>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </ion-list>
+      </div>
+
+      <div>
+        <ion-button [disabled]="isSubmitReady" class="bg-blue" mode='ios' type="button" (click)="onFormSubmit()">
+          <ion-spinner *ngIf="isSubmitReady" name="bubbles"></ion-spinner>
+          Save
+        </ion-button>
+      </div>
+    </div>
+  </form>
+</ion-content>

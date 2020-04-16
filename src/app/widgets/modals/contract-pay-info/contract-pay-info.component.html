@@ -1,0 +1,23 @@
+<ion-content>
+  <div class="header-content">
+    <ion-icon name="close" class="close" (click)="closeModal()"></ion-icon>
+    <ion-label class="mm-content-txt">
+      <span *ngIf="deal.logo_image">
+        <ion-img [src]="deal.logo_image"></ion-img>
+      </span>
+      <ngx-avatar *ngIf="!deal.logo_image" [round]="true" bgColor="#4f8d9f0f" fgColor="#3a8093" initialsSize="3" name="{{ deal.deal_name }}"
+                  size="25"></ngx-avatar>
+      {{ deal.deal_name }} Contract
+      <ion-icon class="share-icon" (click)="share()"></ion-icon>
+    </ion-label>
+  </div>
+  <div class="card-content">
+    <div *ngIf="!contractDetail.pdf_url" class="spiner-content">
+      <ion-spinner name="circles"></ion-spinner>
+    </div>
+    <div *ngIf="contractDetail.pdf_url" [innerHTML]="contractDetail.text"></div>
+  </div>
+  <ion-button class='normal bg-blue modal-btn' mode='ios' (click)="closeModal()">
+    Close
+  </ion-button>
+</ion-content>

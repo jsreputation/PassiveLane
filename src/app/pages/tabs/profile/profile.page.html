@@ -1,0 +1,26 @@
+<ion-header #ionHeader mode="ios">
+  <ion-toolbar>
+    <ion-buttons slot="primary">
+      <ion-menu-button class="white-menu"></ion-menu-button>
+    </ion-buttons>
+    <ion-label #headerTxt class="header-txt">Profile</ion-label>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content #scrollArea (ionScroll)="scroll($event)" [scrollEvents]="true" mode="ios">
+  <div class="bg-green"></div>
+  <div #headerTitle class="description-header">
+    <ion-label class="header-label">Profile</ion-label>
+  </div>
+  <app-get-mati-verification></app-get-mati-verification>
+  <ion-card *ngFor="let item of items">
+    <ion-card-header (click)="expandItem(item)" >
+      <ion-card-title>{{ item.headerTxt }}</ion-card-title>
+      <ion-icon name="arrow-forward"></ion-icon>
+    </ion-card-header>
+    <ion-card-content id="expandWrapper" class="expand-wrapper" [class.collapsed]="!item.expanded">
+      <app-dynamic-host-slot [factory]="item.componentClass"></app-dynamic-host-slot>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

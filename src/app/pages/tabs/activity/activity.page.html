@@ -1,0 +1,36 @@
+<ion-header #ionHeader mode="ios">
+    <ion-toolbar>
+        <ion-buttons slot="primary">
+            <ion-menu-button class="menu"></ion-menu-button>
+        </ion-buttons>
+        <ion-label #headerTxt class="header-txt">All Activity</ion-label>
+
+    </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content #scrollArea (ionScroll)="scroll($event)" [scrollEvents]="true" mode="ios">
+    <div #headerTitle class="description-header">
+        <ion-label class="header-label">All Activity</ion-label>
+    </div>
+    <ion-row *ngIf="myDeals.length > 0">
+        <ion-slides pager="false" [options]="slideOpts" (ionSlideDidChange)="slideDidChange($event)" #slides>
+            <ion-slide *ngFor="let myDeal of myDeals">
+                <div class="mm-card card-bg-icon" (click)="presentModal(myDeal.deal_id, numberWithCommas(myDeal.balance))">
+                    <div class="mm-card-content">
+                        <div *ngIf="myDeal.logo_image">
+                            <ion-img [src]="myDeal.logo_image"></ion-img>
+                        </div>
+                        <ngx-avatar *ngIf="!myDeal.logo_image" [round]="true" bgColor="#4f8d9f0f" fgColor="#3a8093" initialsSize="3" name="{{ myDeal.deal_name }}" size="30"></ngx-avatar>
+                        <ion-label class="mm-content-txt">{{ myDeal.deal_name }}</ion-label>
+                    </div>
+                    <ion-label class="mm-header-txt"><span class="pound">£</span>{{ numberWithCommas(myDeal.balance) }}</ion-label>
+                    <ion-icon name="arrow-down"></ion-icon>
+                </div>
+            </ion-slide>
+        </ion-slides>
+    </ion-row>
+
+    <app-activity-details [deals]="deals" [isReadyAmounts]="isReadyAmounts"></app-activity-details>
+</ion-content>

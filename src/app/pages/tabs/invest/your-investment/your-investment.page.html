@@ -1,0 +1,64 @@
+<ion-content>
+    <div class="flex-custom">
+
+        <div>
+
+            <div class="description-header">
+                <ion-label class="header-label">Your Investment</ion-label>
+            </div>
+
+
+            <div class="content">
+                <ion-row *ngFor="let item of items" class="padding-0">
+                    <div class="nomal-card bg-light-blue">
+                        <div class="nomal-card-header">
+                            <ion-label class="card-header-txt">{{ item.firstTxt }}</ion-label>
+                            <ion-label class="card-header-txt color-blue">{{ item.secondTxt }} </ion-label>
+                            <ion-label class="card-header-txt">{{ item.lastTxt }}</ion-label>
+                        </div>
+                        <div class="nomal-card-content">
+                            <ion-label class="card-content-txt">{{ item.description }}</ion-label>
+                        </div>
+                        <div class="nomal-card-info">
+                            <ion-row>
+                                <ion-label class="card-info-txt color-blue">Bank account name:</ion-label>
+                                <ion-label class="card-info-txt"> PASSIVE LANE LTD</ion-label>
+                            </ion-row>
+                            <ion-row>
+                                <ion-label class="card-info-txt color-blue">Sort code:</ion-label>
+                                <ion-label class="card-info-txt"> 20-91-91</ion-label>
+                            </ion-row>
+                            <ion-row>
+                                <ion-label class="card-info-txt color-blue">Account number:</ion-label>
+                                <ion-label class="card-info-txt"> 80744532</ion-label>
+                            </ion-row>
+                            <ion-row>
+                                <ion-label class="card-info-txt color-blue">Reference:</ion-label>
+                                <ion-label class="card-info-txt"> MMT065Nl (Important - please use this)</ion-label>
+                            </ion-row>
+                        </div>
+                        <div class="nomal-card-footer">
+                            <ion-label class="card-footer-txt">Curry: GBP</ion-label>
+                            <ion-label class="card-footer-txt"> IBAN: GBP0393897637</ion-label>
+                            <ion-label class="card-footer-txt"> BIC: BARCGB228</ion-label>
+                        </div>
+                    </div>
+                </ion-row>
+
+                <ion-label class="description-label">Investment Details</ion-label>
+
+                <div class="investment-details">
+                    <ion-row *ngFor="let detail of investmentDetails">
+                        <ion-label class="card-info-txt">{{ detail.title }}</ion-label>
+                        <ion-label class="card-info-txt"> {{ detail.content }}</ion-label>
+                    </ion-row>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-btn">
+            <ion-button (click)='gotoPay()' class=" normal bg-blue" mode="ios">Next</ion-button>
+        </div>
+
+    </div>
+</ion-content>

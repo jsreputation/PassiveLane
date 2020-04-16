@@ -1,0 +1,78 @@
+ion-list {
+    ion-item-divider{
+        background: #f2f2f2;
+        color: #262626;
+    }
+    ion-item {
+        --padding-start: 10px;
+        --padding-top: 10px;
+        --padding-bottom: 10px;
+        border-top: 1px solid #e0e0e0;
+        ion-img {
+            width: 32px;
+            height: 32px;
+            margin-left: 7px;
+            padding: 3px;
+        }
+        &.roi-item{
+            --background: #f4fafb;
+        }
+    }
+    ion-label {
+        width: 100%;
+        font-size: 15px;
+        &.date {
+            min-width: 60%;
+        }
+        &.sum-amount {
+            display: flex;
+            justify-content: flex-end;
+        }
+        &.content-txt {
+            padding-left: 15px;
+            line-height: 28px;
+            letter-spacing: 0.4pt;
+            font-size: 18px;
+            font-weight: 500;
+        }
+        &.deal-name{
+            padding-left: 15px;
+            line-height: 20px;
+            letter-spacing: 0.4pt;
+            font-size: 15px;
+            font-weight: 500;
+        }
+        .color-warning {
+            color: #FF9100!important;
+        }
+        .color-success {
+            color: #2CB737!important;
+        }
+        .color-danger {
+            color: #E51034!important;
+        }
+        .amount {
+            float: right;
+            color: black;
+            //p{
+            //  text-align: right;
+            //}
+        }
+    }
+}
+
+.flex-content {
+    align-items: center;
+    width: 100%;
+    ion-label {
+        &.opportunities-txt {
+            padding-top: 20px;
+            font-size: 12px;
+            display: block;
+            line-height: 20px;
+            letter-spacing: 0.6pt;
+            color: #707070;
+        }
+    }
+}
+

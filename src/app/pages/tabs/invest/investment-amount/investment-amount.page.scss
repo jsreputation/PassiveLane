@@ -1,0 +1,143 @@
+ion-content {
+  --padding-top: 15px;
+  --padding-bottom: 25px;
+
+  ion-label {
+    &.success-txt {
+      padding: 0px 60px;
+      font-size: 12px;
+      line-height: 20px;
+      letter-spacing: 0.6pt;
+      color: #241943;
+      display: block;
+    }
+  }
+
+  ion-list {
+    padding: 0 20px;
+    margin-bottom: 0px;
+    ion-item {
+      margin-bottom: 12px;
+      --padding-start: 20px;
+      --background: #4f8d9f0f;
+      border-radius: 12px;
+
+      ion-label {
+        padding: 7px 0;
+
+        &.content-txt {
+          padding-left: 14px;
+          line-height: 20px;
+          letter-spacing: 0.6pt;
+          font-size: 12px;
+          color: #666674;
+          white-space: pre-wrap;
+        }
+
+        &.value-txt {
+          text-align: right;
+          padding-left: 14px;
+          padding-right: 20px;
+          line-height: 20px;
+          letter-spacing: 0.6pt;
+          font-size: 12px;
+          max-width: 110px;
+          white-space: pre-wrap;
+        }
+      }
+    }
+  }
+
+  ion-row{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 15px 25px;
+    color: #666674;
+    ion-label
+    {
+      &.limit-amount{
+        font-size: 12px;
+        span{
+          font-size: 13px;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  .bg-amount-list {
+    background-color: #4f8d9f0f;
+    margin: 0 20px 27px;
+    padding-bottom: 10px;
+    border-radius: 12px;
+    text-align: center;
+
+    .amount-list {
+      margin-bottom: 8px;
+      color: white;
+
+      ion-label {
+        &.amount-header {
+          width: 100%;
+        }
+      }
+
+      ion-input {
+        --padding-bottom: 0;
+        border-bottom: 1px solid #ffffff;
+        width: 100%;
+        text-align: left;
+        font-size: 14px;
+      }
+
+      border-radius: 12px;
+      padding: 10px 50px 42px;
+      background-color: #3a8093;
+      --background: #3a8093;
+    }
+
+    ion-label {
+      &.amount {
+        line-height: 15.6px;
+        font-size: 13px;
+        margin-bottom: 8px;
+      }
+    }
+  }
+
+  ion-label {
+    &.amount-description {
+      line-height: 20px;
+      font-size: 12px;
+      margin-bottom: 16px;
+      letter-spacing: 0.6pt;
+      color: #666674;
+      text-align: center;
+      display: block;
+      padding: 0 30px;
+    }
+
+    &.amount-value {
+      line-height: 23.4px;
+      font-size: 19.5px;
+      margin-bottom: 30px;
+      text-align: center;
+      display: block;
+      padding: 0 30px;
+    }
+
+    &.error-txt {
+      font-size: 10px;
+      color: red;
+    }
+  }
+}
+
+ion-header {
+  ion-label {
+    &.header-txt {
+      padding-right: 34px;
+    }
+  }
+}

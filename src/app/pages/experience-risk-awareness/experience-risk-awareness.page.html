@@ -1,0 +1,144 @@
+<ion-header #ionHeader mode="ios">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)='fn_back()' color="dark" mode="ios">
+                <ion-icon class="arrow-left"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-label #headerTxt class="header-txt">Experience & Risk Awareness</ion-label>
+
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content #scrollArea (ionScroll)="scroll($event)" [scrollEvents]="true" mode="ios">
+
+    <ion-fab *ngIf="!is_verify" vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button routerLink="/verify">
+            <ion-icon name="person"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+    <div #headerTitle class="description-header">
+        <ion-label class="header-label">Experience & Risk Awareness</ion-label>
+    </div>
+    <app-stepper [max]="4" [min]="1" [value]="3"></app-stepper>
+    <div class="content">
+        <div class="description">
+            <ion-label>
+                We need to understand a little more about your investing expenence.
+            </ion-label>
+        </div>
+        <div class="description-content">
+            <ion-list *ngIf="illiquidproducts?.length  > 0 ">
+                <ion-radio-group *ngFor="let illiquidproduct of illiquidproducts">
+                    <ion-label class="list-description-header">
+                        {{ illiquidproduct.title }}
+                    </ion-label>
+                    <ion-row>
+                        <ion-item *ngFor="let illiquidproduct_arr of illiquidproduct.value" lines="none" mode="ios">
+                            <ion-radio (ionSelect)="radio_group(illiquidproduct_arr.val, illiquidproduct.name)" checked="{{ illiquidproduct_arr.is_checked }}"
+                                       mode="md"
+                                       value="{{ illiquidproduct_arr.val }}"></ion-radio>
+                            <ion-label>{{ illiquidproduct_arr.content }}</ion-label>
+                        </ion-item>
+                    </ion-row>
+                </ion-radio-group>
+            </ion-list>
+            <ion-list *ngIf="headerExperiences?.length  > 0 ">
+                <ion-label class="list-description-header">
+                    Have you invested in any of the following (please note that some ofthe products listed are liquid,
+                    but the product you are to invest in are not
+                </ion-label>
+                <ion-radio-group *ngFor="let headerExperience of headerExperiences">
+                    <div class="flex-row">
+                        <ion-label class="radio-group-label">
+                            {{ headerExperience.title }}
+                        </ion-label>
+                        <ion-row>
+                            <ion-item *ngFor="let headerExperience_arr of headerExperience.value" lines="none"
+                                      mode="ios">
+                                <ion-radio (ionSelect)="radio_group(headerExperience_arr.val, headerExperience.name)" checked="{{ headerExperience_arr.is_checked }}"
+                                           mode="md"
+                                           value="{{ headerExperience_arr.val }}"></ion-radio>
+                                <ion-label>{{ headerExperience_arr.content }}</ion-label>
+                            </ion-item>
+                        </ion-row>
+                    </div>
+                </ion-radio-group>
+            </ion-list>
+
+            <ion-list #headerQuizContent *ngFor="let headerQuiz of headerQuizs">
+                <ion-radio-group>
+                    <ion-label class="list-description-header">
+                        {{ headerQuiz.title }}
+                    </ion-label>
+                    <ion-row>
+                        <ion-item *ngFor="let headerQuiz_arr of headerQuiz.value" lines="none" mode="ios">
+                            <ion-radio #headerQuiz_arr.val (ionSelect)="radio_group(headerQuiz_arr.val, headerQuiz.name)" checked="{{ headerQuiz_arr.is_checked }}"
+                                       mode="md"
+                                       value="{{ headerQuiz_arr.val }}"></ion-radio>
+                            <ion-label>{{ headerQuiz_arr.content }}</ion-label>
+                        </ion-item>
+                    </ion-row>
+                </ion-radio-group>
+                <ion-row class="input-content">
+                    <ion-item *ngIf="headerQuiz.isInput" mode='ios'>
+                        <ion-input (ionBlur)="fn_focus($event, headerQuiz.name)" (keypress)="userTyping($event, headerQuiz.name)"
+                                   placeholder="{{ headerQuiz.placeHolder }}"
+                                   type="text">
+                        </ion-input>
+                    </ion-item>
+                    <ion-label *ngIf="headerQuiz.isError" class="error-txt">
+                        {{ headerQuiz.errorMsg }}
+                    </ion-label>
+                </ion-row>
+            </ion-list>
+
+            <ion-list>
+                <ion-label class="fca-quiz">FCA QUIZ</ion-label>
+            </ion-list>
+
+            <ion-list>
+                <ion-radio-group>
+                    <ion-label class="list-description-header">
+                        As you're relatively new to these types of investments we need to be sure you understand all Of
+                        the risks around What you are getting into
+                    </ion-label>
+                    <!-- <ion-row>
+
+                        <ion-item mode="ios" lines="none">
+                            <ion-radio mode="md" value="yes" checked></ion-radio>
+                            <ion-label>Yes</ion-label>
+                        </ion-item>
+
+                        <ion-item mode="ios" lines="none">
+                            <ion-radio mode="md" value="no"></ion-radio>
+                            <ion-label>No</ion-label>
+                        </ion-item>
+                    </ion-row> -->
+                </ion-radio-group>
+            </ion-list>
+
+            <ion-list *ngFor="let FAQ of FAQs; let i = index">
+                <ion-radio-group>
+                    <ion-label class="list-description-header">
+                        {{ FAQ.title }}
+                    </ion-label>
+                    <ion-row *ngFor="let FAQ_arr of FAQ.value">
+                        <ion-item lines="none" mode="ios">
+                            <ion-radio (ionSelect)="mcqAnswer(FAQ_arr.val, i, FAQ.order)" checked="{{ FAQ_arr.is_checked }}" mode="md"
+                                       value="{{ FAQ_arr.val }}"></ion-radio>
+                            <ion-label>{{ FAQ_arr.content }}</ion-label>
+                        </ion-item>
+                        <ion-item *ngIf="FAQ_arr.is_checked" class="{{ FAQ_arr.val }}" lines="none" mode="ios">
+                            <ion-label>{{ FAQ_arr.description }}</ion-label>
+                        </ion-item>
+                    </ion-row>
+                </ion-radio-group>
+            </ion-list>
+        </div>
+    </div>
+    <ion-button #btn_agree [disabled]="!isSubmitReady" (click)='gotoAgreeToTerms()' class="normal bg-blue" mode="ios">Next
+    </ion-button>
+</ion-content>

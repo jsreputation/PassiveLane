@@ -1,0 +1,39 @@
+<ion-header #ionHeader mode="ios">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)='fn_back()' color="dark" mode="ios">
+                <ion-icon class="arrow-left"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-label #headerTxt class="header-txt">Agree to terms</ion-label>
+
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content #scrollArea (ionScroll)="scroll($event)" [scrollEvents]="true" mode="ios">
+    <ion-fab *ngIf="!is_verify" vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button routerLink="/verify">
+            <ion-icon name="person"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+    <div class="flex-custom">
+        <div>
+            <div #headerTitle class="description-header">
+                <ion-label class="header-label">Agree to terms</ion-label>
+            </div>
+            <app-stepper [max]="4" [min]="1" [value]="4"></app-stepper>
+        </div>
+        <div class="description">
+            <ion-icon class="success-icon"></ion-icon>
+            <div class="ion-text-center">
+                <ion-label class="success-txt">
+                    I have read and understand the risks involved, the terms and condtions and the terms of the website
+                </ion-label>
+            </div>
+        </div>
+        <div class="footer">
+            <ion-button (click)='gotoTabs()' class=" normal bg-blue" mode="ios">Completed</ion-button>
+        </div>
+    </div>
+</ion-content>

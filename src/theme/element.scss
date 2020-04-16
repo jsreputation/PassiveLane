@@ -1,0 +1,531 @@
+body {
+    padding-top: env(safe-area-inset-top);
+}
+
+ion-header {
+    font-family: 'Poppins' !important;
+    margin-top: 36px;
+    text-align: center;
+    &.small-header {
+        height: $small-header;
+    }
+    ion-toolbar:last-child {
+        --border-width: 0 !important;
+    }
+    ion-toolbar {
+        padding: 0px 8px;
+        .back-icon {
+            color: #666674;
+        }
+    }
+    ion-button {
+        width: 30px;
+        height: 30px;
+    }
+    ion-label {
+        &.header-txt {
+            font-family: 'Poppins' !important;
+            opacity: 0;
+            font-size: 21px;
+            font-weight: 500;
+            line-height: 27.6px;
+        }
+    }
+}
+
+ion-content {
+    font-family: 'Poppins' !important;
+    .description-header {
+        ion-label {
+            display: block;
+            padding: 0px 20px;
+            &.header-label {
+                font-size: 23px;
+                font-weight: 500;
+                line-height: 27.6px;
+            }
+        }
+    }
+    .content {
+        padding: 0 20px;
+        margin-bottom: 30px;
+        .description {
+            margin-bottom: 30px;
+            ion-label {
+                font-size: 12px;
+                line-height: 20px;
+                color: #666674;
+                font-weight: 300;
+                letter-spacing: 0.4pt;
+            }
+        }
+        .description-content {
+            margin-bottom: 32px;
+            ion-list {
+                ion-label {
+                    &.list-description-header {
+                        padding-right: 30px;
+                        padding-bottom: 5px;
+                        display: block;
+                    }
+                }
+                ion-radio-group {
+                    ion-list-header {
+                        padding-left: 0;
+                        text-transform: initial;
+                    }
+                    ion-label {
+                        &.radio-group-label {
+                            max-width: 70%;
+                            color: #666674;
+                        }
+                    }
+                }
+                ion-row {
+                    ion-item {
+                        --min-height: 25px;
+                        --background-activated: transparent;
+                        --padding-start: 0px;
+                        ion-label {
+                            font-size: 10px;
+                            line-height: 12px;
+                            color: #666674;
+                            margin: 0;
+                        }
+                        ion-radio {
+                            margin: 0 7px 0 0;
+                            --color: #F7F7F7 !important;
+                            --border-color: wheat;
+                            background: #F7F7F7;
+                            border-radius: 10px;
+                        }
+                    }
+                }
+            }
+            ion-label {
+                font-size: 12px;
+                line-height: 20px;
+                color: #000000;
+                font-weight: 300;
+                letter-spacing: 0.4pt;
+            }
+        }
+    }
+    ion-button {
+        // &.button-disabled {
+        //     --background: #888888 !important;
+        //     --color: #242424;
+        // }
+        --color-activated: #89AADB;
+        --background-activated: #357384;
+        --color-focused: white;
+        --background-focused: #357384;
+        display: block;
+        margin: auto;
+        font-size: 15px;
+        --border-radius: 7px;
+        &.normal {
+            margin: 20px 34px 0;
+            height: $button-height;
+        }
+        &.sign {
+            margin: 0 45px;
+            height: $button-height;
+        }
+        &.bg-blue {
+            --background: #3a8093;
+        }
+        &.bg-red {
+            --background: #e0342f;
+            --background-activated: #ed9794;
+            --color-activated: white;
+        }
+        ion-spinner {
+            margin-right: 5px;
+        }
+    }
+    ion-list {
+        &.custom {
+            ion-item {
+                padding-left: 5px;
+                ion-label {
+                    white-space: pre-wrap !important;
+                    padding: 10px 40px;
+                    background-color: #4f8d9f0f;
+                    border-radius: 5px;
+                    margin-left: 10px;
+                    font-size: 11px !important;
+                    line-height: 15px;
+                    font-weight: 300;
+                    letter-spacing: 0.4pt;
+                    font-family: "Poppins" !important;
+                }
+                ion-checkbox {
+                    position: absolute;
+                    border-radius: 40px;
+                    width: 30px;
+                    height: 30px;
+                    left: 10px;
+                    --border-color: #3a8093;
+                    margin: 0 auto;
+                }
+            }
+        }
+    }
+    .nomal-card {
+        position: relative;
+        .nomal-card-header {
+            .card-header-txt {
+                display: block;
+            }
+        }
+        .nomal-card-content {
+            .card-content-txt {
+                display: block;
+            }
+        }
+        .forward {
+            ion-icon {
+                position: absolute;
+            }
+        }
+    }
+    .list-ios .item-lines-none {
+        --background-activated: transparent;
+    }
+    .padding-0 {
+        padding: 0px;
+    }
+    .bg-light-blue {
+        background: #4f8d9f0f;
+    }
+    .flex-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    .flex-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 4px 0;
+        margin-bottom: 20px;
+    }
+
+    .flex-row-right {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        padding: 4px 0;
+        margin-bottom: 20px;
+    }
+    .flex-custom {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: space-between;
+    }
+    .mat-accent .mat-slider-track-fill {
+        background-color: #3a8093;
+    }
+    .color-blue {
+        color: #3a8093 !important;
+    }
+    .color-red {
+        color: #EF5050;
+    }
+    .mat-slider-ticks-container {
+        display: none;
+    }
+    .mat-slider-wrapper::after {
+        display: none;
+    }
+    .mat-slider-horizontal .mat-slider-track-background {
+        background: #D1D0D5;
+    }
+    .form-content {
+        .save-button-right {
+            margin-bottom: 20px;
+            display: block;
+            text-align: right;
+            ion-button {
+                height: 35px;
+                width: 80px;
+                margin: unset;
+                display: inline-block;
+            }
+        }
+        ion-label {
+            &.form-title {
+                font-size: 18px;
+            }
+        }
+    }
+    .spiner-content {
+        height: calc(100% - 107px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        --color: #3b7ddc;
+    }
+    ion-segment {
+        padding: 20px 0px 5px;
+        ion-segment-button {
+            border: none;
+            height: 40px;
+            margin: 0 10px;
+            border-radius: 7px;
+            --color-checked: #3a8093;
+            --color: #666674;
+            --background-checked: transparent;
+            width: 27%;
+            ion-label {
+                line-height: 20px;
+                letter-spacing: 0.4pt;
+                font-size: 14px;
+                text-transform: initial;
+            }
+        }
+    }
+}
+
+// canvas {
+//     width: 90% !important;
+//     height: 200px !important;
+//     margin: 10px auto;
+// }
+canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.confirm-modal .modal-wrapper {
+    height: 310px;
+    width: 80%;
+    border-radius: 8px;
+}
+
+.forgotPassword-modal .modal-wrapper {
+    height: 310px;
+    width: 80%;
+    border-radius: 8px;
+}
+
+.resetPassword-modal .modal-wrapper {
+    height: 310px;
+    width: 80%;
+    border-radius: 8px;
+}
+
+.verify-modal .modal-wrapper {
+    height: 310px;
+    width: 80%;
+    border-radius: 8px;
+}
+
+.mydealDetail-modal .modal-wrapper {
+    height: 90%;
+    width: 90%;
+    border-radius: 8px;
+}
+
+.activityDetail-modal .modal-wrapper {
+    height: 90%;
+    width: 90%;
+    border-radius: 8px;
+}
+
+.contractPaymentInfo-modal .modal-wrapper {
+    height: 90%;
+    width: 90%;
+    border-radius: 8px;
+}
+
+.bankInfo-modal .modal-wrapper {
+    height: 90%;
+    width: 90%;
+    border-radius: 8px;
+}
+
+.payDetail-modal .modal-wrapper {
+    height: 90%;
+    width: 90%;
+    border-radius: 8px;
+}
+
+.payment-confirm-modal .modal-wrapper {
+    height: 310px;
+    width: 80%;
+    border-radius: 8px;
+}
+
+.payment-cancel-modal .modal-wrapper {
+    height: 310px;
+    width: 80%;
+    border-radius: 8px;
+}
+
+ion-grid {
+    padding: 0;
+}
+
+ion-row {
+    padding: 0;
+}
+
+ion-col {
+    padding: 0;
+}
+
+.action-sheet-group.sc-ion-action-sheet-md {
+    font-family: 'Poppins' !important;
+    border-radius: 10px 10px 0 0;
+}
+
+.action-sheet-group-cancel {
+    display: none;
+}
+
+.action-sheet-wrapper.sc-ion-action-sheet-md {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    max-width: 100%;
+}
+
+.pay-actionsheet {
+    .action-sheet-title.sc-ion-action-sheet-md {
+        text-align: center;
+        font-size: 20px;
+        line-height: 24px;
+        color: #323232;
+    }
+    .action-sheet-sub-title.sc-ion-action-sheet-md {
+        font-size: 12px;
+        line-height: 20px;
+        letter-spacing: 0.4pt;
+    }
+    .action-sheet-button.sc-ion-action-sheet-md {
+        padding-left: 16px;
+        padding-right: 16px;
+        margin-top: 35px;
+        margin-bottom: 15px;
+        height: 100px;
+        width: 50%;
+        display: inline-block;
+    }
+    .action-sheet-button-inner.sc-ion-action-sheet-md {
+        font-size: 12px;
+        line-height: 20px;
+        letter-spacing: 0.4pt;
+    }
+    .action-sheet-button-inner.sc-ion-action-sheet-md {
+        flex-direction: column;
+        justify-content: center;
+    }
+    .action-sheet-icon.sc-ion-action-sheet-md {
+        width: 60px;
+        height: 60px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        padding: 5px 0;
+        -webkit-margin-end: 0px;
+        margin-inline-end: 0px;
+    }
+    .actionsheet-photo-button {
+        .action-sheet-icon.sc-ion-action-sheet-md {
+            background-image: url('assets/icon/photo.svg');
+        }
+    }
+    .actionsheet-gallery-button {
+        .action-sheet-icon.sc-ion-action-sheet-md {
+            background-image: url("assets/icon/gallery.svg");
+        }
+    }
+}
+
+.sc-ion-label-ios-s p {
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 0.4pt;
+    color: black !important;
+}
+
+.sc-ion-label-md-s p {
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 0.4pt;
+    color: #666674 !important;
+}
+
+.loading-wrapper {
+    background: transparent!important;
+    --spinner-color: #3a8093;
+}
+
+.contract-container {
+    padding: 10px 15px 20px;
+    border: 1px solid #DDDDDD;
+    border-radius: 7px;
+}
+
+.list-ios {
+    background: none;
+}
+
+.list-md {
+    background: none;
+}
+
+app-invest {
+    background: rgb(249, 249, 249);
+}
+
+app-my-deal {
+    background: rgb(249, 249, 249);
+}
+
+app-pay {
+    background: rgb(249, 249, 249);
+}
+
+app-mm-telecom-retail {
+    background: rgb(249, 249, 249);
+}
+
+app-activity {
+    background: rgb(249, 249, 249);
+}
+
+app-cache-out{
+    background: #3a8093;
+}
+app-payment{
+    background: rgb(249, 249, 249);
+}
+app-profile{
+    background: #3a8093;
+}
+app-verify{
+    background: rgb(249, 249, 249);
+}
+app-home{
+    background: rgb(249, 249, 249);
+}
+
+
+
+app-get-mati-verification{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    position: relative;
+}
+.popover-content.sc-ion-popover-ios{
+    top: 0!important;
+    left: 0!important;
+    width: 100%;
+    background: whitesmoke;
+}

@@ -1,0 +1,9 @@
+<div class="time_chart">
+    <div class="chart">
+        <div *ngFor="let item of arrayOne(mMax); let i = index;" [ngClass]="{'z-index-set': i >= mValue}">
+            <div #circle [ngClass]="{'bg-border-blue': i < mValue}" class="small_circle "></div>
+        </div>
+    </div>
+    <mat-slider [max]="mMax" [min]="mMin" [tickInterval]="tickInterval" [value]="mValue"
+                disabled="true"></mat-slider>
+</div>

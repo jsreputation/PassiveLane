@@ -1,0 +1,263 @@
+<div class="form-content">
+    <ion-radio-group (ionChange)="onCheck($event)">
+        <ion-item lines="none">
+            <ion-label>Manual</ion-label>
+            <ion-radio slot="start" mode="md" [value]="false" checked="true"></ion-radio>
+        </ion-item>
+        <ion-item lines="none">
+            <ion-label>Auto</ion-label>
+            <ion-radio slot="start" mode="md" [value]="true"></ion-radio>
+        </ion-item>
+    </ion-radio-group>
+    <ion-list *ngIf="bankDetails.length > 0">
+        <form [formGroup]="validate_form" class="custom-body">
+            <div formArrayName="bankDetails">
+                <div *ngFor="let bankInfo of bankDetailsArray?.controls; let i=index">
+                <div class="product-types" [formGroupName]="i" lines="none">
+                    <div class="bank-title" (click)="ExpandItem(i)">
+                        <ion-label class="">Bank Detail {{bankDetails.length === 1 ? '' : i + 1}}</ion-label>
+                        <ion-icon name="arrow-down"></ion-icon>
+                    </div>
+                    <ion-input formControlName="bank_id" hidden></ion-input>
+                    <ion-list id="expandWrapper" class="expand-wrapper" [class.collapsed]="!bankDetails[i].Expanded">
+                        <div class="input-item padd-top-10">
+                            <ion-item mode='ios'>
+                                <ion-icon name="pin" class="nomal-icon"></ion-icon>
+                                <ion-select formControlName="bank_acc_country">
+                                    <ion-select-option *ngFor="let accountCountry of accountCountries"
+                                                       [value]="accountCountry.country">{{accountCountry.countryName}}</ion-select-option>
+                                </ion-select>
+                            </ion-item>
+                        </div>
+                        <div class="input-item">
+                            <ion-item mode='ios'>
+                                <ion-input formControlName="bankAccountHolder"
+                                           name="bankAccountHolder" placeholder="Enter your bank account holder's name.">
+                                </ion-input>
+                            </ion-item>
+                            <div class="validation-errors">
+                                <ng-container *ngFor="let validation of validation_messages.bankAccountHolder">
+                                    <div *ngIf="bankInfo.get('bankAccountHolder').hasError(validation.type) && (bankInfo.get('bankAccountHolder').dirty || bankInfo.get('bankAccountHolder').touched || submitStates[i])"
+                                         class="error-message">
+                                        <ion-label>{{ validation.message }}</ion-label>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+                        <div class="input-item">
+                            <ion-item mode='ios'>
+                                <ion-input formControlName="bankAccountNumber"
+                                           name="bankAccountNumber" placeholder="Enter your bank account number."
+                                           type="number">
+                                </ion-input>
+                            </ion-item>
+                            <div class="validation-errors">
+                                <ng-container *ngFor="let validation of validation_messages.bankAccountNumber">
+                                    <div *ngIf="bankInfo.get('bankAccountNumber').hasError(validation.type) && (bankInfo.get('bankAccountNumber').dirty || bankInfo.get('bankAccountNumber').touched || submitStates[i])"
+                                         class="error-message">
+                                        <ion-label>{{ validation.message }}</ion-label>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+                        <div class="input-item">
+                            <ion-item mode='ios'>
+                                <ion-input formControlName="bankSortCode"
+                                           name="bankSortCode"
+                                           placeholder="Enter your bank sort code." type="number">
+                                </ion-input>
+                            </ion-item>
+                            <div class="validation-errors">
+                                <ng-container *ngFor="let validation of validation_messages.bankSortCode">
+                                    <div *ngIf="bankInfo.get('bankSortCode').hasError(validation.type) && (bankInfo.get('bankSortCode').dirty || bankInfo.get('bankSortCode').touched || submitStates[i])"
+                                         class="error-message">
+                                        <ion-label>{{ validation.message }}</ion-label>
+                                    </div>
+                                </ng-container>
+                            </div>
+                            <div *ngIf="searchError[i]" class="validation-errors">
+                                <div class="error-message">
+                                    <ion-label>{{ searchError[i] }}</ion-label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <ion-row class="flex-row direction-right">
+                            <ion-button *ngIf="isAutoSelect" (click)="searchBankInfo(i)" class="bg-blue" mode='ios'>
+                                Try
+                            </ion-button>
+                        </ion-row>
+
+                        <div class="input-item">
+                            <ion-item mode='ios'>
+                                <ion-input formControlName="bankname" name="bankname"
+                                           placeholder="Enter your bank name" type="text">
+                                </ion-input>
+                            </ion-item>
+                            <div class="validation-errors">
+                                <ng-container *ngFor="let validation of validation_messages.bankname">
+                                    <div *ngIf="bankInfo.get('bankname').hasError(validation.type) && (bankInfo.get('bankname').dirty || bankInfo.get('bankname').touched || submitStates[i])"
+                                         class="error-message">
+                                        <ion-label>{{ validation.message }}</ion-label>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+                        <div class="input-item">
+                            <ion-item mode='ios'>
+                                <ion-input formControlName="bankbranch"
+                                           name="bankbranch"
+                                           placeholder="Enter your bank branch." type="text">
+                                </ion-input>
+                            </ion-item>
+                            <div class="validation-errors">
+                                <ng-container *ngFor="let validation of validation_messages.bankbranch">
+                                    <div *ngIf="bankInfo.get('bankbranch').hasError(validation.type) && (bankInfo.get('bankbranch').dirty || bankInfo.get('bankbranch').touched || submitStates[i])"
+                                         class="error-message">
+                                        <ion-label>{{ validation.message }}</ion-label>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+                        <div class="input-item">
+                            <ion-item mode='ios'>
+                                <ion-input formControlName="bankaddress"
+                                           name="bankaddress"
+                                           placeholder="Enter your bank address." type="text">
+                                </ion-input>
+                            </ion-item>
+                            <div class="validation-errors">
+                                <ng-container *ngFor="let validation of validation_messages.bankaddress">
+                                    <div *ngIf="bankInfo.get('bankaddress').hasError(validation.type) && (bankInfo.get('bankaddress').dirty || bankInfo.get('bankaddress').touched || submitStates[i])"
+                                         class="error-message">
+                                        <ion-label>{{ validation.message }}</ion-label>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+                        <div class="input-item">
+                            <ion-item mode='ios'>
+                                <ion-input formControlName="bankcity" name="bankcity"
+                                           placeholder="Enter your bank city." type="text">
+                                </ion-input>
+                            </ion-item>
+                            <div class="validation-errors">
+                                <ng-container *ngFor="let validation of validation_messages.bankcity">
+                                    <div *ngIf="bankInfo.get('bankcity').hasError(validation.type) && (bankInfo.get('bankcity').dirty || bankInfo.get('bankcity').touched || submitStates[i])"
+                                         class="error-message">
+                                        <ion-label>{{ validation.message }}</ion-label>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+
+                        <div class="input-item">
+                            <ion-item mode='ios'>
+                                <ion-input formControlName="bankIFSCCode"
+                                           name="bankIFSCCode"
+                                           placeholder="Enter your bank IFSC code" type="text">
+                                </ion-input>
+                            </ion-item>
+                            <div class="validation-errors">
+                                <ng-container *ngFor="let validation of validation_messages.bankIFSCCode">
+                                    <div *ngIf="bankInfo.get('bankIFSCCode').hasError(validation.type) && (bankInfo.get('bankIFSCCode').dirty || bankInfo.get('bankIFSCCode').touched || submitStates[i])"
+                                         class="error-message">
+                                        <ion-label>{{ validation.message }}</ion-label>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+                        <div class="input-item">
+                            <ion-item mode='ios'>
+                                <ion-input formControlName="bankABANumber"
+                                           name="bankABANumber"
+                                           placeholder="Enter your bank ABAN number." type="text">
+                                </ion-input>
+                            </ion-item>
+                            <div class="validation-errors">
+                                <ng-container *ngFor="let validation of validation_messages.bankABANumber">
+                                    <div *ngIf="bankInfo.get('bankABANumber').hasError(validation.type) && (bankInfo.get('bankABANumber').dirty || bankInfo.get('bankABANumber').touched || submitStates[i])"
+                                         class="error-message">
+                                        <ion-label>{{ validation.message }}</ion-label>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+                        <div class="input-item">
+                            <ion-item mode='ios'>
+                                <ion-input formControlName="bankRoutingCode"
+                                           name="bankRoutingCode"
+                                           placeholder="Enter your bank routing code." type="text">
+                                </ion-input>
+                            </ion-item>
+                            <div class="validation-errors">
+                                <ng-container *ngFor="let validation of validation_messages.bankRoutingCode">
+                                    <div *ngIf="bankInfo.get('bankRoutingCode').hasError(validation.type) && (bankInfo.get('bankRoutingCode').dirty || bankInfo.get('bankRoutingCode').touched || submitStates[i])"
+                                         class="error-message">
+                                        <ion-label>{{ validation.message }}</ion-label>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+
+                        <div class="input-item">
+                            <ion-item mode='ios'>
+                                <ion-input formControlName="bankAccountIban"
+                                           name="bankAccountIban"
+                                           placeholder="Enter your bank account IBAN." type="text">
+                                </ion-input>
+                            </ion-item>
+                            <div class="validation-errors">
+                                <ng-container *ngFor="let validation of validation_messages.bankAccountIban">
+                                    <div *ngIf="bankInfo.get('bankAccountIban').hasError(validation.type) && (bankInfo.get('bankAccountIban').dirty || bankInfo.get('bankAccountIban').touched || submitStates[i])"
+                                         class="error-message">
+                                        <ion-label>{{ validation.message }}</ion-label>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+
+                        <div class="input-item">
+                            <ion-item mode='ios'>
+                                <ion-input formControlName="bankAccountBic"
+                                           name="bankAccountBic"
+                                           placeholder="Enter your bank account BIC." type="text">
+                                </ion-input>
+                            </ion-item>
+                            <div class="validation-errors">
+                                <ng-container *ngFor="let validation of validation_messages.bankAccountBic">
+                                    <div *ngIf="bankInfo.get('bankAccountBic').hasError(validation.type) && (bankInfo.get('bankAccountBic').dirty || bankInfo.get('bankAccountBic').touched || submitStates[i])"
+                                         class="error-message">
+                                        <ion-label>{{ validation.message }}</ion-label>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+
+                        <ion-row class="flex-row">
+                            <ion-button type="button" class="bg-red" mode='ios' (click)="deleteBank(i, bankInfo.value.bank_id)">
+                                delete
+                            </ion-button>
+                            <ion-button type="button" *ngIf="!isAddedStates[i]" [disabled]="isSubmitReadies[i]" class="bg-blue ion-text-right" mode='ios' (click)="onFormUpdate(i)">
+                                <ion-spinner *ngIf="isSubmitReadies[i]" name="bubbles"></ion-spinner>
+                                Update
+                            </ion-button>
+                            <ion-button type="button" *ngIf="isAddedStates[i]" [disabled]="isSubmitReadies[i]" class="bg-blue ion-text-right" mode='ios' (click)="onFormSubmit(i)">
+                                <ion-spinner *ngIf="isSubmitReadies[i]" name="bubbles"></ion-spinner>
+                                Submit
+                            </ion-button>
+                        </ion-row>
+
+                    </ion-list>
+                </div>
+            </div>
+            </div>
+        </form>
+    </ion-list>
+
+    <ion-row class="flex-row-right">
+        <ion-button (click)="addNewBank()" class="bg-blue ion-text-right" mode='ios'>
+            Add
+        </ion-button>
+    </ion-row>
+</div>

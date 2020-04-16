@@ -1,0 +1,116 @@
+ion-content {
+  --padding-top: 15px;
+  --padding-bottom: 0px;
+  .form-content{
+    padding: 0 20px;
+    ion-list {
+      border-radius: 7px;
+      background: transparent;
+      .input-item {
+        min-height: 65px;
+        .validation-errors {
+          padding: 0 10px;
+          .error-message {
+            padding: 5px 10px 0;
+            font-size: 10px;
+            color: #d12a27;
+          }
+        }
+        ion-item {
+          --padding-start: 6px;
+          --padding-end: 6px;
+          --border-color: #D1D0D5;
+          --background: transparent;
+          ion-input {
+            --padding-start: 10px;
+            --padding-bottom: 0px;
+            font-size: 12px;
+          }
+        }
+        ion-item + ion-item {
+          margin-top: 18px;
+        }
+      }
+    }
+    ion-button{
+      &.bg-blue{
+        width: 100%;
+      }
+    }
+  }
+
+
+  .content {
+    ion-icon{
+      position: absolute;
+      right: 21px;
+      padding: 5px;
+      font-size: 20px;
+      border-radius: 7px;
+      background: #f6d7df;
+      color: #f95368;
+    }
+
+    .card {
+      padding: 10px 15px 20px;
+      border: 1px solid #DDDDDD;
+      border-radius: 8.5px;
+      margin-top: 20px;
+    }
+
+    .sign-pad {
+      border: 1px solid #DDDDDD;
+      border-radius: 8.5px;
+
+      .card-footer {
+        text-align: center;
+        font-size: 12px;
+        line-height: 12px;
+        display: block;
+        padding: 10px 10px 14px;
+        background-color: #3a809326;
+        color: #3a8093;
+      }
+    }
+
+    .description {
+      margin-bottom: 0px;
+    }
+
+    ion-label {
+      &.order {
+        font-size: 12px;
+        line-height: 20px;
+        letter-spacing: 0.4pt;
+        color: #241943;
+      }
+
+      &.description-label {
+        text-transform: uppercase;
+        font-size: 12px;
+        line-height: 20px;
+        letter-spacing: 0.4pt;
+        display: block;
+        padding: 10px 0 5px;
+      }
+    }
+  }
+
+  ion-button {
+    &.normal {
+      margin-bottom: 25px;
+    }
+  }
+
+  .text-center {
+    text-align: center;
+  }
+}
+
+ion-header {
+  ion-label {
+    &.header-txt {
+      padding-right: 34px;
+    }
+  }
+}

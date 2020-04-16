@@ -1,0 +1,83 @@
+ion-grid {
+  padding: 9px 20px;
+  margin-top: 17px;
+  margin-bottom: 18px;
+  background-color: #F7FAFE;
+
+  .nomal-card {
+    text-align: center;
+    height: 91px;
+    border-left: 4px solid #3a8093;
+    border-radius: 8px;
+    margin: 8px 0;
+    background: white;
+
+    .nomal-card-header {
+      padding: 6.8px 5px 14.4px;
+
+      .card-header-txt {
+        font-size: 12px;
+        line-height: 12px;
+      }
+    }
+
+    .nomal-card-content1 {
+      padding: 0px 0px 40.9px;
+
+      .card-content-txt {
+        font-size: 14px;
+        line-height: 27.66px;
+        letter-spacing: 0.2pt;
+        white-space: pre-wrap;
+      }
+    }
+
+    .nomal-card-content2 {
+      padding: 0px 17.9px 40.9px;
+
+      .card-content-txt {
+        font-size: 20px;
+        line-height: 27.66px;
+      }
+    }
+  }
+
+  ion-label {
+    &.left-day {
+      color: #ACAEB1;
+      font-size: 10px;
+      line-height: 20px;
+      letter-spacing: 0.6pt;
+      text-align: right;
+      padding: 0 10px;
+      text-transform: capitalize;
+    }
+
+    &.target-money {
+      text-align: center;
+      font-size: 12px;
+      line-height: 20px;
+      letter-spacing: 0.2pt;
+      padding-left: 8px;
+    }
+  }
+
+  circle-progress {
+    text-align: right;
+    margin: 0 auto;
+    width: 110px;
+    height: 110px;
+  }
+}
+
+.nomal-card.left {
+  margin-right: 10px !important;
+}
+
+.nomal-card.right {
+  margin-left: 10px !important;
+}
+
+.nomal-card.full {
+  width: 100%;
+}

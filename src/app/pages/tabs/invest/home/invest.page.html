@@ -1,0 +1,23 @@
+<ion-header #ionHeader mode="ios">
+    <ion-toolbar>
+        <ion-buttons slot="primary">
+            <ion-menu-button class="menu"></ion-menu-button>
+        </ion-buttons>
+        <ion-label #headerTxt class="header-txt">Investment Opportunities</ion-label>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content #scrollArea (ionScroll)="scroll($event)" [scrollEvents]="true" mode="ios">
+    <div #headerTitle class="description-header">
+        <ion-label class="header-label">Investment Opportunities</ion-label>
+    </div>
+
+    <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="checked">
+        <ion-segment-button *ngFor="let arrSegment of arrSegments" [value]="arrSegment.value">
+            <ion-label>{{ arrSegment.label }}</ion-label>
+        </ion-segment-button>
+    </ion-segment>
+
+    <app-opportunities-details [data]="Params"></app-opportunities-details>
+</ion-content>

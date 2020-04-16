@@ -1,0 +1,29 @@
+ion-content {
+  --padding-top: 15px;
+  --padding-bottom: 0px;
+
+  .content {
+    ion-label {
+      &.description-label {
+        font-size: 15px;
+        line-height: 18px;
+        display: block;
+        padding-bottom: 7px;
+      }
+    }
+  }
+
+  ion-button {
+    &.normal {
+      margin-bottom: 25px;
+    }
+  }
+}
+
+ion-header {
+  ion-label {
+    &.header-txt {
+      padding-right: 34px;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+<ion-content>
+    <div class="flex-custom">
+        <ion-icon class="warning-icon"></ion-icon>
+        <ion-list class="mdl-title">
+            <ion-label class="color-red"> Warning!</ion-label>
+        </ion-list>
+        <ion-label class="mdl-content-txt">
+            Are you sure you would like to cancel this pleadge as you may be red flagged.
+        </ion-label>
+        <ion-row>
+            <ion-button (click)="confirm()" class='normal bg-blue modal-btn' mode='ios'>Confirm</ion-button>
+            <ion-button (click)="cancel()" class='normal btn-white' mode='ios'>Cancel</ion-button>
+        </ion-row>
+    </div>
+</ion-content>

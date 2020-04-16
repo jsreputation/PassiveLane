@@ -1,0 +1,33 @@
+ion-content {
+    --padding-top: 15px;
+    --background: rgb(249, 249, 249);
+    ion-label {
+        &.opportunities-txt {
+            padding: 30px 0;
+            font-size: 12px;
+            line-height: 20px;
+            letter-spacing: 0.6pt;
+            color: #7F7F7F;
+            display: block;
+        }
+    }
+    .footer {
+        position: fixed;
+        bottom: 33.1px;
+        font-size: 14px;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+ion-header {
+    background: rgb(249, 249, 249);
+    ion-toolbar {
+        --background: rgb(249, 249, 249);
+    }
+    ion-label {
+        &.header-txt {
+            padding-left: 24px;
+        }
+    }
+}

@@ -1,0 +1,76 @@
+<ion-header #ionHeader mode="ios">
+  <ion-toolbar>
+    <ion-label #headerTxt class="header-txt">3-Step Verification</ion-label>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content #scrollArea (ionScroll)="scroll($event)" [scrollEvents]="true" mode="ios">
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button  color="danger" (click)="logout()">
+      <ion-icon name="log-out"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <div class="flex-custom">
+    <div #headerTitle>
+      <ion-label class="mdl-title color-blue"> 3-Step Verification </ion-label>
+    </div>
+    <div>
+      <div class="ion-text-center">
+        <ion-icon class="verify-logo"></ion-icon>
+      </div>
+      <ion-list lines="none">
+        <!-- id verification -->
+        <ion-item *ngIf="!is_id">
+          <mati-button clientid="5da9ab58e1c684001c6e5f8d" clientsecret="TM2XZNXCRD1YNV1NC39WTDVRNDHWHAXM"></mati-button>
+          <ion-icon class="rejected" name="close" slot="end"></ion-icon>
+        </ion-item>
+        <ion-item *ngIf="is_id">
+          <div class="mar-auto">
+            <ion-label [ngClass]="idVerification.classname"> {{ idVerification.description }} </ion-label>
+          </div>
+          <ion-icon [ngClass]="idVerification.classname" name="{{ idVerification.icon }}" slot="end"></ion-icon>
+        </ion-item>
+        <!-- sms verification -->
+        <ion-item *ngIf="!is_sms">
+          <ion-button [disabled]="is_sms" class='bg-blue' mode='ios' type="button" routerLink="/sms-verification">
+            SMS Verification
+          </ion-button>
+          <ion-icon class="rejected" name="close" slot="end"></ion-icon>
+        </ion-item>
+        <ion-item *ngIf="is_sms">
+          <div class="mar-auto">
+            <ion-label class="verified"> SMS is verified </ion-label>
+          </div>
+          <ion-icon class="verified" name="checkmark-circle-outline" slot="end"></ion-icon>
+        </ion-item>
+        <!-- bank verification -->
+        <ion-item *ngIf="!is_bank">
+          <ion-button [disabled]="is_bank" class='bg-blue' mode='ios' type="button" routerLink="/bank-verification">
+            Bank Verification
+          </ion-button>
+          <ion-icon class="rejected" name="close" slot="end"></ion-icon>
+        </ion-item>
+        <ion-item *ngIf="is_bank">
+          <div class="mar-auto">
+            <ion-label class="verified"> Bank is verified </ion-label>
+          </div>
+          <ion-icon class="verified" name="checkmark-circle-outline" slot="end"></ion-icon>
+        </ion-item>
+
+
+<!--        <ion-item *ngIf="is_bank">-->
+<!--          <ion-button class='bg-blue' mode='ios' type="button" routerLink="/bank-verification">-->
+<!--            Bank Verification-->
+<!--          </ion-button>-->
+<!--          <ion-icon class="rejected" name="close" slot="end"></ion-icon>-->
+<!--        </ion-item>-->
+      </ion-list>
+    </div>
+    <div class="flex-center" (click)="skip()">
+      <ion-label class="skip">Skip</ion-label>
+      <ion-icon name="arrow-forward"></ion-icon>
+    </div>
+  </div>
+</ion-content>

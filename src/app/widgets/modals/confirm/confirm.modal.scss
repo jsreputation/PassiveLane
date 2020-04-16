@@ -1,0 +1,40 @@
+ion-content {
+  --padding-bottom: 40px;
+  --overflow: hidden;
+
+  ion-list {
+    --margin-bottom: 32px;
+
+    &.mdl-title {
+      text-align: center;
+
+      ion-label {
+        font-size: 16px;
+        line-height: 20px;
+        letter-spacing: 0.4pt;
+      }
+    }
+  }
+
+  ion-label {
+    &.mdl-content-txt {
+      text-align: center;
+      padding: 0 50px 29px;
+      display: block;
+      font-size: 10px;
+      line-height: 15px;
+      letter-spacing: 0.2pt;
+    }
+  }
+
+  ion-button {
+    &.modal-btn {
+      margin: 0 auto;
+      display: block;
+      width: 181.36px;
+      height: 32px;
+      font-size: 14px;
+      line-height: 12px;
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "name": "PassiveLaneApp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,93 @@
+ion-content {
+  --overflow: hidden;
+  .header-content{
+    ion-icon{
+      font-size: 25px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #65b4b9;
+      border: 1px solid;
+      border-radius: 30px;
+      margin: 10px;
+    }
+    ion-icon:active{
+      background: #65b4b9;
+      color: white;
+    }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 110px;
+    justify-content: center;
+  }
+
+  .card-content{
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    -webkit-box-align: center;
+    padding: 30px 15px;
+    height: calc(100% - 135px);
+    margin: auto 20px;
+    background: #eff3f6;
+    border-radius: 7px 7px 0 0;
+  }
+
+  ion-label {
+    color: #333959;
+    font-size: 14px;
+    letter-spacing: 0.4pt;
+    &.bank-title{
+      font-size: 20px;
+      line-height: 30px;
+      font-weight: bold;
+    }
+
+    &.card-title{
+      font-size: 15px;
+      line-height: 20px;
+      padding-bottom: 5px;
+    }
+
+    &.card-des{
+      font-size: 16px;
+      line-height: 20px;
+      font-weight: bold;
+      padding-bottom: 15px;
+    }
+
+    &.mm-content-txt {
+      font-size: 20px;
+      line-height: 32px;
+      align-items: center;
+      display: flex;
+      ion-img{
+        width: 35px;
+        height: auto;
+        margin-right: 10px;
+      }
+      ngx-avatar{
+        margin-right: 10px;
+      }
+    }
+
+  }
+
+  ion-button {
+    &.modal-btn {
+      margin: auto;
+      display: block;
+      width: 100%;
+      height: 50px;
+      font-size: 16px;
+      line-height: 24px;
+      --border-radius: 0px;
+      bottom: 0;
+      position: absolute;
+      font-weight: 400;
+      --background: #65b4b9;
+    }
+  }
+}

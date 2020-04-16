@@ -1,0 +1,35 @@
+ion-content {
+  --padding-top: 15px;
+
+  ion-label {
+    &.success-txt {
+      padding: 0px 60px;
+      font-size: 12px;
+      line-height: 20px;
+      letter-spacing: 0.6pt;
+      color: #241943;
+      display: block;
+    }
+  }
+
+  .flex-custom {
+    .description {
+      margin-bottom: 40px;
+    }
+  }
+
+  .footer {
+    margin-bottom: 40px;
+    font-size: 14px;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+ion-header {
+  ion-label {
+    &.header-txt {
+      padding-right: 34px;
+    }
+  }
+}

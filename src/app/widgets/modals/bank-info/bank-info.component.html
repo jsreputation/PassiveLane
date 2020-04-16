@@ -1,0 +1,42 @@
+<ion-content>
+  <div class="header-content">
+    <ion-icon name="close" (click)="closeModal()"></ion-icon>
+    <ion-label class="mm-content-txt">
+      <span *ngIf="deal.logo_image">
+        <ion-img [src]="deal.logo_image"></ion-img>
+      </span>
+      <ngx-avatar *ngIf="!deal.logo_image" [round]="true" bgColor="#4f8d9f0f" fgColor="#3a8093" initialsSize="3" name="{{ deal.deal_name }}"
+                  size="35"></ngx-avatar>
+      {{ deal.deal_name }}
+    </ion-label>
+    <ion-label class="bank-title">Bank Details</ion-label>
+  </div>
+  <div class="card-content">
+    <ion-label class="card-title">Bank Name</ion-label>
+    <ion-label class="card-des">{{ bankDetail.bank_name }}</ion-label>
+
+    <ion-label class="card-title">Account Name</ion-label>
+    <ion-label class="card-des">{{ bankDetail.account_name }}</ion-label>
+
+    <ion-label class="card-title">Sort Code</ion-label>
+    <ion-label class="card-des">{{ bankDetail.sort_code }}</ion-label>
+
+    <ion-label class="card-title">Account Number</ion-label>
+    <ion-label class="card-des">{{ bankDetail.account_number }}</ion-label>
+
+    <ion-label class="card-title">Reference</ion-label>
+    <ion-label class="card-des">{{ bankDetail.reference }}</ion-label>
+
+    <ion-label class="card-title">Screenshot</ion-label>
+    <ion-label class="card-des">{{ bankDetail.screenshot }}</ion-label>
+
+    <ion-label class="card-title">IBAN</ion-label>
+    <ion-label class="card-des">{{ bankDetail.iban }}</ion-label>
+
+    <ion-label class="card-title">BIC</ion-label>
+    <ion-label class="card-des">{{ bankDetail.bic }}</ion-label>
+  </div>
+  <ion-button class='normal bg-blue modal-btn' mode='ios' (click)="closeModal()">
+    Close
+  </ion-button>
+</ion-content>

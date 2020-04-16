@@ -1,0 +1,196 @@
+<ion-content>
+  <app-logo></app-logo>
+  <form (ngSubmit)="onSingupSubmit()" [formGroup]="validate_signupform" class="custom-body">
+    <div class="signup-content">
+      <ion-label class="signup">Sign Up</ion-label>
+      <ion-list>
+        <div class="input-item">
+          <ion-item mode='ios'>
+            <ion-icon class="person"></ion-icon>
+            <ion-input (keyup)="userTypingSingin($event)" formControlName="first_name" name="first_name"
+                       placeholder="Enter your first name" type="text">
+            </ion-input>
+          </ion-item>
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.first_name">
+              <div *ngIf="validate_signupform.get('first_name').hasError(validation.type) && (validate_signupform.get('first_name').dirty || validate_signupform.get('first_name').touched || submitState)"
+                   class="error-message">
+                <ion-label>{{ validation.message }}</ion-label>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+        <div class="input-item">
+          <ion-item mode='ios'>
+            <ion-icon class="person"></ion-icon>
+            <ion-input (keyup)="userTypingSingin($event)" formControlName="middle_name" name="middle_name"
+                       placeholder="Enter your middle name" type="text">
+            </ion-input>
+          </ion-item>
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.middle_name">
+              <div *ngIf="validate_signupform.get('middle_name').hasError(validation.type) && (validate_signupform.get('middle_name').dirty || validate_signupform.get('middle_name').touched || submitState)"
+                   class="error-message">
+                <ion-label>{{ validation.message }}</ion-label>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+        <div class="input-item">
+          <ion-item mode='ios'>
+            <ion-icon class="person"></ion-icon>
+            <ion-input (keyup)="userTypingSingin($event)" formControlName="last_name" name="last_name"
+                       placeholder="Enter your last name" type="text">
+            </ion-input>
+          </ion-item>
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.last_name">
+              <div *ngIf="validate_signupform.get('last_name').hasError(validation.type) && (validate_signupform.get('last_name').dirty || validate_signupform.get('last_name').touched || submitState)"
+                   class="error-message">
+                <ion-label>{{ validation.message }}</ion-label>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+
+        <div class="input-item">
+          <ion-item mode='ios'>
+            <ion-icon class="person"></ion-icon>
+            <ion-select formControlName="user_type" (ionChange)="userTypeChange()">
+              <ion-select-option *ngFor="let userType of userTypes" [value]="userType">{{ userType }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
+
+        <div class="input-item" *ngIf="is_company">
+          <ion-item mode='ios'>
+            <ion-icon class="person"></ion-icon>
+            <ion-input (keyup)="userTypingSingin($event)" formControlName="company_name" name="company_name"
+                       placeholder="Enter your company name" type="text">
+            </ion-input>
+          </ion-item>
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.company_name">
+              <div *ngIf="validate_signupform.get('company_name').hasError(validation.type) && (validate_signupform.get('company_name').dirty || validate_signupform.get('company_name').touched || submitState)"
+                   class="error-message">
+                <ion-label>{{ validation.message }}</ion-label>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+
+        <div class="input-item">
+          <ion-item mode='ios'>
+            <ion-icon name="pin" class="nomal-icon"></ion-icon>
+            <ion-select formControlName="country" (ionChange)="countryChange()">
+              <ion-select-option *ngFor="let _country of countries" [value]="_country.country">{{_country.countryName}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
+        <div class="input-item">
+          <ion-item mode='ios'>
+            <ion-icon class="phone"></ion-icon>
+            <ion-input (keypress)="userTypingSingin($event)" class="phone-prefix" formControlName="phone_prefix" name="phone_prefix" placeholder="+" type="tel" readonly>
+            </ion-input>
+            <ion-input (keypress)="userTypingSingin($event)" formControlName="phone" name="phone"
+                       placeholder="Enter your phone number" type="number">
+            </ion-input>
+          </ion-item>
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.phone_prefix">
+              <div *ngIf="validate_signupform.get('phone_prefix').hasError(validation.type) && (validate_signupform.get('phone_prefix').dirty || validate_signupform.get('phone_prefix').touched || submitState)"
+                   class="error-message">
+                <ion-label>{{ validation.message }}</ion-label>
+              </div>
+            </ng-container>
+            <ng-container *ngFor="let validation of validation_messages.phone">
+              <div *ngIf="validate_signupform.get('phone').hasError(validation.type) && (validate_signupform.get('phone').dirty || validate_signupform.get('phone').touched || submitState)"
+                   class="error-message">
+                <ion-label>{{ validation.message }}</ion-label>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+
+        <div class="input-item">
+          <ion-item mode='ios'>
+            <ion-icon class="mail-box"></ion-icon>
+            <ion-input (keyup)="userTypingSingin($event)" formControlName="email" name="email"
+                       placeholder="Enter your email address" type="text">
+            </ion-input>
+          </ion-item>
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.email">
+              <div *ngIf="validate_signupform.get('email').hasError(validation.type) && (validate_signupform.get('email').dirty || validate_signupform.get('email').touched || submitState)"
+                   class="error-message">
+                <ion-label>{{ validation.message }}</ion-label>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+
+        <div class="input-item">
+          <ion-item mode='ios'>
+            <ion-icon class="lock"></ion-icon>
+            <ion-input (keyup)="userTypingSingin($event)" [type]="passwordType" formControlName="password"
+                       name="password" placeholder="Enter your password">
+            </ion-input>
+            <ion-icon (click)="togglePassword()" [color]="passwordShown === true ? 'dark' : 'gray'"
+                      [name]="passwordShown === true ? 'eye-off' : 'eye'" class="eye-icon">
+            </ion-icon>
+          </ion-item>
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.password">
+              <div *ngIf="validate_signupform.get('password').hasError(validation.type) && (validate_signupform.get('password').dirty || validate_signupform.get('password').touched || submitState)"
+                   class="error-message">
+                <ion-label>{{ validation.message }}</ion-label>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+
+        <div class="input-item">
+          <ion-item mode='ios'>
+            <ion-icon class="id-icon"></ion-icon>
+            <ion-input (keyup)="userTypingSingin($event)" formControlName="refer_by" name="refer_by"
+                       placeholder="Enter Referral Code" type="text">
+            </ion-input>
+          </ion-item>
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.refer_by">
+              <div *ngIf="validate_signupform.get('refer_by').hasError(validation.type) && (validate_signupform.get('refer_by').dirty || validate_signupform.get('refer_by').touched || submitState)"
+                   class="error-message">
+                <ion-label>{{ validation.message }}</ion-label>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+
+        <div class="input-item">
+          <ion-item mode='ios'>
+            <ion-icon class="calendar" name="calendar"></ion-icon>
+            <ion-datetime (keypress)="userTypingSingin($event)" displayFormat="DDDD D MMM, YYYY" formControlName="day_of_birth" placeholder="Enter your birthday"></ion-datetime>
+          </ion-item>
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.day_of_birth">
+              <div *ngIf="validate_signupform.get('day_of_birth').hasError(validation.type) && (validate_signupform.get('day_of_birth').dirty || validate_signupform.get('day_of_birth').touched || submitState)"
+                   class="error-message">
+                <ion-label>{{ validation.message }}</ion-label>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+
+      </ion-list>
+      <ion-button [disabled]="isAuthSignin" class="sign bg-blue" mode='ios' type="submit">
+        <ion-spinner *ngIf="isAuthSignin" name="bubbles"></ion-spinner>
+        Create your account
+      </ion-button>
+      <ion-label class="terms">By creating an account, you agree to our Terms</ion-label>
+    </div>
+  </form>
+  <div class="accident">
+    <ion-label>Already have an account?</ion-label>
+    <ion-label (click)='gotoSignIn()' class='sign-in'> Sign In</ion-label>
+  </div>
+</ion-content>
