@@ -20,10 +20,10 @@ import {IonicStorageModule} from '@ionic/storage';
 import {AuthGuard} from './guards/auth.guard';
 import {AuthService} from './services/auth/auth.service';
 import {DatePipe} from '@angular/common';
-import {FCM} from "@ionic-native/fcm/ngx";
-import {ComponentsModule} from "./widgets/components/component.module";
+import {FCM} from '@ionic-native/fcm/ngx';
+import {ComponentsModule} from './widgets/components/component.module';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
-import {VerifyPageModule} from "./pages/verify/verify.module";
+import {VerifyPageModule} from './pages/verify/verify.module';
 
 @NgModule({
   declarations: [AppComponent],
