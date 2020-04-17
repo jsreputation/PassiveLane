@@ -79,7 +79,7 @@ const routes: Routes = [
   },
   // tab pages
   {
-    path: '', canActivate: [AuthGuard],
+    path: 'main', canActivate: [AuthGuard],
     loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule)
   },
 

@@ -7,9 +7,9 @@ import { IonicModule } from '@ionic/angular';
 import { VerifyPageRoutingModule } from './verify-routing.module';
 
 import {ComponentsModule} from '../../widgets/components/component.module';
-import {VerifyComponent} from "./home/verify.component";
-import {SmsVerificationComponent} from "./sms-verification/sms-verification.component";
-import {BankVerificationComponent} from "./bank-verification/bank-verification.component";
+import {VerifyComponent} from './home/verify.component';
+import {SmsVerificationComponent} from './sms-verification/sms-verification.component';
+import {BankVerificationComponent} from './bank-verification/bank-verification.component';
 
 @NgModule({
     imports: [

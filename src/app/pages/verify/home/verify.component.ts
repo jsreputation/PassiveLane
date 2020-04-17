@@ -95,16 +95,16 @@ export class VerifyComponent implements OnInit {
   }
 
   skip() {
-    console.log('skip');
     // this.authService.deals_added = false;
-    if (!this.authService.is_verify) {
-      const res = {
-        RESPONSECODE: 0,
-        RESPONSE: 'Please finish all of your 3-step verification.'
-      };
-      this.toastUIService.presentToast(res, 'warning');
-    }
-    this.authService.gotoPage();
+    this.router.navigate(['main'], { replaceUrl: true });
+    // if (!this.authService.is_verify) {
+    //   const res = {
+    //     RESPONSECODE: 0,
+    //     RESPONSE: 'Please finish all of your 3-step verification.'
+    //   };
+    //   this.toastUIService.presentToast(res, 'warning');
+    // }
+    // this.authService.gotoPage();
   }
 
   logout() {

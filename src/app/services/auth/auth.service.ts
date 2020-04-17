@@ -56,14 +56,13 @@ export class AuthService {
                         token: res.token,
                     };
                     // verify
-                    if (this.mail_verify){
-                        console.log('this.is_verify : ', this.is_verify);
-                        if (this.is_verify) {
-                            this.gotoPage();
-                        } else {
-                            this.router.navigate(['/verify']);
-                            // this.router.navigate(['/tabs/my-deal']);
-                        }
+                    if (this.mail_verify) {
+                        // if (this.is_verify) {
+                            // this.gotoPage();
+                        // } else {
+                        //     this.router.navigate(['/verify']);
+                            this.router.navigate(['main/my-deal'], { replaceUrl: true });
+                        // }
                     } else {
                         this.router.navigate(['/mail-verify']);
                         // this.router.navigate(['/tabs/my-deal']);

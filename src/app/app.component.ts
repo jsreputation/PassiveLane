@@ -7,7 +7,7 @@ import {Router} from '@angular/router';
 import {AuthService} from './services/auth/auth.service';
 import {FCM} from '@ionic-native/fcm/ngx';
 import {PopoverComponent} from './widgets/components/popover/popover.component';
-import {Storage} from "@ionic/storage";
+import {Storage} from '@ionic/storage';
 
 @Component({
     selector: 'app-root',

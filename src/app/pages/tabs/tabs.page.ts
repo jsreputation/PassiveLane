@@ -25,22 +25,22 @@ export class TabsPage implements OnInit {
   }
 
   gotoMyDeal() {
-    this.router.navigate(['tabs/my-deal/']);
+    this.router.navigate(['main/my-deal']);
   }
 
   gotoInvest() {
-    this.router.navigate(['tabs/invest/']);
+    this.router.navigate(['main/invest']);
   }
 
   gotoActivity() {
-    this.router.navigate(['tabs/activity/']);
+    this.router.navigate(['main/activity']);
   }
 
   gotoPay() {
-    this.router.navigate(['tabs/pay/']);
+    this.router.navigate(['main/pay']);
   }
 
   gotoCacheout() {
-    this.router.navigate(['tabs/cache-out/']);
+    this.router.navigate(['main/cache-out']);
   }
 }

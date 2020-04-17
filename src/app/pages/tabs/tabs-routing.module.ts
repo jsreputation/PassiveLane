@@ -18,7 +18,7 @@ import {PaymentPage} from './pay/payment/payment.page';
 
 const routes: Routes = [
   {
-    path: 'tabs',
+    path: '',
     component: TabsPage,
     children: [
       {
@@ -105,14 +105,14 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/tabs/my-deal',
+        redirectTo: 'my-deal',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/my-deal',
+    redirectTo: 'my-deal',
     pathMatch: 'full'
   },
 

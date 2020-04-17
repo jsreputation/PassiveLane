@@ -37,6 +37,8 @@ export class MyDealMmTelecomRetailComponent implements OnInit, OnChanges {
       });
       this.myDeals = dataParam;
       this.isReady = true;
+    } else {
+      this.isReady = true;
     }
   }
 
