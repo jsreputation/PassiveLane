@@ -79,11 +79,11 @@ export class SignInPage implements OnInit {
       this.isAuthSignin = true;
       this.submitState = true;
       this.storage.get('device_id').then((response) => {
-        let device_id = '';
-        device_id = response;
-        console.log("device_id : " + device_id);
+        let deviceId = '';
+        deviceId = response;
+        console.log('device_id : ' + deviceId);
         let submitParam = {} as any;
-        submitParam = {...this.validate_signinform.value, device_id: device_id};
+        submitParam = {...this.validate_signinform.value, device_id: deviceId};
         console.log('login info : ', submitParam);
         this.authService.login(submitParam).subscribe(
           (result: any) => {
@@ -94,7 +94,7 @@ export class SignInPage implements OnInit {
                 token: result.token,
               };
               this.authService.user_name_info = result.data.user_info;
-              this.storage.set('current_user', result).then((response) => {
+              this.storage.set('current_user', result).then(() => {
                 this.errorMessage.error_email = '';
                 this.errorMessage.error_password = '';
                 this.submitState = false;

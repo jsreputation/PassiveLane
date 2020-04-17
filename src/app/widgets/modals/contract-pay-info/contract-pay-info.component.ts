@@ -1,8 +1,8 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {ModalController} from "@ionic/angular";
-import {AuthService} from "../../../services/auth/auth.service";
+import {ModalController} from '@ionic/angular';
+import {AuthService} from '../../../services/auth/auth.service';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
-import {DealsService} from "../../../services/tabs/deals.service";
+import {DealsService} from '../../../services/tabs/deals.service';
 
 @Component({
   selector: 'app-contract-pay-info',
@@ -29,7 +29,7 @@ export class ContractPayInfoComponent implements OnInit, OnDestroy {
     const submitParam = {...this.authService.userInfo, deal_id: this.deal.deal_id, transaction_id: this.deal.transaction_id };
     this.contractInfo = this.dealsService.getContractInfo(submitParam).subscribe(
       (result) => {
-          console.log(result);
+        console.log(result);
         if (result.RESPONSECODE === 1) {
           this.contractDetail = result.data;
         }
