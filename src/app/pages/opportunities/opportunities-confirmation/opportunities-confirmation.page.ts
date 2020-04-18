@@ -101,10 +101,11 @@ export class OpportunitiesConfirmationPage implements OnInit {
         console.log(this.submitparams);
         this.investService.getAgreeText(this.submitparams).subscribe(
           (result) => {
+            console.log(JSON.stringify(result));
+            this.isReady = true;
             if (result.RESPONSECODE === 1) {
               console.log(result);
               this.agreementTxt = result.data.text;
-              this.isReady = true;
             } else {
               console.log('RESPONSECODE : 0');
             }

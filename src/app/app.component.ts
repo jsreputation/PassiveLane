@@ -96,32 +96,32 @@ export class AppComponent {
     }
 
     gotoProfilePage() {
-        this.router.navigate(['tabs/profile']);
+        this.router.navigate(['main/profile']);
         this.menu.close('first');
     }
 
     gotoMyDealPage() {
-        this.router.navigate(['tabs/my-deal/']);
+        this.router.navigate(['main/my-deal/']);
         this.menu.close('first');
     }
 
     gotoInvestPage() {
-        this.router.navigate(['tabs/invest/']);
+        this.router.navigate(['main/invest/']);
         this.menu.close('first');
     }
 
     gotoActivityPage() {
-        this.router.navigate(['tabs/activity/']);
+        this.router.navigate(['main/activity/']);
         this.menu.close('first');
     }
 
     gotoPayPage() {
-        this.router.navigate(['tabs/pay/']);
+        this.router.navigate(['main/pay/']);
         this.menu.close('first');
     }
 
     gotoCashOutPage() {
-        this.router.navigate(['tabs/cache-out/']);
+        this.router.navigate(['main/cache-out/']);
         this.menu.close('first');
     }
 

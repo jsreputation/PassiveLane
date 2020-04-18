@@ -126,18 +126,18 @@ export class SignInPage implements OnInit {
       if (param.is_verify) {
         if (param.is_onboarding) {
           if (param.deals_added) {
-            this.router.navigate(['/tabs/my-deal']);
+            this.router.navigate(['main/my-deal']);
           } else {
-            this.router.navigate(['/opportunities']);
+            this.router.navigate(['opportunities']);
           }
         } else {
           this.router.navigate(['investor-type']);
         }
       } else {
-        this.router.navigate(['/verify']);
+        this.router.navigate(['verify']);
       }
     } else {
-      this.router.navigate(['/mail-verify']);
+      this.router.navigate(['mail-verify']);
     }
   }
 

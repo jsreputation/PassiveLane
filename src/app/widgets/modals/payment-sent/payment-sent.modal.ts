@@ -25,7 +25,7 @@ export class ConfirmPaymentComponent implements OnInit {
     const navigationExtras: NavigationExtras = {
       queryParams: this.pledge
     };
-    await this.router.navigate(['tabs/pay/payment'], navigationExtras);
+    await this.router.navigate(['main/pay/payment'], navigationExtras);
   }
 
 }

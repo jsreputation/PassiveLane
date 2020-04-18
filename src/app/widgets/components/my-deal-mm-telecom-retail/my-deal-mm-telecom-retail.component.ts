@@ -49,7 +49,7 @@ export class MyDealMmTelecomRetailComponent implements OnInit, OnChanges {
     const navigationExtras: NavigationExtras = {
       queryParams: deal
     };
-    this.router.navigate(['tabs/my-deal/mm-telecom-retail'], navigationExtras);
+    this.router.navigate(['main/my-deal/mm-telecom-retail'], navigationExtras);
   }
 
   numberWithCommas(x) {

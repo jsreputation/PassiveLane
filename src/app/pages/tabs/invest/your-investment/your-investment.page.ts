@@ -39,6 +39,6 @@ export class YourInvestmentPage implements OnInit {
   }
 
   gotoPay() {
-    this.router.navigate(['tabs/pay']);
+    this.router.navigate(['main/pay']);
   }
 }

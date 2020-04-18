@@ -102,7 +102,7 @@ export class InvestorTypePage implements OnInit {
   }
 
   fn_back() {
-    this.router.navigate(['tabs/profile/']);
+    this.router.navigate(['main/profile/']);
   }
 
   gotoQualificationCriteria(value, data) {

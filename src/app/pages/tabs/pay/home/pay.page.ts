@@ -120,7 +120,7 @@ export class PayPage implements OnInit {
     const navigationExtras: NavigationExtras = {
       queryParams: this.pledgeInfo
     };
-    this.router.navigate(['tabs/pay/payment'], navigationExtras);
+    this.router.navigate(['main/pay/payment'], navigationExtras);
   }
 
   numberWithCommas(x) {

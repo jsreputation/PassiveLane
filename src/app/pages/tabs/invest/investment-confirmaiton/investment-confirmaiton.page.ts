@@ -214,7 +214,7 @@ export class InvestmentConfirmaitonPage implements OnInit {
         const backNavigationExtras: NavigationExtras = {
             queryParams: this.submitparams
         };
-        this.router.navigate(['tabs/invest/payment-options'], backNavigationExtras);
+        this.router.navigate(['main/invest/payment-options'], backNavigationExtras);
     }
 
     gotoYourInvestment() {
@@ -225,7 +225,7 @@ export class InvestmentConfirmaitonPage implements OnInit {
                 const navigationExtras: NavigationExtras = {
                     queryParams: this.submitparams
                 };
-                this.router.navigate(['tabs/invest/your-investment'], navigationExtras);
+                this.router.navigate(['main/invest/your-investment'], navigationExtras);
             }
         });
     }
@@ -245,7 +245,7 @@ export class InvestmentConfirmaitonPage implements OnInit {
                     };
                     this.submitState = false;
                     this.isSubmitReady = false;
-                    this.router.navigate(['tabs/invest/your-investment'], navigationExtras);
+                    this.router.navigate(['main/invest/your-investment'], navigationExtras);
                 } else {
                     console.log('error : ', response);
                     this.isSubmitReady = false;

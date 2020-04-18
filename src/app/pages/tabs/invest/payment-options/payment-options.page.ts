@@ -74,14 +74,14 @@ export class PaymentOptionsPage implements OnInit {
     const backNavigationExtras: NavigationExtras = {
       queryParams: this.submitparams
     };
-    this.router.navigate(['tabs/invest/investment-amount'], backNavigationExtras);
+    this.router.navigate(['main/invest/investment-amount'], backNavigationExtras);
   }
 
   gotoInvestmentConfirmation() {
     const navigationExtras: NavigationExtras = {
       queryParams: this.submitparams
     };
-    this.router.navigate(['tabs/invest/investment-confirmaiton'], navigationExtras);
+    this.router.navigate(['main/invest/investment-confirmaiton'], navigationExtras);
   }
 
 }
