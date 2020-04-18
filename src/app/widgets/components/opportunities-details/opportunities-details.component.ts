@@ -88,7 +88,7 @@ export class OpportunitiesDetailsComponent implements OnInit {
     if (this.router.url === '/opportunities') {
       this.router.navigate(['/opportunities-retail'], navigationExtras);
     } else {
-      this.router.navigate(['tabs/invest/invest-mm-telecom-retail'], navigationExtras);
+      this.router.navigate(['main/invest/invest-mm-telecom-retail'], navigationExtras);
     }
   }
 

@@ -164,7 +164,7 @@ export class MmTelecomRetailPage implements OnInit {
 
 
     fn_back() {
-        this.router.navigate(['tabs/my-deal']);
+        this.router.navigate(['main/my-deal']);
     }
 
     numberWithCommas(x) {
@@ -307,6 +307,6 @@ export class MmTelecomRetailPage implements OnInit {
                 selected_deal_id: this.dealDetail.deal_id
             }
         };
-        this.router.navigate(['/tabs/cache-out'], navigationExtras);
+        this.router.navigate(['/main/cache-out'], navigationExtras);
     }
 }

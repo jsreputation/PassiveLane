@@ -90,9 +90,10 @@ export class ActivityPage implements OnInit, OnChanges {
         param = {...this.authService.userInfo};
         this.dealsService.getActivityInfo(param).subscribe((result) => {
             console.log('activity_data => ', result);
-
-            this.dealInfo = result.data.transaction;
-            this.Params = result.data.transaction;
+            if (result.RESPONSECODE === 1) {
+                this.dealInfo = result.data.transaction;
+                this.Params = result.data.transaction;
+            }
             this._changeSumAmount();
         });
     }

@@ -90,14 +90,14 @@ export class InvestMmTelecomRetailPage implements OnInit {
 
 
     fn_back() {
-        this.router.navigate(['tabs/invest/']);
+        this.router.navigate(['main/invest/']);
     }
 
     gotoInvestmentAmount() {
         const navigationExtras: NavigationExtras = {
             queryParams: this.deal_info
         };
-        this.router.navigate(['tabs/invest/investment-amount'], navigationExtras);
+        this.router.navigate(['main/invest/investment-amount'], navigationExtras);
     }
 
     numberWithCommas(x) {

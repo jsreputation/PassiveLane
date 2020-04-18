@@ -113,7 +113,7 @@ export class InvestmentAmountPage implements OnInit {
         const backNavigationExtras: NavigationExtras = {
             queryParams: this.deal_info
         };
-        this.router.navigate(['tabs/invest/invest-mm-telecom-retail'], backNavigationExtras);
+        this.router.navigate(['main/invest/invest-mm-telecom-retail'], backNavigationExtras);
     }
 
     gotoPaymentOptions() {
@@ -122,7 +122,7 @@ export class InvestmentAmountPage implements OnInit {
             const navigationExtras: NavigationExtras = {
                 queryParams: this.deal_info
             };
-            this.router.navigate(['tabs/invest/payment-options'], navigationExtras);
+            this.router.navigate(['main/invest/payment-options'], navigationExtras);
         } else {
             this.isError = true;
         }

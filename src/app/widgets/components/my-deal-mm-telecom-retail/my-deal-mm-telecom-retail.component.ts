@@ -37,6 +37,8 @@ export class MyDealMmTelecomRetailComponent implements OnInit, OnChanges {
       });
       this.myDeals = dataParam;
       this.isReady = true;
+    } else {
+      this.isReady = true;
     }
   }
 
@@ -47,7 +49,7 @@ export class MyDealMmTelecomRetailComponent implements OnInit, OnChanges {
     const navigationExtras: NavigationExtras = {
       queryParams: deal
     };
-    this.router.navigate(['tabs/my-deal/mm-telecom-retail'], navigationExtras);
+    this.router.navigate(['main/my-deal/mm-telecom-retail'], navigationExtras);
   }
 
   numberWithCommas(x) {

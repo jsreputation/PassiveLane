@@ -56,14 +56,13 @@ export class AuthService {
                         token: res.token,
                     };
                     // verify
-                    if (this.mail_verify){
-                        console.log('this.is_verify : ', this.is_verify);
-                        if (this.is_verify) {
+                    if (this.mail_verify) {
+                        // if (this.is_verify) {
                             this.gotoPage();
-                        } else {
-                            this.router.navigate(['/verify']);
-                            // this.router.navigate(['/tabs/my-deal']);
-                        }
+                        // } else {
+                        //     this.router.navigate(['/verify']);
+                            // this.router.navigate(['main/my-deal'], { replaceUrl: true });
+                        // }
                     } else {
                         this.router.navigate(['/mail-verify']);
                         // this.router.navigate(['/tabs/my-deal']);
@@ -100,11 +99,11 @@ export class AuthService {
         if (this.is_onboarding) {
             // is deal
             if (this.deals_added) {
-                if (this.is_verify) {
-                    this.router.navigate(['/tabs/my-deal']);
-                } else {
-                    this.router.navigate(['/verify']);
-                }
+                // if (this.is_verify) {
+                    this.router.navigate(['main/my-deal']);
+                // } else {
+                //     this.router.navigate(['/verify']);
+                // }
             } else {
                 this.router.navigate(['/opportunities']);
             }

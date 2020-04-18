@@ -1,11 +1,11 @@
 import {Component, OnInit, Renderer2, ViewChild} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {MenuController, Platform} from "@ionic/angular";
-import {ProfileService} from "../../../services/tabs/profile.service";
-import {AuthService} from "../../../services/auth/auth.service";
-import {HeaderService} from "../../../services/UI/header.service";
-import {Storage} from "@ionic/storage";
-import {ToastService} from "../../../services/UI/toast.service";
+import {ActivatedRoute, Router} from '@angular/router';
+import {MenuController, Platform} from '@ionic/angular';
+import {ProfileService} from '../../../services/tabs/profile.service';
+import {AuthService} from '../../../services/auth/auth.service';
+import {HeaderService} from '../../../services/UI/header.service';
+import {Storage} from '@ionic/storage';
+import {ToastService} from '../../../services/UI/toast.service';
 
 @Component({
   selector: 'app-home',
@@ -95,15 +95,15 @@ export class VerifyComponent implements OnInit {
   }
 
   skip() {
-    console.log('skip');
     // this.authService.deals_added = false;
-    if (!this.authService.is_verify) {
-      const res = {
-        RESPONSECODE: 0,
-        RESPONSE: 'Please finish all of your 3-step verification.'
-      };
-      this.toastUIService.presentToast(res, 'warning');
-    }
+    // this.router.navigate(['main'], { replaceUrl: true });
+    // if (!this.authService.is_verify) {
+    //   const res = {
+    //     RESPONSECODE: 0,
+    //     RESPONSE: 'Please finish all of your 3-step verification.'
+    //   };
+    //   this.toastUIService.presentToast(res, 'warning');
+    // }
     this.authService.gotoPage();
   }
 
