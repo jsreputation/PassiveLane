@@ -4,6 +4,7 @@ import {ProfileService} from '../../../../services/tabs/profile.service';
 import {AuthService} from '../../../../services/auth/auth.service';
 import {VerifyModalService} from '../verifyModal.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { ToastService } from 'src/app/services/UI/toast.service';
 
 @Component({
     selector: 'app-signature-form',
@@ -28,6 +29,7 @@ export class SignatureFormComponent implements OnInit {
         private authService: AuthService,
         private verifyMdlService: VerifyModalService,
         public formBuilder: FormBuilder,
+        private toastCtrl: ToastService
     ) {
     }
 
@@ -64,18 +66,42 @@ export class SignatureFormComponent implements OnInit {
         } else {
             sendUrl = this.addUrl;
         }
-        this.profileService.sendSMS(this.authService.userInfo).subscribe(async res => {
+        // this.profileService.sendSMS(this.authService.userInfo).subscribe(async res => {
+        //     if (res.RESPONSECODE === 1) {
+        //         await this.verifyMdlService.showMdl(sendUrl, this.validate_form.value);
+        //         this.submitState = false;
+        //         this.isSubmitReady = false;
+        //         if (this.profileService.savedProfileDetail.sign_image) {
+        //             console.log(this.profileService.savedProfileDetail);
+        //             this.signInfo = this.signaturePad.toDataURL();
+        //         }
+        //     } else {
+        //         console.log('error : ', res);
+        //         this.isSubmitReady = false;
+        //     }
+        // });
+        this.profileService.sendSMS(this.authService.userInfo).subscribe((res) => {
             if (res.RESPONSECODE === 1) {
-                await this.verifyMdlService.showMdl(sendUrl, this.validate_form.value);
-                this.submitState = false;
-                this.isSubmitReady = false;
-                if (this.profileService.savedProfileDetail.sign_image) {
-                    console.log(this.profileService.savedProfileDetail);
-                    this.signInfo = this.signaturePad.toDataURL();
-                }
-            } else {
-                console.log('error : ', res);
-                this.isSubmitReady = false;
+                this.profileService.saveProfile(sendUrl, this.validate_form.value).subscribe(
+                    (result: any) => {
+                        this.submitState = false;
+                        this.isSubmitReady = false;
+                        if (result.RESPONSECODE === 1) {
+                            if (this.profileService.savedProfileDetail.sign_image) {
+                                console.log(this.profileService.savedProfileDetail);
+                                this.signInfo = this.signaturePad.toDataURL();
+                            }
+                            this.toastCtrl.presentSpecificText('Saved successfully.');
+                        } else if (result.RESPONSECODE === 0) {
+                            this.toastCtrl.presentSpecificText('Failed saving.');
+                        }
+                    },
+                    error => {
+                        this.submitState = false;
+                        this.isSubmitReady = false;
+                        this.toastCtrl.presentSpecificText('Sever Api problem.');
+                    }
+                );
             }
         });
     }

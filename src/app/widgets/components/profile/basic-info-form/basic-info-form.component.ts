@@ -5,6 +5,7 @@ import {ModalController, Platform} from '@ionic/angular';
 import {AuthService} from '../../../../services/auth/auth.service';
 import {ProfileService} from '../../../../services/tabs/profile.service';
 import {VerifyModalService} from '../verifyModal.service';
+import { ToastService } from 'src/app/services/UI/toast.service';
 
 @Component({
     selector: 'app-basic-info-form',
@@ -44,7 +45,7 @@ export class BasicInfoFormComponent implements OnInit {
         private platform: Platform,
         private authService: AuthService,
         private profileService: ProfileService,
-        private verifyMdlService: VerifyModalService
+        private toastCtrl: ToastService
     ) {
         if (this.platform.is('ios')) {
             this.isIosPlatform = true;
@@ -87,34 +88,37 @@ export class BasicInfoFormComponent implements OnInit {
 
             let param = {} as any;
             param = {...this.authService.userInfo, ...this.validate_form.value};
-
-            // this.profileService.saveProfile(this.sendUrl, param).subscribe(
-            //     (result: any) => {
-            //         console.log('result => ', result);
-            //         if (result.RESPONSECODE === 1) {
-            //             // this.profileService.savedProfileDetail = this.submitParams;
-            //             console.log('success: ', result.RESPONSE);
-            //         } else if (result.RESPONSECODE === 0) {
-            //             console.log('error: ', result.RESPONSE);
-            //         }
-            //     },
-            //     error => {
-            //         console.log('error => ', error);
-            //     }
-            // );
-            // return;
-
-
-            this.profileService.sendSMS(this.authService.userInfo).subscribe(async res => {
+            this.profileService.sendSMS(this.authService.userInfo).subscribe((res) => {
                 if (res.RESPONSECODE === 1) {
-                    await this.verifyMdlService.showMdl(this.sendUrl, param);
-                    this.submitState = false;
-                    this.isSubmitReady = false;
-                } else {
-                    console.log('error : ', res);
-                    this.isSubmitReady = false;
+                    this.profileService.saveProfile(this.sendUrl, param).subscribe(
+                        (result: any) => {
+                            this.submitState = false;
+                            this.isSubmitReady = false;
+                            if (result.RESPONSECODE === 1) {
+                                this.toastCtrl.presentSpecificText('Saved successfully.');
+                            } else if (result.RESPONSECODE === 0) {
+                                this.toastCtrl.presentSpecificText('Failed saving.');
+                            }
+                        },
+                        error => {
+                            this.submitState = false;
+                            this.isSubmitReady = false;
+                            this.toastCtrl.presentSpecificText('Sever Api problem.');
+                        }
+                    );
                 }
             });
+            // this.profileService.sendSMS(this.authService.userInfo).subscribe(async res => {
+            //     alert(JSON.stringify(res));
+            //     if (res.RESPONSECODE === 1) {
+            //         await this.verifyMdlService.showMdl(this.sendUrl, param);
+            //         this.submitState = false;
+            //         this.isSubmitReady = false;
+            //     } else {
+            //         console.log('error : ', res);
+            //         this.isSubmitReady = false;
+            //     }
+            // });
 
         } else {
             this.submitState = true;

@@ -6,6 +6,7 @@ import {AuthService} from '../../../../services/auth/auth.service';
 import {ProfileService} from '../../../../services/tabs/profile.service';
 import {PhoneNumberValidator} from '../../../../services/validator/phoneNumberValidator.validator';
 import {VerifyModalService} from '../verifyModal.service';
+import { ToastService } from 'src/app/services/UI/toast.service';
 
 @Component({
   selector: 'app-contact-number-form',
@@ -14,13 +15,11 @@ import {VerifyModalService} from '../verifyModal.service';
 })
 export class ContactNumberFormComponent implements OnInit {
   constructor(
-    private router: Router,
-    private modalCtrl: ModalController,
     public formBuilder: FormBuilder,
     private platform: Platform,
     private authService: AuthService,
     private profileService: ProfileService,
-    private verifyMdlService: VerifyModalService
+    private toastCtrl: ToastService
   ) {
     if (this.platform.is('ios')) {
       this.isIosPlatform = true;
@@ -105,15 +104,35 @@ export class ContactNumberFormComponent implements OnInit {
       // return;
 
       // this.validate_form.value = {...this.validate_form.value, {res}};
-      this.profileService.sendSMS(this.authService.userInfo).subscribe(async res => {
-        console.log(res);
+      // this.profileService.sendSMS(this.authService.userInfo).subscribe(async res => {
+      //   console.log(res);
+      //   if (res.RESPONSECODE === 1) {
+      //     await this.verifyMdlService.showMdl(this.sendUrl, this.submitParams);
+      //     this.submitState = false;
+      //     this.isSubmitReady = false;
+      //   } else {
+      //     console.log('error : ', res);
+      //     this.isSubmitReady = false;
+      //   }
+      // });
+      this.profileService.sendSMS(this.authService.userInfo).subscribe((res) => {
         if (res.RESPONSECODE === 1) {
-          await this.verifyMdlService.showMdl(this.sendUrl, this.submitParams);
-          this.submitState = false;
-          this.isSubmitReady = false;
-        } else {
-          console.log('error : ', res);
-          this.isSubmitReady = false;
+            this.profileService.saveProfile(this.sendUrl, this.submitParams).subscribe(
+                (result: any) => {
+                    this.submitState = false;
+                    this.isSubmitReady = false;
+                    if (result.RESPONSECODE === 1) {
+                        this.toastCtrl.presentSpecificText('Saved successfully.');
+                    } else if (result.RESPONSECODE === 0) {
+                        this.toastCtrl.presentSpecificText('Failed saving.');
+                    }
+                },
+                error => {
+                    this.submitState = false;
+                    this.isSubmitReady = false;
+                    this.toastCtrl.presentSpecificText('Sever Api problem.');
+                }
+            );
         }
       });
     } else {

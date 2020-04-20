@@ -2,6 +2,9 @@ ion-content {
     --background: rgb(249, 249, 249);
     ion-row {
         padding: 15px 0px 25px;
+        ion-slides {
+            width: 100%;
+        }
         .mm-card {
             border-radius: 10px;
             width: 100%;

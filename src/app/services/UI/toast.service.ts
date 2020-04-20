@@ -58,4 +58,13 @@ export class ToastService {
     await toast.present();
   }
 
-}
+  async presentSpecificText(text) {
+    const toast = await this.toastController.create({
+      message: text,
+      duration: 3000,
+      mode: 'ios',
+      position: 'top'
+    });
+    await toast.present();
+  }
+ }

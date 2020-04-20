@@ -9,7 +9,7 @@
                         <ion-item mode='ios'>
                             <ion-icon class="person"></ion-icon>
                             <ion-input (keyup)="userTypingSingin($event)" formControlName="email" name="email"
-                                       placeholder="Enter your email address" type="text">
+                                       placeholder="Enter your email address" type="text" [(ngModel)]="email">
                             </ion-input>
                         </ion-item>
                         <div class="validation-errors">
@@ -33,7 +33,7 @@
                             <ion-icon class="lock"></ion-icon>
                             <ion-input (keyup)="userTypingSingin($event)" formControlName="password"
                                        name="password" placeholder="Enter your password"
-                                       type="password">
+                                       type="password" [(ngModel)]="password">
                             </ion-input>
                         </ion-item>
 

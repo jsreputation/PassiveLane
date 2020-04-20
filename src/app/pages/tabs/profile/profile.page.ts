@@ -8,8 +8,7 @@ import {ChangePasswordFormComponent} from '../../../widgets/components/profile/c
 import {BankDetailsFormComponent} from '../../../widgets/components/profile/bank-details-form/bank-details-form.component';
 import {GotoInvestorTypeFormComponent} from '../../../widgets/components/profile/goto-investor-type-form/goto-investor-type-form.component';
 import {SignatureFormComponent} from '../../../widgets/components/profile/signature-form/signature-form.component';
-import {ProofOfIdComponent} from "../../../widgets/components/profile/proof-of-id/proof-of-id.component";
-import {IonContent} from "@ionic/angular";
+import {ProofOfIdComponent} from '../../../widgets/components/profile/proof-of-id/proof-of-id.component';
 
 @Component({
   selector: 'app-profile',
@@ -18,23 +17,15 @@ import {IonContent} from "@ionic/angular";
 })
 export class ProfilePage implements OnInit {
 
-  @ViewChild('ionHeader', {static: false}) ionHeader: any;
-  @ViewChild('headerTitle', {static: false}) headerTitle: any;
-  @ViewChild('headerTxt', {static: false}) headerTxt: any;
 
   @ViewChild(DynamicHostDirective, {static: true}) host: DynamicHostDirective;
 
   public ScrollAnimation = '';
-
-  private hidden = false;
-  private triggerDistance = 42;
   public user_info;
 
   public items: any = [];
 
   constructor(
-    private renderer: Renderer2,
-    private headerService: HeaderService,
   ) {
   }
 
@@ -63,26 +54,6 @@ export class ProfilePage implements OnInit {
         }
         return listItem;
       });
-    }
-  }
-
-  ionViewWillEnter() {
-  }
-
-  ionViewWillLeave() {
-    if (!this.hidden) {
-      this.headerService.headerClear(this.renderer, this.ionHeader.el, this.headerTitle.nativeElement, this.headerTxt.el);
-    }
-  }
-
-  scroll(ev: any) {
-
-    if (!this.hidden && ev.detail.currentY > this.triggerDistance) {
-      this.hidden = true;
-      return this.headerService.headerHide(this.renderer, this.ionHeader.el, this.headerTitle.nativeElement, this.headerTxt.el);
-    } else if (this.hidden && ev.detail.currentY <= this.triggerDistance) {
-      this.hidden = false;
-      return this.headerService.headerShow(this.renderer, this.ionHeader.el, this.headerTitle.nativeElement, this.headerTxt.el);
     }
   }
 }
