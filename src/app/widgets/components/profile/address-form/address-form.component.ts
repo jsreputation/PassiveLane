@@ -5,6 +5,7 @@ import {ModalController, Platform, PopoverController} from '@ionic/angular';
 import {ProfileService} from '../../../../services/tabs/profile.service';
 import {AuthService} from '../../../../services/auth/auth.service';
 import {VerifyModalService} from '../verifyModal.service';
+import { ToastService } from 'src/app/services/UI/toast.service';
 
 @Component({
     selector: 'app-address-form',
@@ -46,14 +47,11 @@ export class AddressFormComponent implements OnInit {
     private sendUrl = 'https://www.passivelane.com/apiinvestor/saveprofileaddressinfo';
 
     constructor(
-        private router: Router,
-        private modalCtrl: ModalController,
         public formBuilder: FormBuilder,
         private platform: Platform,
         private profileService: ProfileService,
         private authService: AuthService,
-        private popoverController: PopoverController,
-        private verifyMdlService: VerifyModalService
+        private toastCtrl: ToastService
     ) {
         if (this.platform.is('ios')) {
             this.isIosPlatform = true;
@@ -117,14 +115,24 @@ export class AddressFormComponent implements OnInit {
             let param = {} as any;
             param = {...this.authService.userInfo, ...this.validate_form.value};
 
-            this.profileService.sendSMS(this.authService.userInfo).subscribe(async res => {
+            this.profileService.sendSMS(this.authService.userInfo).subscribe((res) => {
                 if (res.RESPONSECODE === 1) {
-                    await this.verifyMdlService.showMdl(this.sendUrl, param);
-                    this.submitState = false;
-                    this.isSubmitReady = false;
-                } else {
-                    console.log('error : ', res);
-                    this.isSubmitReady = false;
+                    this.profileService.saveProfile(this.sendUrl, param).subscribe(
+                        (result: any) => {
+                            this.submitState = false;
+                            this.isSubmitReady = false;
+                            if (result.RESPONSECODE === 1) {
+                                this.toastCtrl.presentSpecificText('Saved successfully.');
+                            } else if (result.RESPONSECODE === 0) {
+                                this.toastCtrl.presentSpecificText('Failed saving.');
+                            }
+                        },
+                        error => {
+                            this.submitState = false;
+                            this.isSubmitReady = false;
+                            this.toastCtrl.presentSpecificText('Sever Api problem.');
+                        }
+                    );
                 }
             });
         } else {
@@ -189,15 +197,16 @@ export class AddressFormComponent implements OnInit {
         let data = {} as any;
         data = {
             Key: encodeURIComponent('BG99-PK29-UD62-ED95'),
+            // tslint:disable-next-line: object-literal-shorthand
             Id: Id,
         };
         const retrieveAddress = await this.profileService.getRetrieveAddressInfo(data).toPromise();
-        if (retrieveAddress.Items.length == 1 && typeof(retrieveAddress.Items[0].Error) != "undefined") {
+        if (retrieveAddress.Items.length === 1 && typeof(retrieveAddress.Items[0].Error) !== 'undefined') {
             console.log(retrieveAddress.Items[0].Description);
         } else {
-            if (retrieveAddress.Items.length == 0)
-                console.log("Sorry, there were no results");
-            else {
+            if (retrieveAddress.Items.length === 0) {
+                console.log('Sorry, there were no results');
+            } else {
                 this.validate_form.patchValue({
                     buildno: retrieveAddress.Items[0].BuildingNumber,
                     buildname: retrieveAddress.Items[0].BuildingName,
@@ -207,17 +216,17 @@ export class AddressFormComponent implements OnInit {
                     postcode: retrieveAddress.Items[0].PostalCode,
                     country: retrieveAddress.Items[0].CountryIso3,
                 });
-                console.log("retrieveAddress : ", this.validate_form.value);
+                console.log('retrieveAddress : ', this.validate_form.value);
             }
         }
         this.clearAddressInfo();
     }
 
     selectAddress(Id: any, Type: any) {
-        if (Type === "Address"){
+        if (Type === 'Address') {
             this.retrieveAddress(Id);
         } else {
-            this.findAddress(Id)
+            this.findAddress(Id);
         }
     }
 

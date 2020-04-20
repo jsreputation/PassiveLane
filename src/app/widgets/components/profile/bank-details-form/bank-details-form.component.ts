@@ -5,6 +5,7 @@ import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angul
 import {AuthService} from '../../../../services/auth/auth.service';
 import {ProfileService} from '../../../../services/tabs/profile.service';
 import {VerifyModalService} from '../verifyModal.service';
+import { ToastService } from 'src/app/services/UI/toast.service';
 
 @Component({
     selector: 'app-bank-details-form',
@@ -18,13 +19,12 @@ export class BankDetailsFormComponent implements OnInit {
     private deleteUrl = 'https://www.passivelane.com/apiinvestor/deleteprofilebankinfo';
 
     constructor(
-        private router: Router,
-        private modalCtrl: ModalController,
         public fb: FormBuilder,
         private platform: Platform,
         private authService: AuthService,
         private profileService: ProfileService,
-        private verifyMdlService: VerifyModalService
+        private verifyMdlService: VerifyModalService,
+        private toastCtrl: ToastService
     ) {
         if (this.platform.is('ios')) {
             this.isIosPlatform = true;
@@ -180,14 +180,34 @@ export class BankDetailsFormComponent implements OnInit {
             submitParams = {...this.authService.userInfo, user_type: this.authService.user_name_info.user_type, ...this.validate_form.value.bankDetails[index]};
             console.log(' ####### submitting ######## ', submitParams);
 
-            this.profileService.sendSMS(this.authService.userInfo).subscribe(async res => {
+            // this.profileService.sendSMS(this.authService.userInfo).subscribe(async res => {
+            //     if (res.RESPONSECODE === 1) {
+            //         await this.verifyMdlService.showMdl(this.addUrl, submitParams);
+            //         this.submitStates[index] = false;
+            //         this.isSubmitReadies[index] = false;
+            //     } else {
+            //         console.log('error : ', res);
+            //         this.isSubmitReadies[index] = false;
+            //     }
+            // });
+            this.profileService.sendSMS(this.authService.userInfo).subscribe((res) => {
                 if (res.RESPONSECODE === 1) {
-                    await this.verifyMdlService.showMdl(this.addUrl, submitParams);
-                    this.submitStates[index] = false;
-                    this.isSubmitReadies[index] = false;
-                } else {
-                    console.log('error : ', res);
-                    this.isSubmitReadies[index] = false;
+                    this.profileService.saveProfile(this.addUrl, submitParams).subscribe(
+                        (result: any) => {
+                            this.submitStates[index] = false;
+                            this.isSubmitReadies[index] = false;
+                            if (result.RESPONSECODE === 1) {
+                                this.toastCtrl.presentSpecificText('Saved successfully.');
+                            } else if (result.RESPONSECODE === 0) {
+                                this.toastCtrl.presentSpecificText('Failed saving.');
+                            }
+                        },
+                        error => {
+                            this.submitStates[index] = false;
+                            this.isSubmitReadies[index] = false;
+                            this.toastCtrl.presentSpecificText('Sever Api problem.');
+                        }
+                    );
                 }
             });
         } else {

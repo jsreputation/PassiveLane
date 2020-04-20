@@ -38,12 +38,9 @@ export class ActivityPage implements OnInit, OnChanges {
     isReadyAmounts = false;
 
     slideOpts = {
-        // speed: 400,
         slidesPerView: 1.2,
-        // autoplay: true,
-        // pager: false,
-        loop: true,
         centeredSlides: true,
+        loop: false
     };
 
     constructor(
@@ -51,9 +48,7 @@ export class ActivityPage implements OnInit, OnChanges {
         private headerService: HeaderService,
         private authService: AuthService,
         private dealsService: DealsService,
-        private modalCtrl: ModalController,
-        private router: Router,
-        private cdr: ChangeDetectorRef
+        private modalCtrl: ModalController
     ) {
     }
 
@@ -65,16 +60,6 @@ export class ActivityPage implements OnInit, OnChanges {
             (result: any) => {
                 if (result.RESPONSECODE === 1) {
                     this.myDeals = result.data.deals;
-                    // setTimeout(() => {
-                    //     this.slides.ionSlideNextEnd.subscribe(res => {
-                    //         // this.hide = true;
-                    //         setTimeout(() => {
-                    //             // this.hide = false;
-                    //             this.slides.startAutoplay();
-                    //             this.cdr.detectChanges();
-                    //         }, 500);
-                    //     });
-                    // }, 1000);
                     console.log(result.data);
                 } else {
                     console.log('error : ', result.data);
@@ -221,20 +206,5 @@ export class ActivityPage implements OnInit, OnChanges {
         const parts = (Math.round(x * 100) / 100).toString().split('.');
         parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
         return parts.join('.');
-    }
-
-    slideDidChange(event) {
-        const target = event.target as IonSlides;
-        // first and last slides are duplicate slides
-        target.getActiveIndex()
-            .then(async (activeIndex: number) => {
-                const slideCount = await target.length();
-                if (activeIndex === slideCount - 1) {
-                    target.slideTo(1, 0);
-                }
-                if (activeIndex === 0) {
-                    target.slideTo(slideCount - 2, 0);
-                }
-            });
     }
 }

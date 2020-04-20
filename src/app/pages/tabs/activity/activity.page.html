@@ -15,7 +15,7 @@
         <ion-label class="header-label">All Activity</ion-label>
     </div>
     <ion-row *ngIf="myDeals.length > 0">
-        <ion-slides pager="false" [options]="slideOpts" (ionSlideDidChange)="slideDidChange($event)" #slides>
+        <ion-slides pager="false" [options]="slideOpts" #slides>
             <ion-slide *ngFor="let myDeal of myDeals">
                 <div class="mm-card card-bg-icon" (click)="presentModal(myDeal.deal_id, numberWithCommas(myDeal.balance))">
                     <div class="mm-card-content">

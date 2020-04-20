@@ -68,6 +68,9 @@ ion-content {
 }
 
 ion-header {
+  margin-top: 0px !important;
+  padding-bottom: 10px;
+  padding-top: 10px;
   ion-toolbar {
     --background: #3a8093;
   }
@@ -75,6 +78,7 @@ ion-header {
     &.header-txt {
       padding-left: 24px;
       color: white;
+      opacity: 1 !important;
     }
   }
 }

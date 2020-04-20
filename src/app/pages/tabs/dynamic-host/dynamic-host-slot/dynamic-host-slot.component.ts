@@ -22,7 +22,7 @@ export class DynamicHostSlotComponent implements OnInit {
 
     const viewContainerRef = this.host.viewContainerRef;
     viewContainerRef.clear();
-    const componentRef = viewContainerRef.createComponent(componentFactory);
+    viewContainerRef.createComponent(componentFactory);
     // send data to resolved component here
   }
 

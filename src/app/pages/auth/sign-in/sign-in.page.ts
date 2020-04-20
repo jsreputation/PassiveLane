@@ -7,7 +7,6 @@ import {ForgotPasswordComponent} from 'src/app/widgets/modals/forgot-password/fo
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from 'src/app/services/auth/auth.service';
 import {Storage} from '@ionic/storage';
-import {Md5} from 'ts-md5';
 
 // import { bcrypt } from 'bcrypt';
 
@@ -23,7 +22,8 @@ export class SignInPage implements OnInit {
   isAuthSignin = false;
   isIosPlatform = false;
   submitState = false;
-
+  email = '';
+  password = '';
   errorMessage = {
     error_email: '',
     error_password: ''
@@ -59,6 +59,11 @@ export class SignInPage implements OnInit {
 
   ngOnInit() {
     this.createValidation();
+  }
+
+  ionViewWillEnter() {
+    this.email = '';
+    this.password = '';
   }
 
   createValidation() {
