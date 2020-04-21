@@ -24,8 +24,8 @@ export class MyDealPage implements OnInit {
   private arrFilteredParams = [] as any;
 
   public arrSegments = [] as any;
-  checked = 0;
-  private filteredName = '';
+  checked = 1;
+  private filteredName = 'Open';
   private subscribeData: any;
 
   constructor(
@@ -42,9 +42,13 @@ export class MyDealPage implements OnInit {
       (result: any) => {
         if (result.RESPONSECODE === 1) {
           this.arrFilteredParams = result.data.deals;
-          console.log(result);
-
-          this.myDealsParams = this.filteredParams();
+          this.defineFilterType(result.data.deals).then((res) => {
+            this.myDealsParams = this.filteredParams();
+          }).catch((err) => {
+            this.checked = 2;
+            this.filteredName = 'Close';
+            this.myDealsParams = this.filteredParams();
+          });
         }
       },
       error => {
@@ -55,28 +59,35 @@ export class MyDealPage implements OnInit {
 
   ngOnInit() {
     this.arrSegments = [
-      { value: 0, label: 'All Deals', searchWord: ''},
+      // { value: 0, label: 'All Deals', searchWord: ''},
       { value: 1, label: 'Open', searchWord: 'Open'},
       { value: 2, label: 'Close', searchWord: 'Closed'},
     ];
   }
 
+  async defineFilterType(deals) {
+    return new Promise((resolve, reject) => {
+      deals.forEach(element => {
+        if (element.status === 'Open') {
+          resolve(true);
+        }
+      });
+      reject(false);
+    });
+  }
+
   segmentChanged(ev: any) {
-    this.checked = ev.detail.value;
-    this.filteredName = this.arrSegments[ev.detail.value].searchWord;
+    this.checked = parseInt(ev.detail.value, 10);
+    this.filteredName = this.arrSegments[parseInt(ev.detail.value, 10) - 1].searchWord;
     this.myDealsParams = this.filteredParams();
   }
 
   filteredParams() {
-    let tempArray = [];
-    if (this.filteredName === '') {
-      tempArray = this.arrFilteredParams;
-    } else {
+    const tempArray = [];
       // tslint:disable-next-line:prefer-for-of
-      for (let i = 0; i < this.arrFilteredParams.length; i++) {
-        if (this.arrFilteredParams[i].status === this.filteredName) {
-          tempArray.push(this.arrFilteredParams[i]);
-        }
+    for (let i = 0; i < this.arrFilteredParams.length; i++) {
+      if (this.arrFilteredParams[i].status === this.filteredName) {
+        tempArray.push(this.arrFilteredParams[i]);
       }
     }
     return JSON.stringify(tempArray);

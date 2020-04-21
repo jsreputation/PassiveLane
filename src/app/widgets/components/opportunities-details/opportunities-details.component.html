@@ -20,8 +20,8 @@
                     <progress-bar [progress]="deal.pledge_percentage" [color-degraded]="{'0': '#E51034',  '30': '#FF9100', '75': '#2CB737'}">
                     </progress-bar>
                 </div>
+                <ion-label class="status">{{ deal.live_status }}</ion-label>
             </ion-label>
-
         </ion-item>
     </ion-list>
 </div>

@@ -1406,11 +1406,15 @@ export class ProfileService {
     }
 
     saveProfile(url, data): Observable<any> {
-        return this.https.get(url, {params: data});
+        return this.https.get(url, {params: data}).pipe(tap((res) => {
+            this.toastUIService.presentToast(res, 'all');
+        }));
     }
 
     saveSignature(url, data): Observable<any> {
-        return this.https.post(url, data);
+        return this.https.post(url, data).pipe(tap((res) => {
+            this.toastUIService.presentToast(res, 'all');
+        }));
     }
 
     getAddressInfo(data): Observable<any> {
@@ -1431,7 +1435,7 @@ export class ProfileService {
 
 
     getBankDetailInfo(data): Observable<any> {
-        return this.https.get('https://passivelane.com/apiinvestor/confirmpaymentbankinfo', {params: data});
+        return this.https.get('https://www.passivelane.com/apiinvestor/confirmpaymentbankinfo', {params: data});
     }
 
     getSignature(data): Observable<any> {

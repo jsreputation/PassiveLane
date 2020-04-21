@@ -5,9 +5,9 @@ import {DealsService} from '../../../services/tabs/deals.service';
 import {CashoutService} from '../../../services/tabs/cashout.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Platform} from '@ionic/angular';
-import {ActivatedRoute} from "@angular/router";
-import {Subject} from "rxjs";
-import {takeUntil} from "rxjs/operators";
+import {ActivatedRoute} from '@angular/router';
+import {Subject} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'app-cache-out',
@@ -42,6 +42,7 @@ export class CashOutPage implements OnInit, OnDestroy {
   validate_form: FormGroup;
   isSubmitReady = false;
   submitState = false;
+  duringSumbmit = false;
   isIosPlatform = false;
   validation_messages = {
     amount: [
@@ -70,10 +71,16 @@ export class CashOutPage implements OnInit, OnDestroy {
 
   createValidateForm(dealId = 0) {
     this.validate_form = this.formBuilder.group({
-      amount: new FormControl(0, Validators.compose([Validators.required])),
+      amount: new FormControl(Validators.compose([Validators.required])),
       deal_id: new FormControl(dealId, Validators.compose([Validators.required])),
       bank_name: new FormControl('', Validators.compose([Validators.required])),
     });
+  }
+
+  listenAmountChange() {
+    if (this.validate_form.value.amount > 0) {
+      this.isSubmitReady = true;
+    }
   }
 
   ionViewWillEnter() {
@@ -133,14 +140,25 @@ export class CashOutPage implements OnInit, OnDestroy {
   checkValid(deal_id) {
     this.myDeals.forEach(myDeal => {
       if (myDeal.deal_id === deal_id) {
-        this.isValid = myDeal.withdraw;
-        if (myDeal.withdraw) {
-          this.validate_form.get('amount').enable();
-          this.validate_form.get('bank_name').enable();
-        } else {
-          this.validate_form.get('amount').disable();
-          this.validate_form.get('bank_name').disable();
-        }
+        // this.isValid = myDeal.withdraw;
+        const dealInfo = this.authService.userInfo;
+        // tslint:disable-next-line: no-string-literal
+        dealInfo['deal_id'] = deal_id;
+        // alert(JSON.stringify(this.authService.userInfo));
+        this.dealsService.withdrawState(dealInfo).subscribe((res) => {
+          if (res.RESPONSECODE === 1) {
+            this.isValid = res.data.withdraw;
+          } else {
+            this.isValid = false;
+          }
+          if (this.isValid) {
+            this.validate_form.get('amount').enable();
+            this.validate_form.get('bank_name').enable();
+          } else {
+            this.validate_form.get('amount').disable();
+            this.validate_form.get('bank_name').disable();
+          }
+        });
       }
     });
   }
@@ -235,6 +253,7 @@ export class CashOutPage implements OnInit, OnDestroy {
       try {
         this.submitState = true;
         this.isSubmitReady = true;
+        this.duringSumbmit = true;
         this.submitParams = {...this.params, amount: this.validate_form.value.amount};
         const response = await this.cashoutService.fnWithdraw(this.submitParams).toPromise();
         if (response.RESPONSECODE === 1) {
@@ -246,11 +265,13 @@ export class CashOutPage implements OnInit, OnDestroy {
       } finally {
         this.submitState = false;
         this.isSubmitReady = false;
+        this.duringSumbmit = false;
       }
 
     } else {
       this.submitState = true;
       this.isSubmitReady = false;
+      this.duringSumbmit = false;
     }
   }
 

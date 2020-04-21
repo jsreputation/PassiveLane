@@ -94,6 +94,8 @@ export class InvestMmTelecomRetailPage implements OnInit {
     }
 
     gotoInvestmentAmount() {
+        // tslint:disable-next-line: no-string-literal
+        this.deal_info['dealName'] = this.detail.deal_name;
         const navigationExtras: NavigationExtras = {
             queryParams: this.deal_info
         };

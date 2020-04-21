@@ -30,7 +30,7 @@ export class CancelPledgeComponent implements OnInit {
       if (response.RESPONSECODE === 1) {
         console.log(response);
         this.modalCtrl.dismiss();
-        this.router.navigate(['tabs/pay']);
+        this.router.navigate(['main/pay']);
       }
     });
   }

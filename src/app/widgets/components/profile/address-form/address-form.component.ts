@@ -1,10 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
-import {ModalController, Platform, PopoverController} from '@ionic/angular';
+import { Platform } from '@ionic/angular';
 import {ProfileService} from '../../../../services/tabs/profile.service';
 import {AuthService} from '../../../../services/auth/auth.service';
-import {VerifyModalService} from '../verifyModal.service';
 import { ToastService } from 'src/app/services/UI/toast.service';
 
 @Component({
@@ -114,27 +112,22 @@ export class AddressFormComponent implements OnInit {
             this.isSubmitReady = true;
             let param = {} as any;
             param = {...this.authService.userInfo, ...this.validate_form.value};
-
-            this.profileService.sendSMS(this.authService.userInfo).subscribe((res) => {
-                if (res.RESPONSECODE === 1) {
-                    this.profileService.saveProfile(this.sendUrl, param).subscribe(
-                        (result: any) => {
-                            this.submitState = false;
-                            this.isSubmitReady = false;
-                            if (result.RESPONSECODE === 1) {
-                                this.toastCtrl.presentSpecificText('Saved successfully.');
-                            } else if (result.RESPONSECODE === 0) {
-                                this.toastCtrl.presentSpecificText('Failed saving.');
-                            }
-                        },
-                        error => {
-                            this.submitState = false;
-                            this.isSubmitReady = false;
-                            this.toastCtrl.presentSpecificText('Sever Api problem.');
-                        }
-                    );
+            this.profileService.saveProfile(this.sendUrl, param).subscribe(
+                (result: any) => {
+                    this.submitState = false;
+                    this.isSubmitReady = false;
+                    if (result.RESPONSECODE === 1) {
+                        this.toastCtrl.presentSpecificText('Saved successfully.');
+                    } else if (result.RESPONSECODE === 0) {
+                        this.toastCtrl.presentSpecificText('Failed saving.');
+                    }
+                },
+                error => {
+                    this.submitState = false;
+                    this.isSubmitReady = false;
+                    this.toastCtrl.presentSpecificText('Sever Api problem.');
                 }
-            });
+            );
         } else {
             this.submitState = true;
             this.isSubmitReady = false;

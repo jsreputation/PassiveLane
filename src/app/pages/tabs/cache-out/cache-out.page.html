@@ -29,7 +29,10 @@
                         </ion-select>
                         <ion-item mode='ios'>
                             <ion-label class="pound-txt">£</ion-label>
-                            <ion-input (keypress)="userTypingForm($event)" formControlName="amount" placeholder='Please input amount.' type="number"></ion-input>
+                            <ion-input (keypress)="userTypingForm($event)" formControlName="amount" placeholder="Enter withdrawal amount" type="number"
+                                (ionChange)="listenAmountChange()"
+                            >
+                            </ion-input>
                         </ion-item>
                         <ion-select interface="action-sheet" mode="md" slot="end" formControlName="bank_name" placeholder="Select Bank Account">
                             <ion-select-option *ngFor="let myBankAccount of myBankAccounts" [value]="myBankAccount.bank_name">{{ myBankAccount.bank_name }}</ion-select-option>
@@ -42,8 +45,8 @@
                                 </div>
                             </ng-container>
                         </div>
-                        <ion-button [disabled]="!isValid" class="normal" mode='ios' type="submit">
-                            <ion-spinner *ngIf="isSubmitReady" name="bubbles"></ion-spinner>
+                        <ion-button [disabled]="!isSubmitReady" class="normal" mode='ios' type="submit">
+                            <ion-spinner *ngIf="duringSubmit" name="bubbles"></ion-spinner>
                             Submit
                         </ion-button>
                     </ion-list>

@@ -11,8 +11,7 @@ import {myLeaveAnimation} from '../../../../widgets/animations/leave.animation';
 import {CancelPledgeComponent} from '../../../../widgets/modals/cancel-pledge/cancel-pledge.modal';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ProfileService} from '../../../../services/tabs/profile.service';
-import {ContractPayInfoComponent} from "../../../../widgets/modals/contract-pay-info/contract-pay-info.component";
-import {BankInfoComponent} from "../../../../widgets/modals/bank-info/bank-info.component";
+import {BankInfoComponent} from '../../../../widgets/modals/bank-info/bank-info.component';
 
 @Component({
     selector: 'app-payment',
@@ -49,6 +48,7 @@ export class PaymentPage implements OnInit {
     };
     bankAccount = {} as any;
     isBankDetail = false;
+    isAmountTrue = false;
 
     constructor(
         private renderer: Renderer2,
@@ -72,7 +72,7 @@ export class PaymentPage implements OnInit {
     }
 
     fn_back() {
-        this.router.navigate(['tabs/pay']);
+        this.router.navigate(['main/pay']);
     }
 
     ionViewWillLeave() {
@@ -109,14 +109,14 @@ export class PaymentPage implements OnInit {
                             this.paymentLists = [] as any;
                             paymentDetail = result.pledge;
                             this.deal = {...paymentDetail};
-                            if ( paymentDetail.payments){
+                            if ( paymentDetail.payments) {
                                 this.paymentLists = paymentDetail.payments.reverse();
                                 console.log(this.isCancelpayment);
                                 this.paymentLists.map(param => {
                                     if (param.status !== 'Customer Paid') {
                                             this.isCancelpayment = false;
                                     }
-                                })
+                                });
                             }
                         } else {
                             console.log('RESPONSECODE : 0');
@@ -247,11 +247,18 @@ export class PaymentPage implements OnInit {
         }
     }
 
+    listenAmountChange() {
+        console.log(parseInt(this.validateAmount.value.amount, 10));
+        if (parseInt(this.validateAmount.value.amount, 10) > 0) {
+            this.isAuthSubmitReady = true;
+        }
+    }
+
     async submitPayment(pledge) {
         this.submitState = true;
         let submitParams = {};
         if (this.validateAmount.valid) {
-            this.isAuthSubmitReady = true;
+            this.isAmountTrue = true;
             submitParams = {
                 pledge_id: pledge.pledge_id,
                 amount: this.validateAmount.value.amount,
@@ -275,13 +282,16 @@ export class PaymentPage implements OnInit {
                         this.paymentLists.unshift(addPaymant);
                         this.clearImages();
                         this.isAuthSubmitReady = false;
+                        this.isAmountTrue = false;
                     } else {
                         this.isAuthSubmitReady = false;
+                        this.isAmountTrue = false;
                     }
                 },
                 error => {
                     console.log('error => ', error);
                     this.isAuthSubmitReady = false;
+                    this.isAmountTrue = false;
                 }
             );
             const modal = await this.modalCtrl.create({

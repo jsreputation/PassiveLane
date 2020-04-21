@@ -15,6 +15,11 @@ ion-list {
         ion-label {
             &.item-content {
                 padding-left: 10px;
+                .status {
+                    text-overflow: unset;
+                    white-space: unset;
+                    font-size: 12px;
+                }
             }
             &.opportunities-money {
                 display: block;
