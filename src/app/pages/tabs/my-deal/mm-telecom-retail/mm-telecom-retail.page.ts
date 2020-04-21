@@ -52,7 +52,6 @@ export class MmTelecomRetailPage implements OnInit {
         private router: Router,
         public route: ActivatedRoute,
         private dealsService: DealsService,
-        private loadingController: LoadingController,
         private authService: AuthService,
         private modalCtrl: ModalController,
     ) {
@@ -63,9 +62,10 @@ export class MmTelecomRetailPage implements OnInit {
         // withdraw state
         this.dealsService.withdrawState(this.dealInfo).subscribe(
             (res) => {
-                console.log('withdraw_statue : ', res);
+                console.log('withdraw_status : ', res);
                 if (res.RESPONSECODE === 1) {
                     this.isWithdraw = res.data.withdraw;
+                    // this.isWithdraw = true;
                 } else {
                     console.log('response error');
                     this.isWithdraw = false;

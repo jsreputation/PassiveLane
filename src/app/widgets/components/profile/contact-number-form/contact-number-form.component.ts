@@ -115,26 +115,23 @@ export class ContactNumberFormComponent implements OnInit {
       //     this.isSubmitReady = false;
       //   }
       // });
-      this.profileService.sendSMS(this.authService.userInfo).subscribe((res) => {
-        if (res.RESPONSECODE === 1) {
-            this.profileService.saveProfile(this.sendUrl, this.submitParams).subscribe(
-                (result: any) => {
-                    this.submitState = false;
-                    this.isSubmitReady = false;
-                    if (result.RESPONSECODE === 1) {
-                        this.toastCtrl.presentSpecificText('Saved successfully.');
-                    } else if (result.RESPONSECODE === 0) {
-                        this.toastCtrl.presentSpecificText('Failed saving.');
-                    }
-                },
-                error => {
-                    this.submitState = false;
-                    this.isSubmitReady = false;
-                    this.toastCtrl.presentSpecificText('Sever Api problem.');
-                }
-            );
-        }
-      });
+
+      this.profileService.saveProfile(this.sendUrl, this.submitParams).subscribe(
+          (result: any) => {
+              this.submitState = false;
+              this.isSubmitReady = false;
+              if (result.RESPONSECODE === 1) {
+                  this.toastCtrl.presentSpecificText('Saved successfully.');
+              } else if (result.RESPONSECODE === 0) {
+                  this.toastCtrl.presentSpecificText('Failed saving.');
+              }
+          },
+          error => {
+              this.submitState = false;
+              this.isSubmitReady = false;
+              this.toastCtrl.presentSpecificText('Sever Api problem.');
+          }
+      );
     } else {
       this.submitState = true;
       this.isSubmitReady = false;

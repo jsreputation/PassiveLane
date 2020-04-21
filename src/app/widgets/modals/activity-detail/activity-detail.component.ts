@@ -48,7 +48,7 @@ export class ActivityDetailComponent implements OnInit {
         const navigationExtras: NavigationExtras = {
             queryParams: this.deal
         };
-        this.router.navigate(['tabs/my-deal/mm-telecom-retail'], navigationExtras);
+        this.router.navigate(['main/my-deal/mm-telecom-retail'], navigationExtras);
     }
 
     filteredParams(data: any) {

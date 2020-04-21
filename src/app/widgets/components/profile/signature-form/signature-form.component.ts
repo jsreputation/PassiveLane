@@ -80,29 +80,25 @@ export class SignatureFormComponent implements OnInit {
         //         this.isSubmitReady = false;
         //     }
         // });
-        this.profileService.sendSMS(this.authService.userInfo).subscribe((res) => {
-            if (res.RESPONSECODE === 1) {
-                this.profileService.saveProfile(sendUrl, this.validate_form.value).subscribe(
-                    (result: any) => {
-                        this.submitState = false;
-                        this.isSubmitReady = false;
-                        if (result.RESPONSECODE === 1) {
-                            if (this.profileService.savedProfileDetail.sign_image) {
-                                console.log(this.profileService.savedProfileDetail);
-                                this.signInfo = this.signaturePad.toDataURL();
-                            }
-                            this.toastCtrl.presentSpecificText('Saved successfully.');
-                        } else if (result.RESPONSECODE === 0) {
-                            this.toastCtrl.presentSpecificText('Failed saving.');
-                        }
-                    },
-                    error => {
-                        this.submitState = false;
-                        this.isSubmitReady = false;
-                        this.toastCtrl.presentSpecificText('Sever Api problem.');
+        this.profileService.saveProfile(sendUrl, this.validate_form.value).subscribe(
+            (result: any) => {
+                this.submitState = false;
+                this.isSubmitReady = false;
+                if (result.RESPONSECODE === 1) {
+                    if (this.profileService.savedProfileDetail.sign_image) {
+                        console.log(this.profileService.savedProfileDetail);
+                        this.signInfo = this.signaturePad.toDataURL();
                     }
-                );
+                    this.toastCtrl.presentSpecificText('Saved successfully.');
+                } else if (result.RESPONSECODE === 0) {
+                    this.toastCtrl.presentSpecificText('Failed saving.');
+                }
+            },
+            error => {
+                this.submitState = false;
+                this.isSubmitReady = false;
+                this.toastCtrl.presentSpecificText('Sever Api problem.');
             }
-        });
+        );
     }
 }

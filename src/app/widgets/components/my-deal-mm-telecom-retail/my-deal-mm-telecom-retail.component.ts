@@ -27,6 +27,7 @@ export class MyDealMmTelecomRetailComponent implements OnInit, OnChanges {
     this.myDeals = [];
     this.isReady = false;
     if (changes.Params.currentValue) {
+      console.log('detailed deal:', this.Params);
       let dataParam: any;
       dataParam = JSON.parse(changes.Params.currentValue);
       dataParam.forEach(deal => {

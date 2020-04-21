@@ -17,8 +17,8 @@
     </div>
 
 
-    <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="checked">
-        <ion-segment-button *ngFor="let arrSegment of arrSegments" [value]="arrSegment.value">
+    <ion-segment (ionChange)="segmentChanged($event)" [value]="checked">
+        <ion-segment-button *ngFor="let arrSegment of arrSegments" [value]="arrSegment['value']">
             <ion-label>{{ arrSegment.label }}</ion-label>
         </ion-segment-button>
     </ion-segment>

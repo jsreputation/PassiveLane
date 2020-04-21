@@ -42,6 +42,13 @@ ion-list {
             font-size: 15px;
             font-weight: 500;
         }
+        &.company-name {
+            padding-left: 15px;
+            line-height: 20px;
+            letter-spacing: 0.4pt;
+            font-size: 12px;
+            font-weight: 500;
+        }
         .color-warning {
             color: #FF9100!important;
         }

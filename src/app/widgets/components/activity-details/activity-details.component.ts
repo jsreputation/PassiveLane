@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {myEnterAnimation} from "../../animations/enter.animation";
-import {myLeaveAnimation} from "../../animations/leave.animation";
-import {ModalController} from "@ionic/angular";
-import {ContractPayInfoComponent} from "../../modals/contract-pay-info/contract-pay-info.component";
+import {myEnterAnimation} from '../../animations/enter.animation';
+import {myLeaveAnimation} from '../../animations/leave.animation';
+import {ModalController} from '@ionic/angular';
+import {ContractPayInfoComponent} from '../../modals/contract-pay-info/contract-pay-info.component';
 
 @Component({
   selector: 'app-activity-details',

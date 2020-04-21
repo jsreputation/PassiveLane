@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 
 @Injectable({
@@ -28,10 +27,10 @@ export class DealsService {
 
   getContractInfo(data): Observable<any> {
     console.log('get : ', data);
-    return this.https.get('https://www.passivelane.com/apiinvestor/viewcontract', {params: data})
+    return this.https.get('https://www.passivelane.com/apiinvestor/viewcontract', {params: data});
   }
 
   withdrawState(data): Observable<any> {
-    return this.https.get('https://passivelane.com/apiinvestor/withdrawbutton', {params: data})
+    return this.https.get('https://www.passivelane.com/apiinvestor/withdrawbutton', {params: data});
   }
 }

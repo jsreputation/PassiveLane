@@ -52,7 +52,8 @@
         <ion-label class="title-des">Confirm Payment</ion-label>
         <ion-label class="card-title">Enter Amount</ion-label>
         <ion-label class="enter-amount">
-          <span>£</span><ion-input formControlName="amount" type="number" name="amount" placeholder="0"></ion-input>
+          <span>£ </span>
+          <ion-input formControlName="amount" type="number" name="amount" placeholder="Enter the amount" (ionChange)="listenAmountChange()"></ion-input>
         </ion-label>
         <div class="validation-errors">
           <ng-container *ngFor="let validation of validation_messages.amount">
@@ -75,8 +76,8 @@
               </div>
             </div>
           </div>
-          <ion-button [disabled]="!deal.images || isAuthSubmitReady || deal.images <= 0" class='normal bg-red modal-btn margin-bottom-15' mode='ios' type="submit">
-            <ion-spinner *ngIf="isAuthSubmitReady" name="bubbles"></ion-spinner>
+          <ion-button [disabled]="!isAuthSubmitReady" class='normal bg-red modal-btn margin-bottom-15' mode='ios' type="submit">
+            <ion-spinner *ngIf="isAmountTrue" name="bubbles"></ion-spinner>
             Submit
           </ion-button>
           <ion-label *ngIf="isCancelpayment" class="need-payment-detail ion-text-center" (click)="cancelPaymentDialog(deal.pledge_id)">Cancel Pledge</ion-label>
