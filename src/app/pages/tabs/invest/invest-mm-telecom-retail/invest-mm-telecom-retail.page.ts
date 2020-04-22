@@ -20,7 +20,7 @@ export class InvestMmTelecomRetailPage implements OnInit {
     public retail_params = '';
     private hidden = false;
     private triggerDistance = 42;
-    private deal_info: any;
+    public deal_info: any;
     public isReady = false;
     private queryParams = {} as any;
 
@@ -58,6 +58,8 @@ export class InvestMmTelecomRetailPage implements OnInit {
                         deal.raised_amount = this.numberWithCommas(deal.raised_amount);
                     });
                     this.deal_info.type = result.data.deal[0].type;
+                    // tslint:disable-next-line: no-string-literal
+                    this.deal_info['dealName'] = this.detail.deal_name;
                     this.detail = result.data.deal[0];
                     this.retail_params = JSON.stringify(result.data.deal[0]);
                     this.isReady = true;
@@ -95,7 +97,7 @@ export class InvestMmTelecomRetailPage implements OnInit {
 
     gotoInvestmentAmount() {
         // tslint:disable-next-line: no-string-literal
-        this.deal_info['dealName'] = this.detail.deal_name;
+        // this.deal_info['dealName'] = this.detail.deal_name;
         const navigationExtras: NavigationExtras = {
             queryParams: this.deal_info
         };

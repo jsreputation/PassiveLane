@@ -1,4 +1,4 @@
-import {Component, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {Component, OnInit, Renderer2, ViewChild, Input} from '@angular/core';
 import {ActivatedRoute, NavigationExtras, Router} from '@angular/router';
 import {HeaderService} from 'src/app/services/UI/header.service';
 import {InvestService} from 'src/app/services/tabs/invest.service';
@@ -13,7 +13,6 @@ export class InvestmentAmountPage implements OnInit {
     @ViewChild('ionHeader', {static: false}) ionHeader: any;
     @ViewChild('headerTitle', {static: false}) headerTitle: any;
     @ViewChild('headerTxt', {static: false}) headerTxt: any;
-
     public ScrollAnimation = '';
     deal_info = {} as any;
     public steps = 2;
@@ -39,6 +38,7 @@ export class InvestmentAmountPage implements OnInit {
     ionViewWillEnter() {
 
         this.investService.getinvestmentdetails(this.queryParams).subscribe(res => {
+            console.log(this.queryParams);
             if (res.RESPONSECODE === 1) {
                 console.log(res.data);
                 this.investimentDetails = res.data;

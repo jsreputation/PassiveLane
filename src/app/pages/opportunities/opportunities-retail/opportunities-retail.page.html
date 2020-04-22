@@ -16,7 +16,7 @@
 <ion-content #scrollArea (ionScroll)="scroll($event)" [scrollEvents]="true" mode="ios">
 
   <div class="spiner-content" *ngIf="!isReady">
-    <ion-spinner name="circles"></ion-spinner>
+    <ion-spinner name="lines"></ion-spinner>
   </div>
 
   <div *ngIf="isReady">

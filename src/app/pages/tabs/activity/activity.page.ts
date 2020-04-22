@@ -131,9 +131,9 @@ export class ActivityPage implements OnInit, OnChanges {
         this.deals = [] as any;
         this.isReadyAmounts = false;
         if (this.Params) {
+            console.log('result', this.Params);
             this.fnFillterDetailByDate(this.setColorInData(this.Params)).then((result) => {
                 const temp = {};
-                console.log('result', result);
                 result.forEach(item => {
                     if (!temp[item.id]) {
                         temp[item.id] = {id: item.id, realData: []};
@@ -191,13 +191,17 @@ export class ActivityPage implements OnInit, OnChanges {
         let sumAmount = 0;
         param.forEach(each => {
             const temp = each.amount;
-            if (each.type === 'Capital') {
+            // if (each.type === 'Capital') {
+            //     sumAmount += parseFloat(temp);
+            // } else if (each.type === 'ROI') {
+            //     sumAmount += parseFloat(temp);
+            // } else if (each.type === 'Withdraw') {
+            // sumAmount -= parseFloat(temp);
+            if (each.type !== 'Withdraw') {
                 sumAmount += parseFloat(temp);
-            } else if (each.type === 'ROI') {
-                sumAmount += parseFloat(temp);
-            } else if (each.type === 'Withdraw') {
-            sumAmount -= parseFloat(temp);
-        }
+            } else {
+                sumAmount -= parseFloat(temp);
+            }
         });
         return sumAmount;
     }

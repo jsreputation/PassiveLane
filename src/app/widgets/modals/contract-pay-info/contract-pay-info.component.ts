@@ -32,6 +32,8 @@ export class ContractPayInfoComponent implements OnInit, OnDestroy {
         console.log(result);
         if (result.RESPONSECODE === 1) {
           this.contractDetail = result.data;
+        } else {
+          this.contractDetail['text'] = '<div class="no-data">No contract available</div>';
         }
       },
       (error) => {

@@ -239,11 +239,11 @@
                                 delete
                             </ion-button>
                             <ion-button type="button" *ngIf="!isAddedStates[i]" [disabled]="isSubmitReadies[i]" class="bg-blue ion-text-right" mode='ios' (click)="onFormUpdate(i)">
-                                <ion-spinner *ngIf="isSubmitReadies[i]" name="bubbles"></ion-spinner>
+                                <ion-spinner *ngIf="isSubmitReadies[i]" name="lines"></ion-spinner>
                                 Update
                             </ion-button>
                             <ion-button type="button" *ngIf="isAddedStates[i]" [disabled]="isSubmitReadies[i]" class="bg-blue ion-text-right" mode='ios' (click)="onFormSubmit(i)">
-                                <ion-spinner *ngIf="isSubmitReadies[i]" name="bubbles"></ion-spinner>
+                                <ion-spinner *ngIf="isSubmitReadies[i]" name="lines"></ion-spinner>
                                 Submit
                             </ion-button>
                         </ion-row>

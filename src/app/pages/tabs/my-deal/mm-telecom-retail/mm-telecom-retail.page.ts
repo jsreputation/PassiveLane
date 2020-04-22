@@ -103,6 +103,7 @@ export class MmTelecomRetailPage implements OnInit {
 
     initFilteredData() {
         this._changeSumAmount().then(result => {
+            console.log('=============', result);
             this.deals = [] as any;
             this.deals = result;
             this.filterdDealsByYear = this.filterBySelectedYear(this.deals);
@@ -248,7 +249,7 @@ export class MmTelecomRetailPage implements OnInit {
             const temp = [];
             param.forEach((each) => {
                 const tempData = {
-                    id: each.date,
+                    id: each.date.split(' ')[0],
                     realData: each
                 };
                 temp.push((tempData));
@@ -261,11 +262,16 @@ export class MmTelecomRetailPage implements OnInit {
         let sumAmount = 0;
         param.map(each => {
             const temp = each.amount;
-            if (each.type === 'Capital') {
+            // if (each.type === 'Capital') {
+            //     sumAmount += parseFloat(temp);
+            // } else if (each.type === 'ROI') {
+            //     sumAmount += parseFloat(temp);
+            // } else if (each.type === 'Withdraw') {
+            //     sumAmount -= parseFloat(temp);
+            // }
+            if (each.type !== 'Withdraw') {
                 sumAmount += parseFloat(temp);
-            } else if (each.type === 'ROI') {
-                sumAmount += parseFloat(temp);
-            } else if (each.type === 'Withdraw') {
+            } else {
                 sumAmount -= parseFloat(temp);
             }
         });

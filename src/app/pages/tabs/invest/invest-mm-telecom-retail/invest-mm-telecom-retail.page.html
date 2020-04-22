@@ -16,14 +16,14 @@
 <ion-content #scrollArea (ionScroll)="scroll($event)" [scrollEvents]="true" mode="ios">
 
     <div class="spiner-content" *ngIf="!isReady">
-        <ion-spinner name="circles"></ion-spinner>
+        <ion-spinner name="lines"></ion-spinner>
     </div>
 
     <div *ngIf="isReady">
         <div #headerTitle class="description-header">
             <ion-label class="header-label">{{ detail.deal_name }}</ion-label>
         </div>
-        <app-telecom-retail params="{{ retail_params }}"></app-telecom-retail>
+        <app-telecom-retail params="{{ retail_params }}" [dataParams]="deal_info"></app-telecom-retail>
 
         <div class="content">
             <ion-label class="header-title">Overview</ion-label>

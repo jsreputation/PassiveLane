@@ -11,7 +11,8 @@ export class MyDealMmTelecomRetailComponent implements OnInit, OnChanges {
 
   // tslint:disable-next-line:no-input-rename
   @Input('data') Params: any = [];
-
+  // tslint:disable-next-line: no-input-rename
+  @Input('plength') plength: number;
   myDeals: any = [];
   isReady = false;
 
@@ -27,7 +28,6 @@ export class MyDealMmTelecomRetailComponent implements OnInit, OnChanges {
     this.myDeals = [];
     this.isReady = false;
     if (changes.Params.currentValue) {
-      console.log('detailed deal:', this.Params);
       let dataParam: any;
       dataParam = JSON.parse(changes.Params.currentValue);
       dataParam.forEach(deal => {
@@ -38,7 +38,7 @@ export class MyDealMmTelecomRetailComponent implements OnInit, OnChanges {
       });
       this.myDeals = dataParam;
       this.isReady = true;
-      if (dataParam.length === 1) {
+      if (dataParam[0].deal_status === 'Open' && this.plength === 1) {
         this.gotoMMTelecomRetail(this.myDeals[0]);
       }
     } else {
