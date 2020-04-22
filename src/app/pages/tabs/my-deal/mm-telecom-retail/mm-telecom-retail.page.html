@@ -31,7 +31,7 @@
             <div  class="mm-card-content">
                 <ion-label class="mm-content-txt">Total Balance</ion-label>
             </div>
-            <ion-label class="mm-header-txt"><span class="pound">£</span> {{ dealDetail.balance }}</ion-label>
+            <ion-label class="mm-header-txt"><span class="pound">£</span>{{ dealDetail.balance }}</ion-label>
             <ion-icon name="arrow-down" (click)="presentModal()"></ion-icon>
         </div>
     </ion-row>
@@ -39,7 +39,7 @@
     <ion-button *ngIf="isWithdraw" class="margin-20-ex-top" (click)="onWithdraw()">Withdraw</ion-button>
 
     <div class="spiner-content" *ngIf="!isReady">
-        <ion-spinner name="circles"></ion-spinner>
+        <ion-spinner name="lines"></ion-spinner>
     </div>
     <div *ngIf="isReady">
         <app-activity-details [deals]="deals" [isReadyAmounts]="isReadyAmounts"></app-activity-details>

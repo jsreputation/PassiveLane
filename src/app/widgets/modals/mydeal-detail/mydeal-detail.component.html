@@ -16,11 +16,17 @@
       <ion-label class="content-title">Overall investments</ion-label>
       <ion-label class="content-value"><span class="pound">£</span>{{ invested }}</ion-label>
 
-      <ion-label class="content-title">Total ROI</ion-label>
-      <ion-label class="content-value"><span class="pound">£</span>{{ tot_roi }}</ion-label>
+      <ion-label class="content-title" *ngIf="deal_type">No. Shares</ion-label>
+      <ion-label class="content-value" *ngIf="deal_type"><span class="pound"></span>{{ noOfShares }}</ion-label>
 
-      <ion-label class="content-title">Last ROI</ion-label>
-      <ion-label class="content-value"><span class="pound">£</span>{{ last_roi }}</ion-label>
+      <ion-label class="content-title" *ngIf="deal_type">Share Price</ion-label>
+      <ion-label class="content-value" *ngIf="deal_type"><span class="pound">£</span>{{ sharePrice }}</ion-label>
+
+      <ion-label class="content-title" *ngIf="!deal_type">Total ROI</ion-label>
+      <ion-label class="content-value" *ngIf="!deal_type"><span class="pound">£</span>{{ tot_roi }}</ion-label>
+
+      <ion-label class="content-title" *ngIf="!deal_type">Last ROI</ion-label>
+      <ion-label class="content-value" *ngIf="!deal_type"><span class="pound">£</span>{{ last_roi }}</ion-label>
 
       <ion-label class="content-title">Total withdrawn</ion-label>
       <ion-label class="content-value"><span class="pound">£</span>{{ tot_withdrawn }}</ion-label>

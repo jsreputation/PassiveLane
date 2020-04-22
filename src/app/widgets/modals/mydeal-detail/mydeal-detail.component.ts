@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ModalController} from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-mydeal-detail',
@@ -18,11 +19,25 @@ export class MydealDetailComponent implements OnInit {
   @Input() logo_image: string;
   @Input() sum_amount: string;
 
+  deal_type: number;
+  noOfShares: number;
+  sharePrice: number;
   constructor(
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private route: ActivatedRoute
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.route.queryParams.subscribe((params) => {
+      if (params.deal_type === 'Equity') {
+        this.deal_type = 1;
+        this.noOfShares = parseInt(params.total_shares, 10);
+        this.sharePrice = parseFloat(params.share_price);
+      } else {
+        this.deal_type = 0;
+      }
+    });
+  }
 
   closeModal() {
     this.modalCtrl.dismiss();

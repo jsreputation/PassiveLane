@@ -41,6 +41,8 @@ ion-list {
             letter-spacing: 0.4pt;
             font-size: 15px;
             font-weight: 500;
+            white-space: unset;
+            text-overflow: unset;
         }
         &.company-name {
             padding-left: 15px;

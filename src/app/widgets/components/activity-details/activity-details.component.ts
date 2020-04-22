@@ -13,7 +13,7 @@ export class ActivityDetailsComponent implements OnInit {
 
   @Input() deals = [] as any;
   @Input() isReadyAmounts = false;
-
+  @Input() showDealName: boolean;
   constructor(
       private modalCtrl: ModalController
   ) {
@@ -29,7 +29,7 @@ export class ActivityDetailsComponent implements OnInit {
   }
 
   async showContractPayDetail(data: any) {
-    if (data.type === 'ROI' || data.type === 'Capital') {
+    if (data.type !== 'Withdraw') {
       const modal = await this.modalCtrl.create({
         component: ContractPayInfoComponent,
         cssClass: 'contractPaymentInfo-modal',

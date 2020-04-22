@@ -21,7 +21,7 @@ export class MyDealPage implements OnInit {
   private triggerDistance = 42;
 
   public myDealsParams = '';
-  private arrFilteredParams = [] as any;
+  public arrFilteredParams = [] as any;
 
   public arrSegments = [] as any;
   checked = 1;
@@ -40,13 +40,14 @@ export class MyDealPage implements OnInit {
     this.myDealsParams = '';
     this.subscribeData = this.dealsService.getMyDeals(this.authService.userInfo).subscribe(
       (result: any) => {
+        console.log('============', result);
         if (result.RESPONSECODE === 1) {
           this.arrFilteredParams = result.data.deals;
           this.defineFilterType(result.data.deals).then((res) => {
             this.myDealsParams = this.filteredParams();
           }).catch((err) => {
             this.checked = 2;
-            this.filteredName = 'Close';
+            this.filteredName = 'Closed';
             this.myDealsParams = this.filteredParams();
           });
         }
@@ -61,14 +62,14 @@ export class MyDealPage implements OnInit {
     this.arrSegments = [
       // { value: 0, label: 'All Deals', searchWord: ''},
       { value: 1, label: 'Open', searchWord: 'Open'},
-      { value: 2, label: 'Close', searchWord: 'Closed'},
+      { value: 2, label: 'Closed', searchWord: 'Closed'},
     ];
   }
 
   async defineFilterType(deals) {
     return new Promise((resolve, reject) => {
       deals.forEach(element => {
-        if (element.status === 'Open') {
+        if (element.deal_status === 'Open') {
           resolve(true);
         }
       });
@@ -86,7 +87,7 @@ export class MyDealPage implements OnInit {
     const tempArray = [];
       // tslint:disable-next-line:prefer-for-of
     for (let i = 0; i < this.arrFilteredParams.length; i++) {
-      if (this.arrFilteredParams[i].status === this.filteredName) {
+      if (this.arrFilteredParams[i].deal_status === this.filteredName) {
         tempArray.push(this.arrFilteredParams[i]);
       }
     }

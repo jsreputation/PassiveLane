@@ -12,10 +12,10 @@
     </ion-label>
   </div>
   <div class="card-content">
-    <div *ngIf="!contractDetail.pdf_url" class="spiner-content">
-      <ion-spinner name="circles"></ion-spinner>
+    <div *ngIf="!contractDetail" class="spiner-content">
+      <ion-spinner name="lines"></ion-spinner>
     </div>
-    <div *ngIf="contractDetail.pdf_url" [innerHTML]="contractDetail.text"></div>
+    <div *ngIf="contractDetail" [innerHTML]="contractDetail.text"></div>
   </div>
   <ion-button class='normal bg-blue modal-btn' mode='ios' (click)="closeModal()">
     Close

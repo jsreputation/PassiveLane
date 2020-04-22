@@ -1,5 +1,5 @@
 <div class="spiner-content" *ngIf="!isReadyAmounts">
-    <ion-spinner name="circles"></ion-spinner>
+    <ion-spinner name="lines"></ion-spinner>
 </div>
 <ion-list *ngIf="isReadyAmounts">
     <ion-item-group *ngFor="let item of deals; let i = index" lines="none" mode='ios'>
@@ -9,21 +9,33 @@
         </ion-item-divider>
 
         <ion-item lines="none" *ngFor="let realDeal of item.realData" (click)="showContractPayDetail(realDeal)" class="{{ realDeal.type === 'ROI' || realDeal.type === 'Capital'? 'roi-item' : '' }}">
-            <!-- <div *ngIf="realDeal.logo_image">
+            <div *ngIf="realDeal.logo_image">
                 <div *ngIf="realDeal.logo_image"><ion-img [src]="realDeal.logo_image"></ion-img></div>
-            </div> -->
-            <!-- <ngx-avatar *ngIf="!realDeal.logo_image" [round]="true" bgColor="#4f8d9f0f" fgColor="#3a8093" initialsSize="3" name="{{ realDeal.deal_name }}" size="32"></ngx-avatar> -->
+            </div>
+            <ngx-avatar *ngIf="!realDeal.logo_image" [round]="true" bgColor="#4f8d9f0f" fgColor="#3a8093" initialsSize="3" name="{{ realDeal.deal_name }}" size="32"></ngx-avatar>
             <div class="flex-content">
                 <ion-label class="content-txt color-blue">
-                    <span *ngIf="realDeal.type === 'Withdraw'">Withdrawal</span>
-                    <span class="ion-text-uppercase" *ngIf="realDeal.type !== 'Withdraw'">{{realDeal.type}}</span>
-                     - {{realDeal.date | date: 'MMM d' }} {{realDeal.type === 'ROI'? ' - ' + realDeal.percentage +'%' : ''}} 
-                     <span class="amount {{ realDeal.color }}">{{realDeal.type == 'Capital' || realDeal.type == 'ROI' ? '+' : '-'}}£{{numberWithCommas(realDeal.amount)}}</span>
-                    </ion-label>
-                <!-- <ion-label class="deal-name">{{realDeal.deal_name}}</ion-label> -->
-                <ion-label class="company-name">{{realDeal.company_name}}</ion-label>
+                    <span>{{realDeal.type == 'Withdraw' ? 'Withdrawal': realDeal.type }}</span>
+                     {{realDeal.type === 'ROI'? ' - ' + realDeal.percentage +'%' : ''}} 
+                     <span class="amount {{ realDeal.color }}">{{realDeal.type !== 'Withdraw' ? '+' : '-'}}£{{numberWithCommas(realDeal.amount)}}</span>
+                </ion-label>
+                <ion-label class="deal-name" *ngIf="showDealName">{{realDeal.deal_name}}</ion-label>
             </div>
         </ion-item>
+
+        <!-- <ion-item lines="none" (click)="showContractPayDetail(item)" class="{{ item.realData.type === 'ROI' || item.realData.type === 'Capital'? 'roi-item' : '' }}">
+            <div *ngIf="item.realData.logo_image">
+                <div *ngIf="item.realData.logo_image"><ion-img [src]="item.realData.logo_image"></ion-img></div>
+            </div>
+            <ngx-avatar *ngIf="!item.realData.logo_image" [round]="true" bgColor="#4f8d9f0f" fgColor="#3a8093" initialsSize="3" name="{{ item.realData.deal_name }}" size="32"></ngx-avatar>
+            <div class="flex-content">
+                <ion-label class="content-txt color-blue">
+                    <span>{{item.realData.type == 'Withdraw' ? 'Withdrawal': item.realData.type }}</span>
+                     {{item.realData.type === 'ROI'? ' - ' + item.realData.percentage +'%' : ''}} 
+                     <span class="amount {{ item.realData.color }}">{{item.realData.type !== 'Withdraw' ? '+' : '-'}}£{{numberWithCommas(item.realData.amount)}}</span>
+                </ion-label>
+            </div>
+        </ion-item> -->
     </ion-item-group>
 </ion-list>
 
