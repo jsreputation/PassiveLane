@@ -1,6 +1,17 @@
 ion-content {
   --padding-top: 15px;
   --padding-bottom: 0px;
+
+  div {
+    &.next-btn {
+      position: fixed;
+      bottom: 0;
+      height: 48px !important;
+      width: 100%;
+      padding-right: 40px;
+      padding-bottom: 15px;
+    }
+  }
   .form-content{
     padding: 0 20px;
     ion-list {

@@ -12,7 +12,7 @@
 
 
 <ion-content #scrollArea (ionScroll)="scroll($event)" [scrollEvents]="true" mode="ios">
-    <div class="flex-custom">
+    <!-- <div class="flex-custom"> -->
         <div>
             <div #headerTitle class="description-header">
                 <ion-label class="header-label">Investment Confrimation</ion-label>
@@ -41,7 +41,7 @@
                 </div>
             </div>
 
-            <ion-list class="custom" mode='ios'>
+            <ion-list class="custom" mode="ios">
                 <ion-item *ngFor="let entry of checkBoxForm; let i = index;" lines="none" mode='ios'>
                     <ion-label>{{entry.val}}</ion-label>
                     <ion-checkbox (ionChange)="onSelect($event, i)" [(ngModel)]="entry.isChecked" mode='ios'
@@ -174,12 +174,12 @@
                         </div>
                     </div>
                 </ion-list>
-                <ion-row class="footer-btn">
-                    <ion-button [disabled]="!isCheckedSubmitReady" class="bg-blue" mode='ios' type="submit">
+                <div class="next-btn">
+                    <ion-button [disabled]="!isCheckedSubmitReady" class="bg-blue" mode="ios" type="submit">
                         <ion-spinner *ngIf="isSubmitReady" name="bubbles"></ion-spinner>
                         Next
                     </ion-button>
-                </ion-row>
+                </div>
             </div>
         </form>
 
@@ -187,5 +187,5 @@
             <ion-button [disabled]="!isCheckedSubmitReady" (click)='gotoYourInvestment()' class=" normal bg-blue" mode="ios">Next</ion-button>
         </div>
 
-    </div>
+    <!-- </div> -->
 </ion-content>
