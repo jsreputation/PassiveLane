@@ -80,11 +80,20 @@ ion-content {
     padding-bottom: 10px;
     border-radius: 12px;
     text-align: center;
-
+    div.decide-purchase {
+      margin-top: 20px;
+      ion-button {
+        margin: 10px auto;
+        width: 80%;
+      }
+    }
     .amount-list {
-      margin-bottom: 8px;
+      margin-bottom: 5px;
       color: white;
-
+      border-radius: 12px;
+      padding: 10px 50px 42px;
+      background-color: #333959;
+      --background: #333959;
       ion-label {
         &.amount-header {
           width: 100%;
@@ -94,17 +103,13 @@ ion-content {
       ion-input {
         --padding-bottom: 0;
         border-bottom: 1px solid #ffffff;
-        width: 100%;
-        text-align: left;
-        font-size: 16px;
+        width: 60%;
+        text-align: center;
+        font-size: 24px;
         --padding-top: 0px !important;
-        margin-top: 10px;
+        margin: 10px auto;
       }
 
-      border-radius: 12px;
-      padding: 10px 50px 42px;
-      background-color: #3a8093;
-      --background: #3a8093;
     }
 
     ion-label {

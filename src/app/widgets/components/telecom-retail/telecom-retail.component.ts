@@ -34,11 +34,10 @@ export class TelecomRetailComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    this.investService.getinvestmentdetails(this.dataParams).subscribe(res => {
-      if (res.RESPONSECODE === 1) {
-          this.investimentDetails = res.data;
-          console.log(this.investimentDetails);
-      }
-    });
+    // this.investService.getinvestmentdetails(this.dataParams).subscribe(res => {
+    //   if (res.RESPONSECODE === 1) {
+    //       this.investimentDetails = res.data;
+    //   }
+    // });
   }
 }

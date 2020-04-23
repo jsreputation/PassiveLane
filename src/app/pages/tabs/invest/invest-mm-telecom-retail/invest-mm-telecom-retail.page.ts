@@ -51,6 +51,7 @@ export class InvestMmTelecomRetailPage implements OnInit {
 
         this.investService.getInvestDeal(this.queryParams).subscribe(
             result => {
+                console.log('==========', result);
                 if (result.RESPONSECODE === 1) {
                     result.data.deal.map(deal => {
                         deal.target_amount = this.numberWithCommas(deal.target_amount);
