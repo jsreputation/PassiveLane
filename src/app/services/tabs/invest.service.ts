@@ -37,4 +37,7 @@ export class InvestService {
     return this.https.get('https://www.passivelane.com/apiinvestor/investprocess', {params});
   }
 
+  hadAddressInfo(user_info): Observable<any> {
+    return this.https.get('https://www.passivelane.com/apiinvestor/hasaddressinfo', {params: user_info});
+  }
 }

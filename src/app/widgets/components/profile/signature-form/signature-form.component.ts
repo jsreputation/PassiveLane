@@ -95,6 +95,7 @@ export class SignatureFormComponent implements OnInit {
                 }
             },
             error => {
+                alert(JSON.stringify(error));
                 this.submitState = false;
                 this.isSubmitReady = false;
                 this.toastCtrl.presentSpecificText('Sever Api problem.');

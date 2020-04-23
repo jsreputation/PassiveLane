@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import { Platform } from '@ionic/angular';
+import { Platform, Events } from '@ionic/angular';
 import {ProfileService} from '../../../../services/tabs/profile.service';
 import {AuthService} from '../../../../services/auth/auth.service';
 import { ToastService } from 'src/app/services/UI/toast.service';
+import { typeWithParameters } from '@angular/compiler/src/render3/util';
 
 @Component({
     selector: 'app-address-form',
@@ -11,6 +12,7 @@ import { ToastService } from 'src/app/services/UI/toast.service';
     styleUrls: ['./address-form.component.scss'],
 })
 export class AddressFormComponent implements OnInit {
+    @Input() confirmRequest: boolean;
     validate_form: FormGroup;
     isSubmitReady = false;
     submitState = false;
@@ -49,7 +51,8 @@ export class AddressFormComponent implements OnInit {
         private platform: Platform,
         private profileService: ProfileService,
         private authService: AuthService,
-        private toastCtrl: ToastService
+        private toastCtrl: ToastService,
+        private events: Events
     ) {
         if (this.platform.is('ios')) {
             this.isIosPlatform = true;
@@ -101,6 +104,19 @@ export class AddressFormComponent implements OnInit {
                 });
             } else {
                 console.log('error : ', res);
+            }
+            if (this.confirmRequest) {
+                this.listenFormChanges();
+            }
+        });
+    }
+
+    listenFormChanges() {
+        this.validate_form.valueChanges.subscribe((res) => {
+            if (this.validate_form.valid) {
+                this.events.publish('setNextValid', this.validate_form.value);
+            } else {
+                this.events.publish('setNextValid', false);
             }
         });
     }

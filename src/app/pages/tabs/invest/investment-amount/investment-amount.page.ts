@@ -2,6 +2,7 @@ import { Component, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router} from '@angular/router';
 import { HeaderService } from 'src/app/services/UI/header.service';
 import { InvestService } from 'src/app/services/tabs/invest.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
     selector: 'app-investment-amount',
@@ -15,7 +16,6 @@ export class InvestmentAmountPage implements OnInit {
     @ViewChild('headerTxt', {static: false}) headerTxt: any;
     public ScrollAnimation = '';
     deal_info = {} as any;
-    public steps = 2;
     public isError = false;
     public isValidError = false;
     private hidden = false;
@@ -30,24 +30,31 @@ export class InvestmentAmountPage implements OnInit {
     public readyToNext = false;
     public showOffers = false;
     public plegeOffers = [];
+    public steps: number;
     constructor(
         private renderer: Renderer2,
         private headerService: HeaderService,
         private router: Router,
         public route: ActivatedRoute,
         private investService: InvestService,
+        private authService: AuthService
     ) {
     }
 
     ionViewWillEnter() {
-
         this.investService.getinvestmentdetails(this.queryParams).subscribe(res => {
             console.log(this.queryParams);
             if (res.RESPONSECODE === 1) {
                 console.log(res.data);
                 this.investimentDetails = res.data;
+                if (this.queryParams.type === 'Equity') {
+                    this.confirmAddressBoolean();
+                } else {
+                    this.steps = 3;
+                }
             }
         });
+
     }
 
     ngOnInit() {
@@ -56,6 +63,19 @@ export class InvestmentAmountPage implements OnInit {
                 this.deal_info = [] as any;
                 this.deal_info = params;
                 this.queryParams = params;
+            }
+        });
+    }
+
+    confirmAddressBoolean() {
+        this.investService.hadAddressInfo(this.authService.userInfo).subscribe((res) => {
+            console.log(res);
+            if (res.RESPONSECODE === 1) {
+                if (res.data.address) {
+                    this.steps = 3;
+                } else {
+                    this.steps = 4;
+                }
             }
         });
     }
@@ -125,8 +145,10 @@ export class InvestmentAmountPage implements OnInit {
         };
         if ((this.investimentDetails.share_price * Math.floor(temp)) < this.cvm(this.investimentDetails.min_amount)
         ) {
+            // tslint:disable-next-line: no-string-literal
             offerOne['disabled'] = true;
         } else {
+            // tslint:disable-next-line: no-string-literal
             offerOne['disabled'] = false;
         }
         const offerTwo = {
@@ -135,8 +157,10 @@ export class InvestmentAmountPage implements OnInit {
         };
         if ((this.investimentDetails.share_price * Math.floor(temp)) > this.cvm(this.investimentDetails.max_amount)
         ) {
+            // tslint:disable-next-line: no-string-literal
             offerTwo['disabled'] = true;
         } else {
+            // tslint:disable-next-line: no-string-literal
             offerTwo['disabled'] = false;
         }
         this.plegeOffers[0] = offerOne;
@@ -164,11 +188,15 @@ export class InvestmentAmountPage implements OnInit {
 
     gotoPaymentOptions() {
         if (this.investment_amount) {
-            this.deal_info = {...this.deal_info, targetAmount: this.investment_amount};
+            this.deal_info = {...this.deal_info, targetAmount: this.investment_amount, step: 2, totalSteps: this.steps };
             const navigationExtras: NavigationExtras = {
                 queryParams: this.deal_info
             };
-            this.router.navigate(['main/invest/payment-options'], navigationExtras);
+            if (this.steps === 4) {
+                this.router.navigate(['main/invest/address-confirm'], navigationExtras);
+            } else {
+                this.router.navigate(['main/invest/payment-options'], navigationExtras);
+            }
         } else {
             this.isError = true;
         }
