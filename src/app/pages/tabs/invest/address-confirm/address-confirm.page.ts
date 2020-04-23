@@ -76,6 +76,7 @@ export class AddressConfirmPage implements OnInit {
 
   saveAddress(): Promise<any> {
     return new Promise((resolve, reject) => {
+      alert(JSON.stringify(this.formValue));
       let param = {} as any;
       param = {...this.authService.userInfo, ...this.formValue};
       this.profileService.saveProfile('https://www.passivelane.com/apiinvestor/saveprofileaddressinfo', param).subscribe(

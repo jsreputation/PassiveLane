@@ -45,7 +45,8 @@ export class MmTelecomRetailPage implements OnInit {
     public myDealsYears = [];
 
     isWithdraw = false;
-
+    isCertificate: boolean;
+    certificateData: any;
     constructor(
         private renderer: Renderer2,
         private headerService: HeaderService,
@@ -76,6 +77,19 @@ export class MmTelecomRetailPage implements OnInit {
                 this.isWithdraw = false;
             }
         );
+        //certificate detail
+        const paramsData = { ... this.authService.userInfo, deal_id: this.dealInfo.deal_id };
+        this.dealsService.checkCertificateAvailable(paramsData).subscribe((result) => {
+            if (result.RESPONSECODE === 1 && result.data.certificate) {
+                console.log('=======', result.data);
+                this.isCertificate = true;
+                this.certificateData = result.data;
+            } else {
+                this.isCertificate = false;
+            }
+        }, err => {
+            this.isCertificate = false;
+        });
         // deal detail
         this.dealsService.getMMTelecomRetail(this.dealInfo).subscribe(
             (result) => {
@@ -314,5 +328,12 @@ export class MmTelecomRetailPage implements OnInit {
             }
         };
         this.router.navigate(['/main/cache-out'], navigationExtras);
+    }
+
+    onCertificate() {
+        const navigationExtras: NavigationExtras = {
+            queryParams: this.certificateData
+        };
+        this.router.navigate(['/main/my-deal/mm-telecom-retail/certificate'], navigationExtras);
     }
 }

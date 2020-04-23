@@ -74,7 +74,7 @@ export class PaymentOptionsPage implements OnInit {
   fn_back() {
     delete this.submitparams.targetAmount;
     this.submitparams = { ... this.submitparams };
-    this.submitparams.step = this.submitparams.step - 1;
+    this.submitparams.step = parseInt(this.submitparams.step, 10) - 1;
     const backNavigationExtras: NavigationExtras = {
       queryParams: this.submitparams
     };
@@ -87,7 +87,7 @@ export class PaymentOptionsPage implements OnInit {
 
   gotoInvestmentConfirmation() {
     this.submitparams = { ... this.submitparams };
-    this.submitparams.step = this.submitparams.step + 1;
+    this.submitparams.step = parseInt(this.submitparams.step, 10) + 1;
     const navigationExtras: NavigationExtras = {
       queryParams: this.submitparams
     };

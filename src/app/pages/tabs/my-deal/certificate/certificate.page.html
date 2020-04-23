@@ -1,0 +1,18 @@
+<ion-header #ionHeader mode="ios">
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-button (click)='fn_back()' color="dark" mode="ios">
+              <ion-icon class="arrow-left"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+      <ion-label #headerTxt class="header-txt">{{ title }}</ion-label>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content #scrollArea (ionScroll)="scroll($event)" [scrollEvents]="true" mode="ios">
+  <div #headerTitle class="description-header">
+      <ion-label class="header-label">{{ title }}</ion-label>
+  </div>
+  
+</ion-content>

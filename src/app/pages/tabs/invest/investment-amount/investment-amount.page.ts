@@ -25,7 +25,7 @@ export class InvestmentAmountPage implements OnInit {
     public sumAmount = '';
     investimentDetails = {} as any;
     private queryParams = {} as any;
-    
+
     public noOfShares: number;
     public readyToNext = false;
     public showOffers = false;
@@ -47,10 +47,14 @@ export class InvestmentAmountPage implements OnInit {
             if (res.RESPONSECODE === 1) {
                 console.log(res.data);
                 this.investimentDetails = res.data;
+                if (this.queryParams.type === 'Equity') {
+                    this.confirmAddressBoolean();
+                } else {
+                    this.steps = 3;
+                }
             }
         });
 
-        this.confirmAddressBoolean();
     }
 
     ngOnInit() {
@@ -69,7 +73,6 @@ export class InvestmentAmountPage implements OnInit {
             if (res.RESPONSECODE === 1) {
                 if (res.data.address) {
                     this.steps = 3;
-                    // this.steps = 4;
                 } else {
                     this.steps = 4;
                 }
@@ -142,8 +145,10 @@ export class InvestmentAmountPage implements OnInit {
         };
         if ((this.investimentDetails.share_price * Math.floor(temp)) < this.cvm(this.investimentDetails.min_amount)
         ) {
+            // tslint:disable-next-line: no-string-literal
             offerOne['disabled'] = true;
         } else {
+            // tslint:disable-next-line: no-string-literal
             offerOne['disabled'] = false;
         }
         const offerTwo = {
@@ -152,8 +157,10 @@ export class InvestmentAmountPage implements OnInit {
         };
         if ((this.investimentDetails.share_price * Math.floor(temp)) > this.cvm(this.investimentDetails.max_amount)
         ) {
+            // tslint:disable-next-line: no-string-literal
             offerTwo['disabled'] = true;
         } else {
+            // tslint:disable-next-line: no-string-literal
             offerTwo['disabled'] = false;
         }
         this.plegeOffers[0] = offerOne;

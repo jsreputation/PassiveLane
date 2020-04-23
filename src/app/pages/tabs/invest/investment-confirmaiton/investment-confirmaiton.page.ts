@@ -100,6 +100,7 @@ export class InvestmentConfirmaitonPage implements OnInit {
         this.route.queryParams.subscribe((params) => {
             if (params) {
                 this.submitparams = {...params};
+                console.log('coccccccccccooooooooo: ', params);
                 this.totalSteps = parseInt(params.totalSteps, 10);
                 this.DealType = params.type;
                 console.log(this.submitparams);
@@ -213,6 +214,8 @@ export class InvestmentConfirmaitonPage implements OnInit {
     }
 
     fn_back() {
+        this.submitparams = { ... this.submitparams };
+        this.submitparams.step = parseInt(this.submitparams.step, 10) - 1;
         const backNavigationExtras: NavigationExtras = {
             queryParams: this.submitparams
         };
