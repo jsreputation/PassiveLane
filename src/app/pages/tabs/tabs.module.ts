@@ -25,6 +25,8 @@ import {PaymentPage} from './pay/payment/payment.page';
 import {AvatarModule} from 'ngx-avatar';
 import { DynamicHostDirective } from './dynamic-host/dynamic-host.directive';
 import {DynamicHostSlotComponent} from './dynamic-host/dynamic-host-slot/dynamic-host-slot.component';
+import { AddressConfirmPage } from './invest/address-confirm/address-confirm.page';
+import { CertificatePage } from './my-deal/certificate/certificate.page';
 
 @NgModule({
   imports: [
@@ -44,7 +46,7 @@ import {DynamicHostSlotComponent} from './dynamic-host/dynamic-host-slot/dynamic
     // my deal
     MyDealPage,
     MmTelecomRetailPage,
-
+    CertificatePage,
     // invest
     InvestPage,
     InvestMmTelecomRetailPage,
@@ -52,7 +54,7 @@ import {DynamicHostSlotComponent} from './dynamic-host/dynamic-host-slot/dynamic
     PaymentOptionsPage,
     InvestmentConfirmaitonPage,
     YourInvestmentPage,
-
+    AddressConfirmPage,
     // activity
     ActivityPage,
 

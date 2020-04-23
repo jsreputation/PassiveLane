@@ -33,4 +33,16 @@ export class DealsService {
   withdrawState(data): Observable<any> {
     return this.https.get('https://www.passivelane.com/apiinvestor/withdrawbutton', {params: data});
   }
+
+  checkCertificateAvailable(data): Observable<any> {
+    return this.https.get('https://www.passivelane.com/apiinvestor/certificatebutton', {
+      params: data
+    });
+  }
+
+  getCertificateDetails(data): Observable<any> {
+    return this.https.get('https://www.passivelane.com/apiinvestor/certificate', {
+      params: data
+    });
+  }
 }
