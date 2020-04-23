@@ -15,6 +15,7 @@ import {MyDealPage} from './my-deal/home/my-deal.page';
 import {MmTelecomRetailPage} from './my-deal/mm-telecom-retail/mm-telecom-retail.page';
 import {ProfilePage} from './profile/profile.page';
 import {PaymentPage} from './pay/payment/payment.page';
+import { AddressConfirmPage } from './invest/address-confirm/address-confirm.page';
 
 const routes: Routes = [
   {
@@ -60,6 +61,10 @@ const routes: Routes = [
           {
             path: 'your-investment',
             component: YourInvestmentPage
+          },
+          {
+            path: 'address-confirm',
+            component: AddressConfirmPage
           }
         ]
       },
@@ -114,8 +119,7 @@ const routes: Routes = [
     path: '',
     redirectTo: 'my-deal',
     pathMatch: 'full'
-  },
-
+  }
 ];
 
 @NgModule({

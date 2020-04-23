@@ -6,18 +6,16 @@
             </ion-button>
         </ion-buttons>
         <ion-label #headerTxt class="header-txt">Investment Confrimation</ion-label>
-
     </ion-toolbar>
 </ion-header>
 
 
 <ion-content #scrollArea (ionScroll)="scroll($event)" [scrollEvents]="true" mode="ios">
-    <!-- <div class="flex-custom"> -->
         <div>
             <div #headerTitle class="description-header">
                 <ion-label class="header-label">Investment Confrimation</ion-label>
             </div>
-            <app-stepper [max]="3" [min]="1" [value]="3"></app-stepper>
+            <app-stepper [max]="totalSteps" [min]="1" [value]="submitparams?.step"></app-stepper>
 
             <div class="spiner-content" *ngIf="!isReady">
                 <ion-spinner name="lines"></ion-spinner>
@@ -50,7 +48,7 @@
             </ion-list>
         </div>
 
-        <form *ngIf="DealType === 'Equity'" (ngSubmit)="onFormSubmit()" [formGroup]="validate_form" class="custom-body">
+        <!-- <form *ngIf="DealType === 'Equity'" (ngSubmit)="onFormSubmit()" [formGroup]="validate_form" class="custom-body">
             <div class="form-content">
                 <ion-list>
                     <div class="input-item">
@@ -181,11 +179,9 @@
                     </ion-button>
                 </div>
             </div>
-        </form>
+        </form> -->
 
-        <div *ngIf="DealType !== 'Equity'" class="footer-btn">
+        <div class="footer-btn">
             <ion-button [disabled]="!isCheckedSubmitReady" (click)='gotoYourInvestment()' class=" normal bg-blue" mode="ios">Next</ion-button>
         </div>
-
-    <!-- </div> -->
 </ion-content>

@@ -14,7 +14,7 @@
     <div #headerTitle class="description-header">
         <ion-label class="header-label">{{ deal_info.dealName }}</ion-label>
     </div>
-    <app-stepper [max]="3" [min]="1" [value]="1"></app-stepper>
+    <app-stepper [max]="steps" [min]="1" [value]="1"></app-stepper>
     <ion-list *ngIf="deal_info.type !== 'Equity'">
         <ion-item lines="none" mode='ios'>
             <ion-icon class="profit"></ion-icon>

@@ -32,8 +32,9 @@ export class InvestmentConfirmaitonPage implements OnInit {
     ];
     private hidden = false;
     private triggerDistance = 42;
-    private submitparams = {} as any;
+    public submitparams = {} as any;
     isCheckedSubmitReady = false;
+    public totalSteps: number;
     isReady = false;
     signInfo = '';
 
@@ -99,6 +100,7 @@ export class InvestmentConfirmaitonPage implements OnInit {
         this.route.queryParams.subscribe((params) => {
             if (params) {
                 this.submitparams = {...params};
+                this.totalSteps = parseInt(params.totalSteps, 10);
                 this.DealType = params.type;
                 console.log(this.submitparams);
                 this.investService.getAgreeText(this.submitparams).subscribe(

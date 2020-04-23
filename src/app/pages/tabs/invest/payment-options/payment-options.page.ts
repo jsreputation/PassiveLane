@@ -22,7 +22,8 @@ export class PaymentOptionsPage implements OnInit {
   ];
   private hidden = false;
   private triggerDistance = 42;
-  private submitparams: any;
+  public submitparams: any;
+  public totalSteps: number;
 
   constructor(
     private renderer: Renderer2,
@@ -39,6 +40,7 @@ export class PaymentOptionsPage implements OnInit {
     this.route.queryParams.subscribe(params => {
       if (params) {
         this.submitparams = {...params};
+        this.totalSteps = parseInt(params.totalSteps, 10);
       }
     });
   }
@@ -71,13 +73,21 @@ export class PaymentOptionsPage implements OnInit {
 
   fn_back() {
     delete this.submitparams.targetAmount;
+    this.submitparams = { ... this.submitparams };
+    this.submitparams.step = this.submitparams.step - 1;
     const backNavigationExtras: NavigationExtras = {
       queryParams: this.submitparams
     };
-    this.router.navigate(['main/invest/investment-amount'], backNavigationExtras);
+    if (this.totalSteps === 3) {
+      this.router.navigate(['main/invest/investment-amount'], backNavigationExtras);
+    } else {
+      this.router.navigate(['main/invest/address-confirm'], backNavigationExtras);
+    }
   }
 
   gotoInvestmentConfirmation() {
+    this.submitparams = { ... this.submitparams };
+    this.submitparams.step = this.submitparams.step + 1;
     const navigationExtras: NavigationExtras = {
       queryParams: this.submitparams
     };

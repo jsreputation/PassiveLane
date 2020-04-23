@@ -17,7 +17,7 @@
             <div #headerTitle class="description-header">
                 <ion-label class="header-label">Payment Options</ion-label>
             </div>
-            <app-stepper [max]="3" [min]="1" [value]="2"></app-stepper>
+            <app-stepper [max]="totalSteps" [min]="1" [value]="submitparams?.step"></app-stepper>
 
             <div class="content">
                 <ion-label class="description-label">Bank Transfer</ion-label>

@@ -1,5 +1,5 @@
 <form (ngSubmit)="onFormSubmit()" [formGroup]="validate_form" class="custom-body">
-  <div class="form-content">
+  <div class="form-content" [ngClass]="{'padding': confirmRequest}">
     <ion-list mode="ios">
       <div class="input-item">
         <ion-radio-group (ionChange)="onCheck($event)">
@@ -152,7 +152,7 @@
 
       </div>
     </ion-list>
-    <ion-row class="save-button-right">
+    <ion-row class="save-button-right" *ngIf="!confirmRequest">
       <ion-button [disabled]="isSubmitReady" class="bg-blue" mode='ios' type="submit">
         <ion-spinner *ngIf="isSubmitReady" name="lines"></ion-spinner>
         Save
