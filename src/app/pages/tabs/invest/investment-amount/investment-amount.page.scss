@@ -1,7 +1,15 @@
 ion-content {
   --padding-top: 15px;
   --padding-bottom: 25px;
-
+  ion-button {
+    &.next-btn {
+      position: absolute;
+      bottom: 0;
+      height: 48px !important;
+      width: 80%;
+      margin: 15px 10% !important;
+    }
+  }
   ion-label {
     &.success-txt {
       padding: 0px 60px;
@@ -29,7 +37,7 @@ ion-content {
           padding-left: 14px;
           line-height: 20px;
           letter-spacing: 0.6pt;
-          font-size: 12px;
+          font-size: 14px;
           color: #666674;
           white-space: pre-wrap;
         }
@@ -40,7 +48,7 @@ ion-content {
           padding-right: 20px;
           line-height: 20px;
           letter-spacing: 0.6pt;
-          font-size: 12px;
+          font-size: 14px;
           max-width: 110px;
           white-space: pre-wrap;
         }
@@ -57,9 +65,9 @@ ion-content {
     ion-label
     {
       &.limit-amount{
-        font-size: 12px;
+        font-size: 14px;
         span{
-          font-size: 13px;
+          font-size: 15px;
           font-weight: bold;
         }
       }
@@ -88,7 +96,7 @@ ion-content {
         border-bottom: 1px solid #ffffff;
         width: 100%;
         text-align: left;
-        font-size: 14px;
+        font-size: 16px;
         --padding-top: 0px !important;
         margin-top: 10px;
       }
@@ -102,7 +110,7 @@ ion-content {
     ion-label {
       &.amount {
         line-height: 15.6px;
-        font-size: 13px;
+        font-size: 15px;
         margin-bottom: 8px;
       }
     }
@@ -111,7 +119,7 @@ ion-content {
   ion-label {
     &.amount-description {
       line-height: 20px;
-      font-size: 12px;
+      font-size: 14px;
       margin-bottom: 16px;
       letter-spacing: 0.6pt;
       color: #666674;
@@ -130,7 +138,7 @@ ion-content {
     }
 
     &.error-txt {
-      font-size: 10px;
+      font-size: 12px;
       color: red;
     }
   }

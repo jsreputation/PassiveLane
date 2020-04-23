@@ -52,7 +52,7 @@ ion-content {
         .description {
             margin-bottom: 30px;
             ion-label {
-                font-size: 12px;
+                font-size: 14px;
                 line-height: 20px;
                 color: #666674;
                 font-weight: 300;
@@ -87,7 +87,7 @@ ion-content {
                         --background-activated: transparent;
                         --padding-start: 0px;
                         ion-label {
-                            font-size: 10px;
+                            font-size: 14px;
                             line-height: 12px;
                             color: #666674;
                             margin: 0;
@@ -103,7 +103,7 @@ ion-content {
                 }
             }
             ion-label {
-                font-size: 12px;
+                font-size: 14px;
                 line-height: 20px;
                 color: #000000;
                 font-weight: 300;
@@ -154,7 +154,7 @@ ion-content {
                     background-color: #4f8d9f0f;
                     border-radius: 5px;
                     margin-left: 10px;
-                    font-size: 11px !important;
+                    font-size: 13px !important;
                     line-height: 15px;
                     font-weight: 300;
                     letter-spacing: 0.4pt;
@@ -400,7 +400,7 @@ ion-col {
         color: #323232;
     }
     .action-sheet-sub-title.sc-ion-action-sheet-md {
-        font-size: 12px;
+        font-size: 14px;
         line-height: 20px;
         letter-spacing: 0.4pt;
     }
@@ -414,7 +414,7 @@ ion-col {
         display: inline-block;
     }
     .action-sheet-button-inner.sc-ion-action-sheet-md {
-        font-size: 12px;
+        font-size: 14px;
         line-height: 20px;
         letter-spacing: 0.4pt;
     }
@@ -444,14 +444,14 @@ ion-col {
 }
 
 .sc-ion-label-ios-s p {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 20px;
     letter-spacing: 0.4pt;
     color: black !important;
 }
 
 .sc-ion-label-md-s p {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 20px;
     letter-spacing: 0.4pt;
     color: #666674 !important;
