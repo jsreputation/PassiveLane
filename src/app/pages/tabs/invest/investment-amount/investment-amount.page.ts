@@ -25,7 +25,7 @@ export class InvestmentAmountPage implements OnInit {
     public sumAmount = '';
     investimentDetails = {} as any;
     private queryParams = {} as any;
-
+    public tempAmount: number;
     public noOfShares: number;
     public readyToNext = false;
     public showOffers = false;
@@ -62,6 +62,7 @@ export class InvestmentAmountPage implements OnInit {
             if (params) {
                 this.deal_info = [] as any;
                 this.deal_info = params;
+                console.log(this.deal_info);
                 this.queryParams = params;
             }
         });
@@ -140,7 +141,7 @@ export class InvestmentAmountPage implements OnInit {
         this.plegeOffers = [];
         const temp = typeVal / this.investimentDetails.share_price;
         const offerOne = {
-            amount: this.investimentDetails.share_price * Math.floor(temp),
+            amount: (this.investimentDetails.share_price * Math.floor(temp)).toFixed(2),
             count: Math.floor(temp)
         };
         if ((this.investimentDetails.share_price * Math.floor(temp)) < this.cvm(this.investimentDetails.min_amount)
@@ -152,7 +153,7 @@ export class InvestmentAmountPage implements OnInit {
             offerOne['disabled'] = false;
         }
         const offerTwo = {
-            amount: this.investimentDetails.share_price * Math.ceil(temp),
+            amount: (this.investimentDetails.share_price * Math.ceil(temp)).toFixed(2),
             count: Math.ceil(temp)
         };
         if ((this.investimentDetails.share_price * Math.floor(temp)) > this.cvm(this.investimentDetails.max_amount)
@@ -168,7 +169,8 @@ export class InvestmentAmountPage implements OnInit {
         this.showOffers = true;
     }
 
-    defineNoOfShares(e) {
+    defineNoOfShares(e, amount) {
+        this.tempAmount = amount;
         console.log(e.target.value);
         this.noOfShares = e.target.value;
         this.showOffers = false;

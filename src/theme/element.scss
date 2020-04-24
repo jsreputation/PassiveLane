@@ -2,6 +2,12 @@ body {
     padding-top: env(safe-area-inset-top);
 }
 
+ion-label {
+    &.header-title {
+        font-size: 20px;
+    }
+}
+
 ion-header {
     font-family: 'Poppins' !important;
     margin-top: 36px;
@@ -32,6 +38,56 @@ ion-header {
         }
     }
 }
+ion-footer {
+    &.footerarea {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        --background: white;
+        box-shadow: 0 -8px 14px -8px rgb(238, 238, 238)
+    }
+    ion-button {
+        &.btn-footer {
+            width: 80%;
+            display: block;
+            margin: auto;
+        }
+    }
+}
+
+
+ion-button {
+    // &.button-disabled {
+    //     --background: #888888 !important;
+    //     --color: #242424;
+    // }
+    --color-activated: #89AADB;
+    --background-activated: #357384;
+    --color-focused: white;
+    --background-focused: #357384;
+    display: block;
+    margin: auto;
+    font-size: 15px;
+    --border-radius: 7px;
+    &.normal {
+        margin: 20px 34px 0;
+        height: $button-height;
+    }
+    &.sign {
+        margin: 0 45px;
+        height: $button-height;
+    }
+    &.bg-blue {
+        --background: #3a8093;
+    }
+    &.bg-red {
+        --background: #e0342f;
+        --background-activated: #ed9794;
+        --color-activated: white;
+    }
+    ion-spinner {
+        margin-right: 5px;
+    }
+}
 
 ion-content {
     font-family: 'Poppins' !important;
@@ -43,6 +99,10 @@ ion-content {
                 font-size: 23px;
                 font-weight: 500;
                 line-height: 27.6px;
+            }
+            &.header-smalllabel {
+                font-size: 18px;
+                font-weight: 100;
             }
         }
     }
@@ -112,39 +172,7 @@ ion-content {
             }
         }
     }
-    ion-button {
-        // &.button-disabled {
-        //     --background: #888888 !important;
-        //     --color: #242424;
-        // }
-        --color-activated: #89AADB;
-        --background-activated: #357384;
-        --color-focused: white;
-        --background-focused: #357384;
-        display: block;
-        margin: auto;
-        font-size: 15px;
-        --border-radius: 7px;
-        &.normal {
-            margin: 20px 34px 0;
-            height: $button-height;
-        }
-        &.sign {
-            margin: 0 45px;
-            height: $button-height;
-        }
-        &.bg-blue {
-            --background: #3a8093;
-        }
-        &.bg-red {
-            --background: #e0342f;
-            --background-activated: #ed9794;
-            --color-activated: white;
-        }
-        ion-spinner {
-            margin-right: 5px;
-        }
-    }
+    
     ion-list {
         &.custom {
             ion-item {

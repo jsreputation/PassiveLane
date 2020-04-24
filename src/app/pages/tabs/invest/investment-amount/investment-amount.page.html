@@ -5,14 +5,15 @@
                 <ion-icon class="arrow-left"></ion-icon>
             </ion-button>
         </ion-buttons>
-        <ion-label #headerTxt class="header-txt">Pledge Amount</ion-label>
+        <ion-label #headerTxt class="header-txt">{{ deal_info.dealName }}</ion-label>
     </ion-toolbar>
 </ion-header>
 
 
 <ion-content #scrollArea (ionScroll)="scroll($event)" [scrollEvents]="true" mode="ios">
     <div #headerTitle class="description-header">
-        <ion-label class="header-label">{{ deal_info.dealName }}</ion-label>
+        <ion-label class="header-label">Pledge Amount</ion-label>
+        <ion-label class="header-smalllabel">({{ deal_info.dealName }})</ion-label>
     </div>
     <app-stepper [max]="steps" [min]="1" [value]="1"></app-stepper>
     <ion-list *ngIf="deal_info.type !== 'Equity'">
@@ -48,7 +49,7 @@
         <div class="amount-list bg-blue" lines="none">
             <ion-label class="amount-header">Enter Investment Amount</ion-label>
             <ion-input class="special-input" (ionBlur)="fn_focus($event, investimentDetails.min_amount, investimentDetails.max_amount)" 
-                #amountInput (ionInput)="userTyping(amountInput.value, investimentDetails.min_amount, investimentDetails.max_amount)" 
+                [(ngModel)]="tempAmount" #amountInput (ionInput)="userTyping(amountInput.value, investimentDetails.min_amount, investimentDetails.max_amount)" 
                 type="number"
             >
                 <slot>£ </slot>
@@ -63,10 +64,10 @@
         <ion-label class="no-shares" *ngIf="deal_info.type === 'Equity'">No. shares: {{ noOfShares ? noOfShares: '' }}</ion-label>
         <div class="decide-purchase" *ngIf="showOffers">
             <ion-label class="decide">You must purchase a whole number of shares:</ion-label>
-            <ion-button class="bg-red" [disabled]="plegeOffers[0].disabled" (click)="defineNoOfShares($event)" [value]="plegeOffers[0].count">
+            <ion-button class="bg-red" [disabled]="plegeOffers[0].disabled" (click)="defineNoOfShares($event, plegeOffers[0].amount)" [value]="plegeOffers[0].count">
                 £{{ plegeOffers[0].amount }} FOR {{ plegeOffers[0].count }} SHARES
             </ion-button>
-            <ion-button class="bg-red"[disabled]="plegeOffers[1].disabled"  [value]="plegeOffers[1].count" (click)="defineNoOfShares($event)">
+            <ion-button *ngIf="plegeOffers[1].amount !== plegeOffers[0].amount" class="bg-red"[disabled]="plegeOffers[1].disabled"  [value]="plegeOffers[1].count" (click)="defineNoOfShares($event, plegeOffers[1].amount )">
                 £{{ plegeOffers[1].amount }} FOR {{ plegeOffers[1].count }} SHARES
             </ion-button>
         </div>
@@ -76,5 +77,7 @@
     <!-- <ion-label class="amount-description">Estimated cash out profit available after 12 month:</ion-label>
     <ion-label class="amount-value">£{{ sumAmount }}</ion-label> -->
 
-    <ion-button [disabled]="!readyToNext" (click)='gotoPaymentOptions()' class="next-btn normal bg-blue" mode="ios">Next</ion-button>
 </ion-content>
+<ion-footer class="footerarea">
+    <ion-button [disabled]="!readyToNext" (click)='gotoPaymentOptions()' class="btn-footer normal bg-blue" mode="ios">Next</ion-button>
+</ion-footer>
