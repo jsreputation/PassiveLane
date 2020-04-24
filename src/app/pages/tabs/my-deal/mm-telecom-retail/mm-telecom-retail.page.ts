@@ -81,7 +81,7 @@ export class MmTelecomRetailPage implements OnInit {
         const paramsData = { ... this.authService.userInfo, deal_id: this.dealInfo.deal_id };
         this.dealsService.checkCertificateAvailable(paramsData).subscribe((result) => {
             if (result.RESPONSECODE === 1 && result.data.certificate) {
-                console.log('=======', result.data);
+                console.log('certificate params:  ', result);
                 this.isCertificate = true;
                 this.certificateData = result.data;
             } else {

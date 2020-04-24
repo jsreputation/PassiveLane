@@ -14,5 +14,7 @@
   <div #headerTitle class="description-header">
       <ion-label class="header-label">{{ title }}</ion-label>
   </div>
-  
+  <ion-card mode="ios" class="content" *ngIf="certificateDetails">
+    <div class="html" [innerHTML]="certificateDetails?.certificate_text"></div>
+  </ion-card>
 </ion-content>
