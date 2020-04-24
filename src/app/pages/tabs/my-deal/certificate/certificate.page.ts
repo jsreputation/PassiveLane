@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, Renderer2 } from '@angular/core';
 import { DealsService } from 'src/app/services/tabs/deals.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { HeaderService } from 'src/app/services/UI/header.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { NavController } from '@ionic/angular';
@@ -23,7 +23,6 @@ export class CertificatePage implements OnInit {
     private headerService: HeaderService,
     private renderer: Renderer2,
     private authService: AuthService,
-    private router: Router,
     private navCtrl: NavController
   ) { }
 
@@ -39,7 +38,8 @@ export class CertificatePage implements OnInit {
   getCertificateDetails(params) {
     const finalParam = { ...this.authService.userInfo,
       certificate_id: params.certificate_id,
-      pledge_id: params.pledge_id
+      // pledge_id: params.pledge_id
+      pledge_id: 227
     };
     this.dealsService.getCertificateDetails(finalParam).subscribe((result) => {
       console.log(result);
