@@ -100,7 +100,6 @@ export class InvestmentConfirmaitonPage implements OnInit {
         this.route.queryParams.subscribe((params) => {
             if (params) {
                 this.submitparams = {...params};
-                console.log('coccccccccccooooooooo: ', params);
                 this.totalSteps = parseInt(params.totalSteps, 10);
                 this.DealType = params.type;
                 console.log(this.submitparams);
@@ -124,6 +123,7 @@ export class InvestmentConfirmaitonPage implements OnInit {
 
     isSignatured() {
         this.profileService.getSignature(this.authService.userInfo).subscribe(res => {
+            console.log(res);
             if (res.RESPONSECODE === 1) {
                 this.signInfo = res.data.sign;
             }
@@ -185,32 +185,32 @@ export class InvestmentConfirmaitonPage implements OnInit {
     }
 
     ngOnInit() {
-        this.validate_form = this.formBuilder.group({
-            flatno: new FormControl('', Validators.compose([
-                Validators.required
-            ])),
-            buildno: new FormControl('', Validators.compose([
-                Validators.required
-            ])),
-            buildname: new FormControl('', Validators.compose([
-                Validators.required
-            ])),
-            street: new FormControl('', Validators.compose([
-                Validators.required
-            ])),
-            substreet: new FormControl('', Validators.compose([
-                Validators.required
-            ])),
-            town: new FormControl('', Validators.compose([
-                Validators.required
-            ])),
-            postcode: new FormControl('', Validators.compose([
-                Validators.required
-            ])),
-            country: new FormControl('', Validators.compose([
-                Validators.required
-            ])),
-        });
+        // this.validate_form = this.formBuilder.group({
+        //     flatno: new FormControl('', Validators.compose([
+        //         Validators.required
+        //     ])),
+        //     buildno: new FormControl('', Validators.compose([
+        //         Validators.required
+        //     ])),
+        //     buildname: new FormControl('', Validators.compose([
+        //         Validators.required
+        //     ])),
+        //     street: new FormControl('', Validators.compose([
+        //         Validators.required
+        //     ])),
+        //     substreet: new FormControl('', Validators.compose([
+        //         Validators.required
+        //     ])),
+        //     town: new FormControl('', Validators.compose([
+        //         Validators.required
+        //     ])),
+        //     postcode: new FormControl('', Validators.compose([
+        //         Validators.required
+        //     ])),
+        //     country: new FormControl('', Validators.compose([
+        //         Validators.required
+        //     ])),
+        // });
     }
 
     fn_back() {
@@ -223,7 +223,9 @@ export class InvestmentConfirmaitonPage implements OnInit {
     }
 
     gotoYourInvestment() {
-        // this.submitparams = {...this.submitparams, sign_image: this.signaturePad.toDataURL()};
+        if (!this.signInfo) {
+            this.submitparams = {...this.submitparams, sign_image: this.signaturePad.toDataURL()};
+        }
         this.investService.submitInvestInfo(this.submitparams).subscribe((response) => {
             if (response.RESPONSECODE === 1) {
                 console.log(response);

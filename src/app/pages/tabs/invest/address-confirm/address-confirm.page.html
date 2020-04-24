@@ -11,7 +11,8 @@
 
 <ion-content #scrollArea (ionScroll)="scroll($event)" [scrollEvents]="true" mode="ios">
   <div #headerTitle class="description-header">
-      <ion-label class="header-label">{{ deal_info.dealName }}</ion-label>
+      <ion-label class="header-label">Fill In Your Address</ion-label>
+      <ion-label class="header-smalllabel">({{ deal_info.dealName }})</ion-label>
   </div>
   <app-stepper [max]="steps" [min]="1" [value]="deal_info?.step"></app-stepper>
 

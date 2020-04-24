@@ -38,8 +38,8 @@ export class CertificatePage implements OnInit {
   getCertificateDetails(params) {
     const finalParam = { ...this.authService.userInfo,
       certificate_id: params.certificate_id,
-      // pledge_id: params.pledge_id
-      pledge_id: 227
+      incoming_id: params.incoming_id
+      // pledge_id: 227
     };
     this.dealsService.getCertificateDetails(finalParam).subscribe((result) => {
       console.log(result);
