@@ -5,7 +5,7 @@
                 <ion-icon class="arrow-left"></ion-icon>
             </ion-button>
         </ion-buttons>
-        <ion-label #headerTxt class="header-txt">Investment Confrimation</ion-label>
+        <ion-label #headerTxt class="header-txt">{{ submitparams.dealName }}</ion-label>
     </ion-toolbar>
 </ion-header>
 
@@ -14,6 +14,7 @@
         <div>
             <div #headerTitle class="description-header">
                 <ion-label class="header-label">Investment Confrimation</ion-label>
+                <ion-label class="header-smalllabel">({{ submitparams.dealName }})</ion-label>
             </div>
             <app-stepper [max]="totalSteps" [min]="1" [value]="submitparams?.step"></app-stepper>
 
@@ -22,10 +23,8 @@
             </div>
 
             <div class="content" *ngIf="isReady">
-
                 <ion-label [innerHTML]="agreementTxt" class="content-text">
                 </ion-label>
-
             </div>
 
             <div class="content" *ngIf="!signInfo">
@@ -180,8 +179,7 @@
                 </div>
             </div>
         </form> -->
-
-        <div class="footer-btn">
-            <ion-button [disabled]="!isCheckedSubmitReady" (click)='gotoYourInvestment()' class=" normal bg-blue" mode="ios">Next</ion-button>
-        </div>
 </ion-content>
+<ion-footer class="footerarea">
+    <ion-button [disabled]="!isCheckedSubmitReady" (click)='gotoYourInvestment()' class="btn-footer normal bg-blue" mode="ios">Next</ion-button>
+</ion-footer>

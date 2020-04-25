@@ -1,18 +1,11 @@
-<ion-header #ionHeader mode="ios">
-  <ion-toolbar>
-      <ion-buttons slot="start">
-          <ion-button (click)='fn_back()' color="dark" mode="ios">
-              <ion-icon class="arrow-left"></ion-icon>
-          </ion-button>
-      </ion-buttons>
-      <ion-label #headerTxt class="header-txt">{{ title }}</ion-label>
-  </ion-toolbar>
-</ion-header>
-
-
-<ion-content #scrollArea (ionScroll)="scroll($event)" [scrollEvents]="true" mode="ios">
-  <div #headerTitle class="description-header">
-      <ion-label class="header-label">{{ title }}</ion-label>
+<ion-header>
+  <div class="header-content">
+    <ion-icon name="close" (click)="closeModal()"></ion-icon>
+    <ion-label class="mm-header-txt">{{ certificateDetails?.deal_name }}</ion-label>
   </div>
-  
+</ion-header>
+<ion-content  mode="ios">
+  <div class="card-content">
+    <div class="html" [innerHTML]="certificateDetails?.certificate_text"></div>
+  </div>
 </ion-content>
