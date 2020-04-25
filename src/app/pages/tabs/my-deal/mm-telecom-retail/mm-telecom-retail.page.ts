@@ -7,6 +7,7 @@ import {AuthService} from '../../../../services/auth/auth.service';
 import {myEnterAnimation} from '../../../../widgets/animations/enter.animation';
 import {myLeaveAnimation} from '../../../../widgets/animations/leave.animation';
 import {MydealDetailComponent} from '../../../../widgets/modals/mydeal-detail/mydeal-detail.component';
+import { CertificatePage } from '../certificate/certificate.page';
 
 @Component({
     selector: 'app-mm-telecom-retail',
@@ -77,7 +78,7 @@ export class MmTelecomRetailPage implements OnInit {
                 this.isWithdraw = false;
             }
         );
-        //certificate detail
+        // certificate detail
         const paramsData = { ... this.authService.userInfo, deal_id: this.dealInfo.deal_id };
         this.dealsService.checkCertificateAvailable(paramsData).subscribe((result) => {
             if (result.RESPONSECODE === 1 && result.data.certificate) {
@@ -330,10 +331,14 @@ export class MmTelecomRetailPage implements OnInit {
         this.router.navigate(['/main/cache-out'], navigationExtras);
     }
 
-    onCertificate() {
-        const navigationExtras: NavigationExtras = {
-            queryParams: this.certificateData
-        };
-        this.router.navigate(['/main/my-deal/mm-telecom-retail/certificate'], navigationExtras);
+    async onCertificate() {
+        const modal = await this.modalCtrl.create({
+            component: CertificatePage,
+            cssClass: 'activityDetail-modal',
+            enterAnimation: myEnterAnimation,
+            leaveAnimation: myLeaveAnimation,
+            componentProps: this.certificateData
+        });
+        await modal.present();
     }
 }

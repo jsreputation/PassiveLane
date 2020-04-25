@@ -229,6 +229,7 @@ export class InvestmentConfirmaitonPage implements OnInit {
         this.investService.submitInvestInfo(this.submitparams).subscribe((response) => {
             if (response.RESPONSECODE === 1) {
                 console.log(response);
+                this.submitparams = {...this.submitparams, pledge_id: response.data.pledge_id };
                 const navigationExtras: NavigationExtras = {
                     queryParams: this.submitparams
                 };

@@ -1,60 +1,192 @@
-<ion-content>
-    <div class="flex-custom">
-
-        <div>
-            <div class="description-header">
-                <ion-label class="header-label">Your Investment</ion-label>
+<ion-header #ionHeader mode="ios">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)='fn_back()' color="dark" mode="ios">
+                <ion-icon class="arrow-left"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-label #headerTxt class="header-txt">{{ completeData?.deal_name }}</ion-label>
+    </ion-toolbar>
+</ion-header>
+<ion-content  #scrollArea (ionScroll)="scroll($event)" [scrollEvents]="true" mode="ios">
+    <div #headerTitle class="description-header">
+        <ion-label class="header-label">Payment Options</ion-label>
+        <ion-label class="header-smalllabel">({{completeData?.deal_name }})</ion-label>
+    </div>
+    <ion-card class="back-warning" mode="ios">
+        <ion-card-header class="warning">
+            <ion-label class="white">
+                <b>Warning</b>
+            </ion-label>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-label class="white">
+                Please only send the pledge amount. Any amounts received over the pledged amount will not be accepted and will be sent back
+            </ion-label>
+        </ion-card-content>
+    </ion-card>
+    
+    <ion-card class="back-blue" mode="ios">
+        <ion-card-header class="warning">
+            <ion-label class="white">
+                <b>HOW TO COMPLETE YOUR INVESTMENT</b>
+            </ion-label>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-label class="white block">
+                To complete your investment, please transfer <b>£{{ completeData?.amount }}</b> to:
+            </ion-label>
+            <ion-item  mode="ios" lines="none">
+                <ion-label class="white pre">Recipient's Name: </ion-label>
+                <ion-label class="white lat">{{ completeData?.bank.account_name ? completeData?.bank.account_name: '' }}</ion-label>
+            </ion-item>
+            <ion-item  mode="ios" lines="none">
+                <ion-label class="white pre">Recipient’s Address: </ion-label>
+                <ion-label class="white lat">{{ completeData?.bank.address ? completeData?.bank.address: '' }}</ion-label>
+            </ion-item>
+            <ion-item  mode="ios" lines="none">
+                <ion-label class="white pre">Bank account name:</ion-label>
+                <ion-label class="white lat">{{ completeData?.bank.bank_name ? completeData?.bank.bank_name: '' }}</ion-label>
+            </ion-item>
+            <ion-item  mode="ios" lines="none">
+                <ion-label class="white pre">Sort code: </ion-label>
+                <ion-label class="white lat">{{ completeData?.bank.sort_code ? completeData?.bank.sort_code: '' }}</ion-label>
+            </ion-item>
+            <ion-item  mode="ios" lines="none">
+                <ion-label class="white pre">Account number: </ion-label>
+                <ion-label class="white lat">{{ completeData?.bank.account_number ? completeData?.bank.account_number: '' }}</ion-label>
+            </ion-item>
+            <ion-item  mode="ios" lines="none">
+                <ion-label class="white pre">Reference: </ion-label>
+                <ion-label class="white lat">{{ completeData?.bank.reference ? completeData?.bank.reference: '' }}</ion-label>
+            </ion-item>
+            <ion-item  mode="ios" lines="none">
+                <ion-label class="white pre">Screenshot: </ion-label>
+                <ion-label class="white lat">{{ completeData?.bank.screenshot ? completeData?.bank.screenshot: '' }}</ion-label>
+            </ion-item>
+            <div class="horizontal-flex">
+                <ion-label class="white">Currency:{{ completeData?.bank.currency ? completeData?.bank.currency: '' }}</ion-label>
+                <ion-label class="white">IBAN:{{ completeData?.bank.iban ? completeData?.bank.iban: '' }}</ion-label>
+                <ion-label class="white">BIC:{{ completeData?.bank.bic ? completeData?.bank.bic: '' }}</ion-label>
             </div>
+        </ion-card-content>
+    </ion-card>
 
-
-            <div class="content">
-                <ion-row *ngFor="let item of items" class="padding-0">
-                    <div class="nomal-card bg-light-blue">
-                        <div class="nomal-card-header">
-                            <ion-label class="card-header-txt">{{ item.firstTxt }}</ion-label>
-                            <ion-label class="card-header-txt color-blue">{{ item.secondTxt }} </ion-label>
-                            <ion-label class="card-header-txt">{{ item.lastTxt }}</ion-label>
-                        </div>
-                        <div class="nomal-card-content">
-                            <ion-label class="card-content-txt">{{ item.description }}</ion-label>
-                        </div>
-                        <div class="nomal-card-info">
-                            <ion-row>
-                                <ion-label class="card-info-txt color-blue">Bank account name:</ion-label>
-                                <ion-label class="card-info-txt"> PASSIVE LANE LTD</ion-label>
-                            </ion-row>
-                            <ion-row>
-                                <ion-label class="card-info-txt color-blue">Sort code:</ion-label>
-                                <ion-label class="card-info-txt"> 20-91-91</ion-label>
-                            </ion-row>
-                            <ion-row>
-                                <ion-label class="card-info-txt color-blue">Account number:</ion-label>
-                                <ion-label class="card-info-txt"> 80744532</ion-label>
-                            </ion-row>
-                            <ion-row>
-                                <ion-label class="card-info-txt color-blue">Reference:</ion-label>
-                                <ion-label class="card-info-txt"> MMT065Nl (Important - please use this)</ion-label>
-                            </ion-row>
-                        </div>
-                        <div class="nomal-card-footer">
-                            <ion-label class="card-footer-txt">Curry: GBP</ion-label>
-                            <ion-label class="card-footer-txt"> IBAN: GBP0393897637</ion-label>
-                            <ion-label class="card-footer-txt"> BIC: BARCGB228</ion-label>
-                        </div>
-                    </div>
-                </ion-row>
-
-                <ion-label class="description-label">Investment Details</ion-label>
-
-                <div class="investment-details">
-                    <ion-row *ngFor="let detail of investmentDetails">
-                        <ion-label class="card-info-txt">{{ detail.title }}</ion-label>
-                        <ion-label class="card-info-txt"> {{ detail.content }}</ion-label>
+    <ion-card mode="ios" class="back-white">
+        <ion-card-header>
+            <ion-label>
+                <b>INVESTMENT DETAILS</b>
+            </ion-label>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-item  mode="ios" lines="none">
+                <ion-label class="pre">Investment status: </ion-label>
+                <ion-label class="lat">
+                    {{ completeData?.investment_status ? completeData?.investment_status: '' }}
+                </ion-label>
+            </ion-item>
+            <ion-item  mode="ios" lines="none">
+                <ion-label class="pre">Round status: </ion-label>
+                <ion-label class="lat">
+                    {{ completeData?.round_status ? completeData?.round_status: '' }}
+                </ion-label>
+            </ion-item>
+            <ion-item  mode="ios" lines="none">
+                <ion-label class="pre">>Round invested in: </ion-label>
+                <ion-label class="lat">
+                    {{ completeData?.deal_name ? completeData?.deal_name: '' }}
+                </ion-label>
+            </ion-item>
+            <ion-item  mode="ios" lines="none">
+                <ion-label class="pre">Amount invested: </ion-label>
+                <ion-label class="lat">
+                    {{ completeData?.amount ? completeData?.amount: '' }}
+                </ion-label>
+            </ion-item>
+            <ion-item  mode="ios" lines="none">
+                <ion-label class="pre">Investment type: </ion-label>
+                <ion-label class="lat">
+                    {{ completeData?.investment_type ? completeData?.investment_type: '' }}
+                </ion-label>
+            </ion-item>
+            <ion-item  mode="ios" lines="none">
+                <ion-label class="pre">Profit Share: </ion-label>
+                <ion-label class="lat">
+                    {{ completeData?.price_per_share ? completeData?.price_per_share + '%': '' }}
+                </ion-label>
+            </ion-item>
+            <!-- <ion-item  mode="ios" lines="none">
+                <ion-label class="pre">Estimated ROI: </ion-label>
+                <ion-label class="lat">
+                    {{ completeData?.currency ? completeData?.currency: '' }}
+                </ion-label>
+            </ion-item> -->
+            <ion-item  mode="ios" lines="none">
+                <ion-label class="pre">Date of investment: </ion-label>
+                <ion-label class="lat">
+                    {{ completeData?.investment_date ? completeData?.investment_date: '' }}
+                </ion-label>
+            </ion-item>
+            <ion-item  mode="ios" lines="none">
+                <ion-label class="pre">Round pitch: </ion-label>
+                <ion-label class="lat">
+                    {{ completeData?.investment_status ? completeData?.investment_status: '' }}
+                </ion-label>
+            </ion-item>
+            <ion-item  mode="ios" lines="none">
+                <ion-label class="pre">Payment method: </ion-label>
+                <ion-label class="lat">
+                    {{ completeData?.payment_method ? completeData?.payment_method: '' }}
+                </ion-label>
+            </ion-item>
+        </ion-card-content>
+    </ion-card>
+    <!-- <div class="content">
+        <ion-row *ngFor="let item of items" class="padding-0">
+            <div class="nomal-card bg-light-blue">
+                <div class="nomal-card-header">
+                    <ion-label class="card-header-txt">{{ item.firstTxt }}</ion-label>
+                    <ion-label class="card-header-txt color-blue">{{ item.secondTxt }} </ion-label>
+                    <ion-label class="card-header-txt">{{ item.lastTxt }}</ion-label>
+                </div>
+                <div class="nomal-card-content">
+                    <ion-label class="card-content-txt">{{ item.description }}</ion-label>
+                </div>
+                <div class="nomal-card-info">
+                    <ion-row>
+                        <ion-label class="card-info-txt color-blue">Bank account name:</ion-label>
+                        <ion-label class="card-info-txt"> PASSIVE LANE LTD</ion-label>
+                    </ion-row>
+                    <ion-row>
+                        <ion-label class="card-info-txt color-blue">Sort code:</ion-label>
+                        <ion-label class="card-info-txt"> 20-91-91</ion-label>
+                    </ion-row>
+                    <ion-row>
+                        <ion-label class="card-info-txt color-blue">Account number:</ion-label>
+                        <ion-label class="card-info-txt"> 80744532</ion-label>
+                    </ion-row>
+                    <ion-row>
+                        <ion-label class="card-info-txt color-blue">Reference:</ion-label>
+                        <ion-label class="card-info-txt"> MMT065Nl (Important - please use this)</ion-label>
                     </ion-row>
                 </div>
+                <div class="nomal-card-footer">
+                    <ion-label class="card-footer-txt">Curry: GBP</ion-label>
+                    <ion-label class="card-footer-txt"> IBAN: GBP0393897637</ion-label>
+                    <ion-label class="card-footer-txt"> BIC: BARCGB228</ion-label>
+                </div>
             </div>
+        </ion-row>
+
+        <ion-label class="description-label">Investment Details</ion-label>
+
+        <div class="investment-details">
+            <ion-row *ngFor="let detail of investmentDetails">
+                <ion-label class="card-info-txt">{{ detail.title }}</ion-label>
+                <ion-label class="card-info-txt"> {{ detail.content }}</ion-label>
+            </ion-row>
         </div>
-    </div>
+    </div> -->
 </ion-content>
 <ion-footer class="footerarea">
     <ion-button (click)='gotoPay()' class="btn-footer normal bg-blue" mode="ios">Next</ion-button>
