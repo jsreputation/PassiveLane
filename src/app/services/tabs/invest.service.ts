@@ -44,4 +44,8 @@ export class InvestService {
   getInvestComplete(parmas): Observable<any> {
     return this.https.get('https://www.passivelane.com/apiinvestor/investmentcomplete', { params: parmas });
   }
+
+  getBankDetails(data): Observable<any> {
+    return this.https.get('https://www.passivelane.com/apiinvestor/pledgebankdetails', { params: data });
+  }
 }

@@ -1,10 +1,5 @@
 <ion-header #ionHeader mode="ios">
     <ion-toolbar>
-        <!-- <ion-buttons slot="start">
-            <ion-button (click)='fn_back()' color="dark" mode="ios">
-                <ion-icon class="arrow-left"></ion-icon>
-            </ion-button>
-        </ion-buttons> -->
         <ion-label #headerTxt class="header-txt">{{ completeData?.deal_name }}</ion-label>
     </ion-toolbar>
 </ion-header>
@@ -36,39 +31,9 @@
             <ion-label class="white block">
                 To complete your investment, please transfer <b>£{{ completeData?.amount }}</b> to:
             </ion-label>
-            <ion-item  mode="ios" lines="none">
-                <ion-label class="white pre">Recipient's Name: </ion-label>
-                <ion-label class="white lat">{{ completeData?.bank.account_name ? completeData?.bank.account_name: '' }}</ion-label>
-            </ion-item>
-            <ion-item  mode="ios" lines="none">
-                <ion-label class="white pre">Recipient’s Address: </ion-label>
-                <ion-label class="white lat">{{ completeData?.bank.address ? completeData?.bank.address: '' }}</ion-label>
-            </ion-item>
-            <ion-item  mode="ios" lines="none">
-                <ion-label class="white pre">Bank account name:</ion-label>
-                <ion-label class="white lat">{{ completeData?.bank.bank_name ? completeData?.bank.bank_name: '' }}</ion-label>
-            </ion-item>
-            <ion-item  mode="ios" lines="none">
-                <ion-label class="white pre">Sort code: </ion-label>
-                <ion-label class="white lat">{{ completeData?.bank.sort_code ? completeData?.bank.sort_code: '' }}</ion-label>
-            </ion-item>
-            <ion-item  mode="ios" lines="none">
-                <ion-label class="white pre">Account number: </ion-label>
-                <ion-label class="white lat">{{ completeData?.bank.account_number ? completeData?.bank.account_number: '' }}</ion-label>
-            </ion-item>
-            <ion-item  mode="ios" lines="none">
-                <ion-label class="white pre">Reference: </ion-label>
-                <ion-label class="white lat">{{ completeData?.bank.reference ? completeData?.bank.reference: '' }}</ion-label>
-            </ion-item>
-            <ion-item  mode="ios" lines="none">
-                <ion-label class="white pre">Screenshot: </ion-label>
-                <ion-label class="white lat">{{ completeData?.bank.screenshot ? completeData?.bank.screenshot: '' }}</ion-label>
-            </ion-item>
-            <div class="horizontal-flex">
-                <ion-label class="white">Currency:{{ completeData?.bank.currency ? completeData?.bank.currency: '' }}</ion-label>
-                <ion-label class="white">IBAN:{{ completeData?.bank.iban ? completeData?.bank.iban: '' }}</ion-label>
-                <ion-label class="white">BIC:{{ completeData?.bank.bic ? completeData?.bank.bic: '' }}</ion-label>
-            </div>
+            <ion-label class="white block bank-details"  (click)="showBankDetailModal()">
+                <u >Bank Details</u>
+            </ion-label>
         </ion-card-content>
     </ion-card>
 

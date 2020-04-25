@@ -87,6 +87,7 @@ export class PayPage implements OnInit {
     this.checked = ev.detail.value;
     this.filteredName = this.arrSegments[ev.detail.value].searchWord;
     this.pledges = this.filteredParams();
+    console.log(this.pledges.length);
   }
 
   filteredParams() {

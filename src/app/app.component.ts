@@ -39,7 +39,7 @@ export class AppComponent {
             this.splashScreen.hide();
 
             // subscribe to a topic
-            this.fcm.subscribeToTopic('marketing');
+            // this.fcm.subscribeToTopic('marketing');
 
             // get FCM token
             this.fcm.getToken().then(token => {
