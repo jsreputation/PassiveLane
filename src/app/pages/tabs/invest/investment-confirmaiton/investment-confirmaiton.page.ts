@@ -99,14 +99,15 @@ export class InvestmentConfirmaitonPage implements OnInit {
         this.isSignatured();
         this.route.queryParams.subscribe((params) => {
             if (params) {
+                console.log(params);
                 this.submitparams = {...params};
                 this.totalSteps = parseInt(params.totalSteps, 10);
                 this.DealType = params.type;
-                console.log(this.submitparams);
-                this.investService.getAgreeText(this.submitparams).subscribe(
+                const apiParams = { ... this.authService.userInfo, deal_id: this.submitparams.deal_id };
+                this.investService.getAgreeText(apiParams).subscribe(
                     (result) => {
+                        alert(JSON.stringify(result));
                         if (result.RESPONSECODE === 1) {
-                            console.log(result);
                             this.agreementTxt = result.data.text;
                             this.isReady = true;
                         } else {
@@ -224,7 +225,7 @@ export class InvestmentConfirmaitonPage implements OnInit {
 
     gotoYourInvestment() {
         if (!this.signInfo) {
-            this.submitparams = {...this.submitparams, sign_image: this.signaturePad.toDataURL()};
+            this.submitparams = {...this.submitparams, sign: this.signaturePad.toDataURL(), default_sign: 1};
         }
         this.investService.submitInvestInfo(this.submitparams).subscribe((response) => {
             if (response.RESPONSECODE === 1) {

@@ -86,7 +86,7 @@ export class SignInPage implements OnInit {
       this.storage.get('device_id').then((response) => {
         let deviceId = '';
         deviceId = response;
-        console.log('device_id : ' + deviceId);
+        alert('device_id : ' + deviceId);
         let submitParam = {} as any;
         submitParam = {...this.validate_signinform.value, device_id: deviceId};
         console.log('login info : ', submitParam);

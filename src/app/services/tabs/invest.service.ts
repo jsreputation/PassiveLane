@@ -30,7 +30,7 @@ export class InvestService {
   }
 
   getAgreeText(params): Observable<any> {
-    return this.https.get('https://www.passivelane.com/apiinvestor/viewcontract', {params});
+    return this.https.get('https://www.passivelane.com/apiinvestor/getagreementtext', {params});
   }
 
   submitInvestInfo(params): Observable<any> {
