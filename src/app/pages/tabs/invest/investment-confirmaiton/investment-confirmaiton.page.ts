@@ -106,7 +106,6 @@ export class InvestmentConfirmaitonPage implements OnInit {
                 const apiParams = { ... this.authService.userInfo, deal_id: this.submitparams.deal_id };
                 this.investService.getAgreeText(apiParams).subscribe(
                     (result) => {
-                        alert(JSON.stringify(result));
                         if (result.RESPONSECODE === 1) {
                             this.agreementTxt = result.data.text;
                             this.isReady = true;
