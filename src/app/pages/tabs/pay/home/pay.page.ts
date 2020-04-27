@@ -49,7 +49,7 @@ export class PayPage implements OnInit {
     this.arrSegments = [
       { value: 0, label: 'All Pledges', searchWord: ''},
       { value: 1, label: 'Open', searchWord: 'Open'},
-      { value: 2, label: 'Closed', searchWord: 'Closed'},
+      { value: 2, label: 'Closed', searchWord: 'Close'},
     ];
   }
 
