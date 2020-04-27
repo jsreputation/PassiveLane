@@ -77,7 +77,10 @@ ion-button {
         height: $button-height;
     }
     &.bg-blue {
-        --background: #3a8093;
+        // --background: #3a8093;
+        --background: #e0352e;
+        --background-activated: #ed9794;
+        --color-activated: white;
     }
     &.bg-red {
         --background: #e0342f;

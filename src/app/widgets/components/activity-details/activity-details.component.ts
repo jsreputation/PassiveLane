@@ -20,6 +20,7 @@ export class ActivityDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.deals);
   }
 
   numberWithCommas(x) {

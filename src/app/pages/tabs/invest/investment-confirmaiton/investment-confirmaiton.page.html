@@ -1,10 +1,10 @@
 <ion-header #ionHeader mode="ios">
     <ion-toolbar>
-        <ion-buttons slot="start">
+        <!-- <ion-buttons slot="start">
             <ion-button (click)='fn_back()' color="dark" mode="ios">
                 <ion-icon class="arrow-left"></ion-icon>
             </ion-button>
-        </ion-buttons>
+        </ion-buttons> -->
         <ion-label #headerTxt class="header-txt">{{ submitparams.dealName }}</ion-label>
     </ion-toolbar>
 </ion-header>
@@ -13,7 +13,7 @@
 <ion-content #scrollArea (ionScroll)="scroll($event)" [scrollEvents]="true" mode="ios">
         <div>
             <div #headerTitle class="description-header">
-                <ion-label class="header-label">Investment Confrimation</ion-label>
+                <ion-label class="header-label">Investment Confirmation</ion-label>
                 <ion-label class="header-smalllabel">({{ submitparams.dealName }})</ion-label>
             </div>
             <app-stepper [max]="totalSteps" [min]="1" [value]="submitparams?.step"></app-stepper>

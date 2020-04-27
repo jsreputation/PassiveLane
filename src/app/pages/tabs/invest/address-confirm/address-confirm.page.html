@@ -17,6 +17,7 @@
   <app-stepper [max]="steps" [min]="1" [value]="deal_info?.step"></app-stepper>
 
   <app-address-form [confirmRequest]="true"></app-address-form>
-
-  <ion-button [disabled]="!readyToNext" (click)='gotoPaymentOptions()' class="next-btn normal bg-blue" mode="ios">Next</ion-button>
 </ion-content>
+<ion-footer class="footerarea">
+  <ion-button [disabled]="!readyToNext" (click)='gotoPaymentOptions()' class="btn-footer normal bg-blue" mode="ios">Next</ion-button>
+</ion-footer>
