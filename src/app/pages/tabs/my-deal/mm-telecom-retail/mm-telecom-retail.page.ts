@@ -60,11 +60,15 @@ export class MmTelecomRetailPage implements OnInit {
     }
 
     ionViewWillEnter() {
+        this.route.queryParams.subscribe((params) => {
+            if (params) {
+                this.dealInfo = { ... this.authService.userInfo, deal_id: params.deal_id };
+            }
+        });
         this.isReady = false;
         // withdraw state
         this.dealsService.withdrawState(this.dealInfo).subscribe(
             (res) => {
-                console.log('withdraw_status : ', res);
                 if (res.RESPONSECODE === 1) {
                     this.isWithdraw = res.data.withdraw;
                     // this.isWithdraw = true;
@@ -118,7 +122,6 @@ export class MmTelecomRetailPage implements OnInit {
 
     initFilteredData() {
         this._changeSumAmount().then(result => {
-            console.log('=============', result);
             this.deals = [] as any;
             this.deals = result;
             this.filterdDealsByYear = this.filterBySelectedYear(this.deals);

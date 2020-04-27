@@ -40,18 +40,18 @@ export class InvestMmTelecomRetailPage implements OnInit {
                 params = {...params, ...this.authService.userInfo};
                 this.deal_info = params;
                 this.queryParams = params;
+                this.getInvestDetails();
             }
         });
     }
 
-    ionViewWillEnter() {
+    getInvestDetails() {
         this.detail = {};
         this.retail_params = '';
         this.isReady = false;
 
         this.investService.getInvestDeal(this.queryParams).subscribe(
             result => {
-                console.log('==========', result);
                 if (result.RESPONSECODE === 1) {
                     result.data.deal.map(deal => {
                         deal.target_amount = this.numberWithCommas(deal.target_amount);

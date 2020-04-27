@@ -190,7 +190,8 @@ export class InvestmentAmountPage implements OnInit {
 
     gotoPaymentOptions() {
         if (this.investment_amount) {
-            this.deal_info = {...this.deal_info, targetAmount: this.investment_amount, step: 2, totalSteps: this.steps };
+            // this.deal_info = {...this.deal_info, targetAmount: this.investment_amount, step: 2, totalSteps: this.steps };
+            this.deal_info = {...this.deal_info, targetAmount: this.tempAmount, step: 2, totalSteps: this.steps };
             const navigationExtras: NavigationExtras = {
                 queryParams: this.deal_info
             };
