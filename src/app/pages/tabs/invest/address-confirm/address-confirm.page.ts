@@ -67,7 +67,7 @@ export class AddressConfirmPage implements OnInit {
         };
         this.router.navigate(['main/invest/payment-options'], navigationExtras);
       } else {
-        alert('Error');
+
       }
     }).catch((err) => {
       this.loading.dismiss();

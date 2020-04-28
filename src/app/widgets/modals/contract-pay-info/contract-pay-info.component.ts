@@ -1,7 +1,6 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {ModalController, NavParams} from '@ionic/angular';
 import {AuthService} from '../../../services/auth/auth.service';
-import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import {DealsService} from '../../../services/tabs/deals.service';
 
 @Component({
@@ -19,7 +18,6 @@ export class ContractPayInfoComponent implements OnInit, OnDestroy {
   constructor(
       private modalCtrl: ModalController,
       private authService: AuthService,
-      private socialSharing: SocialSharing,
       private dealsService: DealsService,
       private navParams: NavParams
   ) { }
@@ -50,13 +48,13 @@ export class ContractPayInfoComponent implements OnInit, OnDestroy {
   }
 
   share() {
-    const subject = 'Contract Information';
-    const msg = 'If you want to check the contract information please click under the url.';
-    this.socialSharing.share(msg, subject, '', this.contractDetail.pdf_url).then(() => {
-      // Sharing via email is possible
-    }).catch(() => {
-      // Sharing via email is not possible
-    });
+    // const subject = 'Contract Information';
+    // const msg = 'If you want to check the contract information please click under the url.';
+    // this.socialSharing.share(msg, subject, '', this.contractDetail.pdf_url).then(() => {
+    //   Sharing via email is possible
+    // }).catch(() => {
+    //   Sharing via email is not possible
+    // });
   }
 
   closeModal() {

@@ -90,7 +90,6 @@ export class BasicInfoFormComponent implements OnInit {
             param = {...this.authService.userInfo, ...this.validate_form.value};
             this.profileService.saveProfile(this.sendUrl, param).subscribe(
                 (result: any) => {
-                    alert(JSON.stringify(result));
                     this.submitState = false;
                     this.isSubmitReady = false;
                 },
