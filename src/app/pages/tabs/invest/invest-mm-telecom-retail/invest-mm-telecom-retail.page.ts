@@ -40,11 +40,12 @@ export class InvestMmTelecomRetailPage implements OnInit {
                 params = {...params, ...this.authService.userInfo};
                 this.deal_info = params;
                 this.queryParams = params;
+                this.getInvestDetails();
             }
         });
     }
 
-    ionViewWillEnter() {
+    getInvestDetails() {
         this.detail = {};
         this.retail_params = '';
         this.isReady = false;
@@ -97,7 +98,7 @@ export class InvestMmTelecomRetailPage implements OnInit {
 
     gotoInvestmentAmount() {
         // tslint:disable-next-line: no-string-literal
-        // this.deal_info['dealName'] = this.detail.deal_name;
+        this.deal_info['dealName'] = this.detail.deal_name;
         const navigationExtras: NavigationExtras = {
             queryParams: this.deal_info
         };

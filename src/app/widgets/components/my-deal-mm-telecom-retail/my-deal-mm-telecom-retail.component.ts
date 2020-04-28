@@ -1,6 +1,6 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {NavigationExtras, Router} from '@angular/router';
-import {MyDealDetail} from '../../../pages/tabs/my-deal/my-deal-detail.service';
+
 
 @Component({
   selector: 'app-my-deal-mm-telecom-retail',

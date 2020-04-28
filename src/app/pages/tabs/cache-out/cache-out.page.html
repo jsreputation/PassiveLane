@@ -30,12 +30,13 @@
                         <ion-item mode='ios'>
                             <ion-label class="pound-txt">£</ion-label>
                             <ion-input (keypress)="userTypingForm($event)" formControlName="amount" placeholder="Enter withdrawal amount" type="number"
-                                (ionChange)="listenAmountChange()"
+                                (ionChange)="listenFormChange()"
                             >
                             </ion-input>
                         </ion-item>
-                        <ion-select interface="action-sheet" mode="md" slot="end" formControlName="bank_name" placeholder="Select Bank Account">
-                            <ion-select-option *ngFor="let myBankAccount of myBankAccounts" [value]="myBankAccount.bank_name">{{ myBankAccount.bank_name }}</ion-select-option>
+                        <ion-select interface="action-sheet" mode="md" slot="end" formControlName="bank_name" placeholder="Select Bank Account"
+                        (ionChange)="listenFormChange()">
+                            <ion-select-option *ngFor="let myBankAccount of myBankAccounts" [value]="myBankAccount.account_number">{{ myBankAccount.account_number }}({{ myBankAccount.bank_name }})</ion-select-option>
                         </ion-select>
                         <div class="validation-errors">
                             <ng-container *ngFor="let validation of validation_messages.amount">

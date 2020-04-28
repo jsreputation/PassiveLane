@@ -1,5 +1,4 @@
-ion-content {
-  --overflow: hidden;
+ion-header {
   .header-content{
     ion-icon{
       font-size: 25px;
@@ -15,79 +14,73 @@ ion-content {
       background: #65b4b9;
       color: white;
     }
+    ion-label {
+      font-size: 22px;
+      color: red;
+      &.bank-title {
+        color: #323959;
+      }
+    }
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 110px;
+    height: 70px;
     justify-content: center;
   }
+}
 
-  .card-content{
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    flex-direction: column;
-    -webkit-box-align: center;
-    padding: 30px 15px;
-    height: calc(100% - 135px);
-    margin: auto 20px;
-    background: #eff3f6;
-    border-radius: 7px 7px 0 0;
-  }
-
-  ion-label {
-    color: #333959;
-    font-size: 14px;
-    letter-spacing: 0.4pt;
-    &.bank-title{
-      font-size: 20px;
-      line-height: 30px;
-      font-weight: bold;
+ion-content {
+  --padding-bottom: 40px;
+  ion-card {
+    &.back-blue {
+      background: #323959;
     }
-
-    &.card-title{
-      font-size: 15px;
-      line-height: 20px;
-      padding-bottom: 5px;
+    ion-item {
+      --background: transparent;
+      ion-label {
+        text-overflow: unset;
+        white-space: unset;
+      }
     }
-
-    &.card-des{
-      font-size: 16px;
-      line-height: 20px;
-      font-weight: bold;
-      padding-bottom: 15px;
+    ion-label {
+      &.white {
+        color: white;
+      }
+      &.block {
+        display: block;
+      }
+      &.pre {
+        font-size: 14px;
+        font-weight: 500;
+      }
+      &.lat {
+        font-size: 14px;
+      }
     }
-
-    &.mm-content-txt {
-      font-size: 20px;
-      line-height: 32px;
-      align-items: center;
+    div.horizontal-flex {
       display: flex;
-      ion-img{
-        width: 35px;
-        height: auto;
-        margin-right: 10px;
-      }
-      ngx-avatar{
-        margin-right: 10px;
+      flex-direction: column;
+      ion-label {
+        font-size: 12px;
       }
     }
-
   }
+}
 
-  ion-button {
-    &.modal-btn {
-      margin: auto;
-      display: block;
-      width: 100%;
-      height: 50px;
-      font-size: 16px;
-      line-height: 24px;
-      --border-radius: 0px;
-      bottom: 0;
-      position: absolute;
-      font-weight: 400;
-      --background: #65b4b9;
+ion-footer {
+    ion-button {
+      &.modal-btn {
+        margin: auto;
+        display: block;
+        width: 100%;
+        height: 50px;
+        font-size: 16px;
+        line-height: 24px;
+        --border-radius: 0px;
+        bottom: 0;
+        position: absolute;
+        font-weight: 400;
+        --background: #e0352e;
     }
   }
 }

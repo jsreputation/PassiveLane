@@ -3,11 +3,12 @@ import {Component} from '@angular/core';
 import {MenuController, Platform, PopoverController} from '@ionic/angular';
 import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
-import {Router} from '@angular/router';
+import {Router, NavigationExtras} from '@angular/router';
 import {AuthService} from './services/auth/auth.service';
 import {FCM} from '@ionic-native/fcm/ngx';
 import {PopoverComponent} from './widgets/components/popover/popover.component';
 import {Storage} from '@ionic/storage';
+import { BranchIo } from '@ionic-native/branch-io/ngx';
 
 @Component({
     selector: 'app-root',
@@ -28,9 +29,11 @@ export class AppComponent {
         private authService: AuthService,
         public fcm: FCM,
         public popoverController: PopoverController,
-        public storage: Storage
+        public storage: Storage,
+        private branchIO: BranchIo
     ) {
         this.initializeApp();
+        this.listenBranch();
     }
 
     initializeApp() {
@@ -39,7 +42,7 @@ export class AppComponent {
             this.splashScreen.hide();
 
             // subscribe to a topic
-            this.fcm.subscribeToTopic('marketing');
+            // this.fcm.subscribeToTopic('marketing');
 
             // get FCM token
             this.fcm.getToken().then(token => {
@@ -73,6 +76,32 @@ export class AppComponent {
         });
     }
 
+    listenBranch() {
+        this.platform.ready().then(() => {
+            this.branchIO.initSession().then((data) => {
+                this.treatWithBranch(data);
+            });
+            this.platform.resume.subscribe(() => {
+                this.branchIO.initSession().then((data) => {
+                    this.treatWithBranch(data);
+                 });
+            });
+        });
+    }
+
+    treatWithBranch(data) {
+        if (data['+clicked_branch_link']) {
+            if (data.action === 'register') {
+                const params: NavigationExtras = {
+                    queryParams: {
+                        referal_email: data.referal_email,
+                        referal_code: data.referal_code
+                    }
+                };
+                this.router.navigate(['sign-up'], params);
+            }
+        }
+    }
 
     async presentPopover(data: any) {
         this.notification = await this.popoverController.create({

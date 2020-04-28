@@ -60,22 +60,23 @@ ion-content {
     &.item-content{
       padding-left: 15px;
     }
-    .opportunities-title {
+    &.opportunities-title {
       font-weight: 500;
       display: block;
-      font-size: 18px;
+      font-size: 20px;
       line-height: 20px;
       letter-spacing: 0.4pt;
       color: #3a8093!important;
       white-space: pre-wrap;
     }
 
-    .opportunities-content-txt {
+    &.opportunities-content-txt {
       display: block;
-      font-size: 17px;
+      font-size: 18px;
       line-height: 30px;
       color: #666674;
       white-space: pre-wrap;
+      padding-top: 10px;
       span{
         font-weight: 500;
       }
@@ -120,7 +121,7 @@ ion-content {
         margin-bottom: -10px;
       }
       ion-input{
-        font-size: 22px;
+        font-size: 17px;
         line-height: 22px;
         max-width: 60%;
         border-bottom: 1px solid;
@@ -130,11 +131,11 @@ ion-content {
       }
     }
     &.need-payment-detail{
-      font-size: 13px;
+      font-size: 15px;
       line-height: 20px;
       letter-spacing: 0.4pt;
-      color: gray;
-      margin: auto auto 25px auto;
+      color: #323959;
+      margin: 25px auto;
       min-width: 180px;
       width: 180px;
       display: block;

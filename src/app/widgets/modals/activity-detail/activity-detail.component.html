@@ -20,11 +20,17 @@
     <ion-label class="content-title">Overall investments</ion-label>
     <ion-label class="content-value"><span class="pound">£</span>{{ deal.invested }}</ion-label>
 
-    <ion-label class="content-title">Total ROI</ion-label>
-    <ion-label class="content-value"><span class="pound">£</span>{{ deal.tot_roi }}</ion-label>
+    <ion-label class="content-title" *ngIf="deal.deal_type ==='Equity'">No. Shares</ion-label>
+    <ion-label class="content-value" *ngIf="deal.deal_type ==='Equity'"><span class="pound"></span>{{ deal.total_shares }}</ion-label>
 
-    <ion-label class="content-title">Last ROI</ion-label>
-    <ion-label class="content-value"><span class="pound">£</span>{{ deal.last_roi }}</ion-label>
+    <ion-label class="content-title" *ngIf="deal.deal_type ==='Equity'">Share Price</ion-label>
+    <ion-label class="content-value" *ngIf="deal.deal_type ==='Equity'"><span class="pound">£</span>{{ deal.share_price }}</ion-label>
+
+    <ion-label class="content-title" *ngIf="deal.deal_type !=='Equity'">Total ROI</ion-label>
+    <ion-label class="content-value" *ngIf="deal.deal_type !=='Equity'"><span class="pound">£</span>{{ deal.tot_roi }}</ion-label>
+
+    <ion-label class="content-title" *ngIf="deal.deal_type !=='Equity'">Last ROI</ion-label>
+    <ion-label class="content-value" *ngIf="deal.deal_type !=='Equity'"><span class="pound">£</span>{{ deal.last_roi }}</ion-label>
 
     <ion-label class="content-title">Total withdrawn</ion-label>
     <ion-label class="content-value"><span class="pound">£</span>{{ deal.tot_withdrawn }}</ion-label>

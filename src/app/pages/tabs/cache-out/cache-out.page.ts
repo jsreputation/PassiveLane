@@ -77,9 +77,11 @@ export class CashOutPage implements OnInit, OnDestroy {
     });
   }
 
-  listenAmountChange() {
-    if (this.validate_form.value.amount > 0) {
+  listenFormChange() {
+    if (this.validate_form.valid && this.validate_form.value.amount > 0) {
       this.isSubmitReady = true;
+    } else {
+      this.isSubmitReady = false;
     }
   }
 
@@ -236,7 +238,7 @@ export class CashOutPage implements OnInit, OnDestroy {
           this.totalAmount = this.numberWithCommas(response.data.total_amount);
           this.myBankAccounts = response.data.bank_details;
           if (this.myBankAccounts.length > 0) {
-            this.validate_form.get('bank_name').setValue(response.data.bank_details[0].bank_name);
+            // this.validate_form.get('accout_number').setValue(response.data.bank_details[0].accout_number);
             this.cdr.detectChanges();
           }
         } else {

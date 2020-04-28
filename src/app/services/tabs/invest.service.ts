@@ -30,11 +30,22 @@ export class InvestService {
   }
 
   getAgreeText(params): Observable<any> {
-    return this.https.get('https://www.passivelane.com/apiinvestor/viewcontract', {params});
+    return this.https.get('https://www.passivelane.com/apiinvestor/getagreementtext', {params});
   }
 
   submitInvestInfo(params): Observable<any> {
     return this.https.get('https://www.passivelane.com/apiinvestor/investprocess', {params});
   }
 
+  hadAddressInfo(user_info): Observable<any> {
+    return this.https.get('https://www.passivelane.com/apiinvestor/hasaddressinfo', {params: user_info});
+  }
+
+  getInvestComplete(parmas): Observable<any> {
+    return this.https.get('https://www.passivelane.com/apiinvestor/investmentcomplete', { params: parmas });
+  }
+
+  getBankDetails(data): Observable<any> {
+    return this.https.get('https://www.passivelane.com/apiinvestor/pledgebankdetails', { params: data });
+  }
 }

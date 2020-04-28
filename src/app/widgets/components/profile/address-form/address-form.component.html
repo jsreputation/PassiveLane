@@ -1,5 +1,5 @@
 <form (ngSubmit)="onFormSubmit()" [formGroup]="validate_form" class="custom-body">
-  <div class="form-content">
+  <div class="form-content" [ngClass]="{'padding': confirmRequest}">
     <ion-list mode="ios">
       <div class="input-item">
         <ion-radio-group (ionChange)="onCheck($event)">
@@ -23,7 +23,7 @@
 
           <ion-list class="address-info" mode="ios">
             <ion-item *ngFor="let address of findAddressData" mode="ios" (click)="selectAddress(address.Id, address.Type)">
-              <ion-label>{{ address.Text }}</ion-label>
+              <ion-label>{{ address.Text + ' - ' + address.Description }}</ion-label>
             </ion-item>
           </ion-list>
         </div>
@@ -94,7 +94,7 @@
           </div>
 
           <div class="input-item">
-            <ion-item mode='ios'>
+            <ion-item mode="ios">
               <ion-input (keypress)="userTypingForm($event)" formControlName="town" name="town"
                          placeholder="Enter your town." type="text">
               </ion-input>
@@ -110,9 +110,9 @@
           </div>
 
           <div class="input-item">
-            <ion-item mode='ios'>
+            <ion-item mode="ios">
               <ion-input (keypress)="userTypingForm($event)" formControlName="postcode" name="postcode"
-                         placeholder="Enter your build number." type="text">
+                         placeholder="Enter your postcode." type="text">
               </ion-input>
             </ion-item>
             <div class="validation-errors">
@@ -141,9 +141,9 @@
 <!--            </div>-->
 <!--          </div>-->
           <div class="input-item">
-            <ion-item mode='ios'>
+            <ion-item mode="ios">
               <ion-icon name="pin" class="nomal-icon"></ion-icon>
-              <ion-select formControlName="country">
+              <ion-select formControlName="country" [disabled]="true">
                 <ion-select-option *ngFor="let _country of countries" [value]="_country.country">{{_country.countryName}}</ion-select-option>
               </ion-select>
             </ion-item>
@@ -152,8 +152,8 @@
 
       </div>
     </ion-list>
-    <ion-row class="save-button-right">
-      <ion-button [disabled]="isSubmitReady" class="bg-blue" mode='ios' type="submit">
+    <ion-row class="save-button-right" *ngIf="!confirmRequest">
+      <ion-button [disabled]="!readytoSave" class="bg-blue" mode='ios' type="submit">
         <ion-spinner *ngIf="isSubmitReady" name="lines"></ion-spinner>
         Save
       </ion-button>
