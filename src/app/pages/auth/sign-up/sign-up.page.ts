@@ -14,8 +14,8 @@ import {ProfileService} from '../../../services/tabs/profile.service';
   styleUrls: ['./sign-up.page.scss'],
 })
 export class SignUpPage implements OnInit {
-
-
+  referal_email = '';
+  referal_code = '';
   passwordType = 'password';
   passwordShown = false;
   validate_signupform: FormGroup;
@@ -143,8 +143,8 @@ export class SignUpPage implements OnInit {
   getParamsFromBranch() {
     this.route.queryParams.subscribe((params) => {
       if (params) {
-        this.validate_signupform.value.email = params.referal_email;
-        this.validate_signupform.value.refer_by = params.referal_code;
+        this.referal_email = params.referal_email;
+        this.referal_code = params.referal_code;
       }
     });
   }
