@@ -5,10 +5,11 @@ ion-content {
   .content {
     ion-label {
       &.description-label {
-        font-size: 15px;
+        font-size: 17px;
         line-height: 18px;
         display: block;
         padding-bottom: 7px;
+        font-weight: 500;
       }
     }
   }

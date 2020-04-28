@@ -1,0 +1,11 @@
+<ion-header>
+  <div class="header-content">
+    <ion-icon name="close" (click)="closeModal()"></ion-icon>
+    <ion-label class="mm-header-txt">{{ certificateDetails?.deal_name }}</ion-label>
+  </div>
+</ion-header>
+<ion-content  mode="ios">
+  <div class="card-content">
+    <div class="html" [innerHTML]="certificateDetails?.certificate_text"></div>
+  </div>
+</ion-content>

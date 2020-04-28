@@ -1,33 +1,30 @@
 <ion-header #ionHeader mode="ios">
     <ion-toolbar>
-        <ion-buttons slot="start">
+        <!-- <ion-buttons slot="start">
             <ion-button (click)='fn_back()' color="dark" mode="ios">
                 <ion-icon class="arrow-left"></ion-icon>
             </ion-button>
-        </ion-buttons>
-        <ion-label #headerTxt class="header-txt">Investment Confrimation</ion-label>
-
+        </ion-buttons> -->
+        <ion-label #headerTxt class="header-txt">{{ submitparams.dealName }}</ion-label>
     </ion-toolbar>
 </ion-header>
 
 
 <ion-content #scrollArea (ionScroll)="scroll($event)" [scrollEvents]="true" mode="ios">
-    <div class="flex-custom">
         <div>
             <div #headerTitle class="description-header">
-                <ion-label class="header-label">Investment Confrimation</ion-label>
+                <ion-label class="header-label">Investment Confirmation</ion-label>
+                <ion-label class="header-smalllabel">({{ submitparams.dealName }})</ion-label>
             </div>
-            <app-stepper [max]="3" [min]="1" [value]="3"></app-stepper>
+            <app-stepper [max]="totalSteps" [min]="1" [value]="submitparams?.step"></app-stepper>
 
             <div class="spiner-content" *ngIf="!isReady">
                 <ion-spinner name="lines"></ion-spinner>
             </div>
 
             <div class="content" *ngIf="isReady">
-
                 <ion-label [innerHTML]="agreementTxt" class="content-text">
                 </ion-label>
-
             </div>
 
             <div class="content" *ngIf="!signInfo">
@@ -41,7 +38,7 @@
                 </div>
             </div>
 
-            <ion-list class="custom" mode='ios'>
+            <ion-list class="custom" mode="ios">
                 <ion-item *ngFor="let entry of checkBoxForm; let i = index;" lines="none" mode='ios'>
                     <ion-label>{{entry.val}}</ion-label>
                     <ion-checkbox (ionChange)="onSelect($event, i)" [(ngModel)]="entry.isChecked" mode='ios'
@@ -50,7 +47,7 @@
             </ion-list>
         </div>
 
-        <form *ngIf="DealType === 'Equity'" (ngSubmit)="onFormSubmit()" [formGroup]="validate_form" class="custom-body">
+        <!-- <form *ngIf="DealType === 'Equity'" (ngSubmit)="onFormSubmit()" [formGroup]="validate_form" class="custom-body">
             <div class="form-content">
                 <ion-list>
                     <div class="input-item">
@@ -174,18 +171,15 @@
                         </div>
                     </div>
                 </ion-list>
-                <ion-row class="footer-btn">
-                    <ion-button [disabled]="!isCheckedSubmitReady" class="bg-blue" mode='ios' type="submit">
+                <div class="next-btn">
+                    <ion-button [disabled]="!isCheckedSubmitReady" class="bg-blue" mode="ios" type="submit">
                         <ion-spinner *ngIf="isSubmitReady" name="bubbles"></ion-spinner>
                         Next
                     </ion-button>
-                </ion-row>
+                </div>
             </div>
-        </form>
-
-        <div *ngIf="DealType !== 'Equity'" class="footer-btn">
-            <ion-button [disabled]="!isCheckedSubmitReady" (click)='gotoYourInvestment()' class=" normal bg-blue" mode="ios">Next</ion-button>
-        </div>
-
-    </div>
+        </form> -->
 </ion-content>
+<ion-footer class="footerarea">
+    <ion-button [disabled]="!isCheckedSubmitReady" (click)='gotoYourInvestment()' class="btn-footer normal bg-blue" mode="ios">Next</ion-button>
+</ion-footer>

@@ -1,7 +1,6 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {ModalController} from '@ionic/angular';
+import {ModalController, NavParams} from '@ionic/angular';
 import {AuthService} from '../../../services/auth/auth.service';
-import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import {DealsService} from '../../../services/tabs/deals.service';
 
 @Component({
@@ -19,26 +18,29 @@ export class ContractPayInfoComponent implements OnInit, OnDestroy {
   constructor(
       private modalCtrl: ModalController,
       private authService: AuthService,
-      private socialSharing: SocialSharing,
-      private dealsService: DealsService
+      private dealsService: DealsService,
+      private navParams: NavParams
   ) { }
 
   ngOnInit() {
-    console.log('contract_data : ', this.deal);
     this.user_type = this.authService.user_name_info.user_type;
-    const submitParam = {...this.authService.userInfo, deal_id: this.deal.deal_id, transaction_id: this.deal.transaction_id };
-    this.contractInfo = this.dealsService.getContractInfo(submitParam).subscribe(
-      (result) => {
-        console.log(result);
-        if (result.RESPONSECODE === 1) {
-          this.contractDetail = result.data;
-        } else {
-          this.contractDetail['text'] = '<div class="no-data">No contract available</div>';
-        }
-      },
-      (error) => {
-        console.log(error);
-      });
+    console.log(this.navParams.data.deal);
+    if (this.navParams.data.deal) {
+      const submitParam = {...this.authService.userInfo, contract_id: this.navParams.data.deal.contract_id };
+      this.contractInfo = this.dealsService.getContractInfo(submitParam).subscribe(
+        (result) => {
+          console.log(result);
+          if (result.RESPONSECODE === 1) {
+            this.contractDetail = result.data;
+          } else {
+            this.contractDetail['text'] = '<div class="no-data">No contract available</div>';
+          }
+        },
+        (error) => {
+          console.log(error);
+        });
+    }
+    // const submitParam = {...this.authService.userInfo, deal_id: this.deal.deal_id, transaction_id: this.deal.transaction_id };
   }
 
   ngOnDestroy() {
@@ -46,13 +48,13 @@ export class ContractPayInfoComponent implements OnInit, OnDestroy {
   }
 
   share() {
-    const subject = 'Contract Information';
-    const msg = 'If you want to check the contract information please click under the url.';
-    this.socialSharing.share(msg, subject, '', this.contractDetail.pdf_url).then(() => {
-      // Sharing via email is possible
-    }).catch(() => {
-      // Sharing via email is not possible
-    });
+    // const subject = 'Contract Information';
+    // const msg = 'If you want to check the contract information please click under the url.';
+    // this.socialSharing.share(msg, subject, '', this.contractDetail.pdf_url).then(() => {
+    //   Sharing via email is possible
+    // }).catch(() => {
+    //   Sharing via email is not possible
+    // });
   }
 
   closeModal() {

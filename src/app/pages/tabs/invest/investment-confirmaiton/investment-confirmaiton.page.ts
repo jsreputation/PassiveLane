@@ -32,8 +32,9 @@ export class InvestmentConfirmaitonPage implements OnInit {
     ];
     private hidden = false;
     private triggerDistance = 42;
-    private submitparams = {} as any;
+    public submitparams = {} as any;
     isCheckedSubmitReady = false;
+    public totalSteps: number;
     isReady = false;
     signInfo = '';
 
@@ -98,13 +99,14 @@ export class InvestmentConfirmaitonPage implements OnInit {
         this.isSignatured();
         this.route.queryParams.subscribe((params) => {
             if (params) {
+                console.log(params);
                 this.submitparams = {...params};
+                this.totalSteps = parseInt(params.totalSteps, 10);
                 this.DealType = params.type;
-                console.log(this.submitparams);
-                this.investService.getAgreeText(this.submitparams).subscribe(
+                const apiParams = { ... this.authService.userInfo, deal_id: this.submitparams.deal_id };
+                this.investService.getAgreeText(apiParams).subscribe(
                     (result) => {
                         if (result.RESPONSECODE === 1) {
-                            console.log(result);
                             this.agreementTxt = result.data.text;
                             this.isReady = true;
                         } else {
@@ -121,6 +123,7 @@ export class InvestmentConfirmaitonPage implements OnInit {
 
     isSignatured() {
         this.profileService.getSignature(this.authService.userInfo).subscribe(res => {
+            console.log(res);
             if (res.RESPONSECODE === 1) {
                 this.signInfo = res.data.sign;
             }
@@ -182,35 +185,37 @@ export class InvestmentConfirmaitonPage implements OnInit {
     }
 
     ngOnInit() {
-        this.validate_form = this.formBuilder.group({
-            flatno: new FormControl('', Validators.compose([
-                Validators.required
-            ])),
-            buildno: new FormControl('', Validators.compose([
-                Validators.required
-            ])),
-            buildname: new FormControl('', Validators.compose([
-                Validators.required
-            ])),
-            street: new FormControl('', Validators.compose([
-                Validators.required
-            ])),
-            substreet: new FormControl('', Validators.compose([
-                Validators.required
-            ])),
-            town: new FormControl('', Validators.compose([
-                Validators.required
-            ])),
-            postcode: new FormControl('', Validators.compose([
-                Validators.required
-            ])),
-            country: new FormControl('', Validators.compose([
-                Validators.required
-            ])),
-        });
+        // this.validate_form = this.formBuilder.group({
+        //     flatno: new FormControl('', Validators.compose([
+        //         Validators.required
+        //     ])),
+        //     buildno: new FormControl('', Validators.compose([
+        //         Validators.required
+        //     ])),
+        //     buildname: new FormControl('', Validators.compose([
+        //         Validators.required
+        //     ])),
+        //     street: new FormControl('', Validators.compose([
+        //         Validators.required
+        //     ])),
+        //     substreet: new FormControl('', Validators.compose([
+        //         Validators.required
+        //     ])),
+        //     town: new FormControl('', Validators.compose([
+        //         Validators.required
+        //     ])),
+        //     postcode: new FormControl('', Validators.compose([
+        //         Validators.required
+        //     ])),
+        //     country: new FormControl('', Validators.compose([
+        //         Validators.required
+        //     ])),
+        // });
     }
 
     fn_back() {
+        this.submitparams = { ... this.submitparams };
+        this.submitparams.step = parseInt(this.submitparams.step, 10) - 1;
         const backNavigationExtras: NavigationExtras = {
             queryParams: this.submitparams
         };
@@ -218,10 +223,13 @@ export class InvestmentConfirmaitonPage implements OnInit {
     }
 
     gotoYourInvestment() {
-        // this.submitparams = {...this.submitparams, sign_image: this.signaturePad.toDataURL()};
+        if (!this.signInfo) {
+            this.submitparams = {...this.submitparams, sign: this.signaturePad.toDataURL(), default_sign: 1};
+        }
         this.investService.submitInvestInfo(this.submitparams).subscribe((response) => {
             if (response.RESPONSECODE === 1) {
                 console.log(response);
+                this.submitparams = {...this.submitparams, pledge_id: response.data.pledge_id };
                 const navigationExtras: NavigationExtras = {
                     queryParams: this.submitparams
                 };

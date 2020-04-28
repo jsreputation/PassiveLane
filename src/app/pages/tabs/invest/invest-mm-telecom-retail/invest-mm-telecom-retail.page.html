@@ -23,26 +23,16 @@
         <div #headerTitle class="description-header">
             <ion-label class="header-label">{{ detail.deal_name }}</ion-label>
         </div>
-        <app-telecom-retail params="{{ retail_params }}" [dataParams]="deal_info"></app-telecom-retail>
+        <app-telecom-retail [params]="retail_params" [dataParams]="deal_info"></app-telecom-retail>
 
         <div class="content">
             <ion-label class="header-title">Overview</ion-label>
             <ion-label [innerHTML]="detail.overview" class="content-title">
             </ion-label>
-            <!-- <ion-label class="read-more color-blue">Read More</ion-label> -->
 
             <ion-label class="header-title">Pitch Details</ion-label>
             <ion-label [innerHTML]="detail.pitch_details" class="content-title">
             </ion-label>
-
-            <!-- <mat-video>
-                <source matVideoSource src="../../assets/video/mov_bbb.mp4" type="video/mp4">
-                <source src="tutorial.webm" type="video/webm">
-                <track matVideoTrack src="subtitles_en.vtt" kind="subtitles" srclang="en" label="English">
-                <track src="subtitles_no.vtt" kind="subtitles" srclang="no" label="Norwegian">
-            </mat-video> -->
-            <!-- <ion-label class="content-title">We provide a very high quality customer service as can be from feedback comments from our customers on Ebay, where we aim to maintain our 100% Positive Feedback status</ion-label>
-            <ion-label class="read-more color-blue">Read More</ion-label> -->
 
             <div *ngIf="detail.document">
                 <ion-label class="header-title">Documents</ion-label>
@@ -55,6 +45,7 @@
             </div>
         </div>
     </div>
-
-    <ion-button (click)='gotoInvestmentAmount()' class="normal bg-blue invest-today" mode="ios">Invest Today</ion-button>
 </ion-content>
+<ion-footer class="footerarea">
+    <ion-button (click)='gotoInvestmentAmount()' class="btn-footer normal bg-blue" mode="ios">Invest Today</ion-button>
+</ion-footer>

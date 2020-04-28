@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import { Platform } from '@ionic/angular';
+import { Platform, Events } from '@ionic/angular';
 import {ProfileService} from '../../../../services/tabs/profile.service';
 import {AuthService} from '../../../../services/auth/auth.service';
 import { ToastService } from 'src/app/services/UI/toast.service';
+import { typeWithParameters } from '@angular/compiler/src/render3/util';
 
 @Component({
     selector: 'app-address-form',
@@ -11,7 +12,9 @@ import { ToastService } from 'src/app/services/UI/toast.service';
     styleUrls: ['./address-form.component.scss'],
 })
 export class AddressFormComponent implements OnInit {
+    @Input() confirmRequest: boolean;
     validate_form: FormGroup;
+    readytoSave = false;
     isSubmitReady = false;
     submitState = false;
     isIosPlatform = false;
@@ -41,7 +44,7 @@ export class AddressFormComponent implements OnInit {
     isAutoSelect = false;
     findAddressData = [] as any;
     countries = [] as any;
-
+    addressClue: string;
     private sendUrl = 'https://www.passivelane.com/apiinvestor/saveprofileaddressinfo';
 
     constructor(
@@ -49,7 +52,8 @@ export class AddressFormComponent implements OnInit {
         private platform: Platform,
         private profileService: ProfileService,
         private authService: AuthService,
-        private toastCtrl: ToastService
+        private toastCtrl: ToastService,
+        private events: Events
     ) {
         if (this.platform.is('ios')) {
             this.isIosPlatform = true;
@@ -62,7 +66,7 @@ export class AddressFormComponent implements OnInit {
         this.initializeData();
         this.validate_form = this.formBuilder.group({
             buildno: new FormControl('', Validators.compose([
-                Validators.required
+                // Validators.required
             ])),
             buildname: new FormControl('', Validators.compose([
                 Validators.required
@@ -71,7 +75,7 @@ export class AddressFormComponent implements OnInit {
                 Validators.required
             ])),
             substreet: new FormControl('', Validators.compose([
-                Validators.required
+                // Validators.required
             ])),
             town: new FormControl('', Validators.compose([
                 Validators.required
@@ -82,6 +86,17 @@ export class AddressFormComponent implements OnInit {
             country: new FormControl(firstCountryObject.country, Validators.compose([
                 Validators.required
             ])),
+        });
+        this.listenFormValidation();
+    }
+
+    listenFormValidation() {
+        this.validate_form.valueChanges.subscribe(() => {
+            if (this.validate_form.valid) {
+                this.readytoSave = true;
+            } else {
+                this.readytoSave = false;
+            }
         });
     }
 
@@ -102,6 +117,19 @@ export class AddressFormComponent implements OnInit {
             } else {
                 console.log('error : ', res);
             }
+            if (this.confirmRequest) {
+                this.listenFormChanges();
+            }
+        });
+    }
+
+    listenFormChanges() {
+        this.validate_form.valueChanges.subscribe((res) => {
+            if (this.validate_form.valid) {
+                this.events.publish('setNextValid', this.validate_form.value);
+            } else {
+                this.events.publish('setNextValid', false);
+            }
         });
     }
 
@@ -114,12 +142,13 @@ export class AddressFormComponent implements OnInit {
             param = {...this.authService.userInfo, ...this.validate_form.value};
             this.profileService.saveProfile(this.sendUrl, param).subscribe(
                 (result: any) => {
+                    this.readytoSave = false;
                     this.submitState = false;
                     this.isSubmitReady = false;
                     if (result.RESPONSECODE === 1) {
-                        this.toastCtrl.presentSpecificText('Saved successfully.');
+                        // this.toastCtrl.presentSpecificText('Saved successfully.');
                     } else if (result.RESPONSECODE === 0) {
-                        this.toastCtrl.presentSpecificText('Failed saving.');
+                        // this.toastCtrl.presentSpecificText('Failed saving.');
                     }
                 },
                 error => {
@@ -135,6 +164,7 @@ export class AddressFormComponent implements OnInit {
     }
 
     searchAddressTyping(event) {
+        this.addressClue = event.srcElement.value;
         if (event.srcElement.value && this.isAutoSelect) {
             this.findAddress(event.srcElement.value);
         }
@@ -146,19 +176,23 @@ export class AddressFormComponent implements OnInit {
         }
     }
 
-    findAddress(value: string) {
+    findAddress(value: string, type = null) {
         let data = {} as any;
-
         data = {
-            Key: encodeURIComponent('BG99-PK29-UD62-ED95'),
-            IsMiddleware: encodeURIComponent('false'),
-            Text: encodeURIComponent(value),
-            Language: encodeURIComponent('en-gb'),
-            Origin: encodeURIComponent(''),
-            Countries: encodeURIComponent('GBR'),
-            Limit: encodeURIComponent('10'),
-            Container: encodeURIComponent(''),
+            Key: 'BG99-PK29-UD62-ED95',
+            IsMiddleware: false,
+            Text: value,
+            Language: 'en-gb',
+            Origin: '',
+            Countries: 'GBR',
+            Limit: 10,
+            Container: '',
         };
+
+        if (type) {
+            data.Text = this.addressClue;
+            data.Container = value;
+        }
 
         this.profileService.getAddressInfo(data).subscribe(
             (result: any) => {
@@ -189,7 +223,7 @@ export class AddressFormComponent implements OnInit {
     async retrieveAddress(Id: any) {
         let data = {} as any;
         data = {
-            Key: encodeURIComponent('BG99-PK29-UD62-ED95'),
+            Key: 'BG99-PK29-UD62-ED95',
             // tslint:disable-next-line: object-literal-shorthand
             Id: Id,
         };
@@ -219,7 +253,7 @@ export class AddressFormComponent implements OnInit {
         if (Type === 'Address') {
             this.retrieveAddress(Id);
         } else {
-            this.findAddress(Id);
+            this.findAddress(Id, 'container');
         }
     }
 

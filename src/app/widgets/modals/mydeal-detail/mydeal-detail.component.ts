@@ -29,6 +29,7 @@ export class MydealDetailComponent implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
+      console.log(params);
       if (params.deal_type === 'Equity') {
         this.deal_type = 1;
         this.noOfShares = parseInt(params.total_shares, 10);

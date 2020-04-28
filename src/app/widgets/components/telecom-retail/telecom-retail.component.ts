@@ -7,37 +7,28 @@ import { InvestService } from 'src/app/services/tabs/invest.service';
   templateUrl: './telecom-retail.component.html',
   styleUrls: ['./telecom-retail.component.scss'],
 })
-export class TelecomRetailComponent implements OnInit, OnChanges {
+export class TelecomRetailComponent implements OnInit {
   dealType: number;
   investimentDetails: any;
   public temp = {} as any;
   // tslint:disable-next-line: no-input-rename
-  @Input('params') params: any;
+  @Input() params: any;
   @Input() dataParams: any;
   constructor(
     private investService: InvestService
   ) {
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    // changes.prop contains the old and the new value...
-    this.temp = {};
-    if (changes.params.currentValue) {
-      this.temp = JSON.parse(changes.params.currentValue);
-      console.log(this.temp);
-      if (this.temp.type === 'Equity') {
-        this.dealType = 1;
-      } else {
-        this.dealType = 0;
-      }
-    }
-  }
-
   ngOnInit() {
+    this.temp = JSON.parse(this.params);
+    if (this.temp.type === 'Equity') {
+      this.dealType = 1;
+    } else {
+      this.dealType = 0;
+    }
     this.investService.getinvestmentdetails(this.dataParams).subscribe(res => {
       if (res.RESPONSECODE === 1) {
           this.investimentDetails = res.data;
-          console.log(this.investimentDetails);
       }
     });
   }

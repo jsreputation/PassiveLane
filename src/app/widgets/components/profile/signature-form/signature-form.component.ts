@@ -42,7 +42,8 @@ export class SignatureFormComponent implements OnInit {
         this.validate_form = this.formBuilder.group({
             user_id: new FormControl(this.authService.userInfo.user_id, Validators.compose([])),
             token: new FormControl(this.authService.userInfo.token, Validators.compose([])),
-            sign_image: new FormControl('', Validators.compose([])),
+            sign: new FormControl('', Validators.compose([])),
+            default_sign: new FormControl(1, Validators.compose([]))
         });
     }
 
@@ -59,33 +60,19 @@ export class SignatureFormComponent implements OnInit {
     onFormSubmit() {
         this.submitState = true;
         this.isSubmitReady = true;
-        this.validate_form.patchValue({ sign_image: this.signaturePad.toDataURL() });
+        this.validate_form.patchValue({ sign: this.signaturePad.toDataURL() });
         let sendUrl =  '';
         if (this.signInfo) {
             sendUrl = this.updateUrl;
         } else {
             sendUrl = this.addUrl;
         }
-        // this.profileService.sendSMS(this.authService.userInfo).subscribe(async res => {
-        //     if (res.RESPONSECODE === 1) {
-        //         await this.verifyMdlService.showMdl(sendUrl, this.validate_form.value);
-        //         this.submitState = false;
-        //         this.isSubmitReady = false;
-        //         if (this.profileService.savedProfileDetail.sign_image) {
-        //             console.log(this.profileService.savedProfileDetail);
-        //             this.signInfo = this.signaturePad.toDataURL();
-        //         }
-        //     } else {
-        //         console.log('error : ', res);
-        //         this.isSubmitReady = false;
-        //     }
-        // });
-        this.profileService.saveProfile(sendUrl, this.validate_form.value).subscribe(
+        this.profileService.saveSignature(sendUrl, this.validate_form.value).subscribe(
             (result: any) => {
                 this.submitState = false;
                 this.isSubmitReady = false;
                 if (result.RESPONSECODE === 1) {
-                    if (this.profileService.savedProfileDetail.sign_image) {
+                    if (this.profileService.savedProfileDetail.signature) {
                         console.log(this.profileService.savedProfileDetail);
                         this.signInfo = this.signaturePad.toDataURL();
                     }

@@ -109,9 +109,9 @@ export class PaymentPage implements OnInit {
                             this.paymentLists = [] as any;
                             paymentDetail = result.pledge;
                             this.deal = {...paymentDetail};
+                            console.log('%%%%%%%%%%%%%%', this.deal);
                             if ( paymentDetail.payments) {
                                 this.paymentLists = paymentDetail.payments.reverse();
-                                console.log(this.isCancelpayment);
                                 this.paymentLists.map(param => {
                                     if (param.status !== 'Customer Paid') {
                                             this.isCancelpayment = false;
@@ -143,30 +143,18 @@ export class PaymentPage implements OnInit {
         return parts.join('.');
     }
 
-    sumPledgeAmount(dealInfo) {
-        let sumAmount = 0;
-        if (dealInfo.payments) {
-            // tslint:disable-next-line:only-arrow-functions
-            dealInfo.payments.forEach(function (payment) {
-                sumAmount += payment.amount * 1;
-            });
-        }
-        return this.numberWithCommas(sumAmount);
-    }
+    // sumPledgeAmount(dealInfo) {
+    //     let sumAmount = 0;
+    //     if (dealInfo.payments) {
+    //         // tslint:disable-next-line:only-arrow-functions
+    //         dealInfo.payments.forEach((payment) => {
+    //             sumAmount += payment.amount * 1;
+    //         });
+    //     }
+    //     return this.numberWithCommas(sumAmount);
+    // }
 
     async confirmPaymenDialog() {
-
-        // console.log(this.deal);
-        // this.no++;
-        // if (!this.deal.images) {
-        //   this.deal.images = [];
-        // }
-        // this.deal.images.push({
-        //   no: this.no,
-        //   image_data: '../../../../../assets/img/welcome.jpg',
-        // });
-        // return;
-
         const actionSheet = await this.actionSheetController.create({
             header: '£10,000',
             subHeader: 'Upload a screenshot of your payment confirmation',
@@ -315,34 +303,34 @@ export class PaymentPage implements OnInit {
         }
     }
 
-    showBankDetails() {
-        this.isBankDetail = true;
-        this.bankAccount = {} as any;
-        let submitParam = {} as any;
-        submitParam = {...this.authService.userInfo, pledge_id: this.deal.pledge_id};
+    // showBankDetails() {
+    //     this.isBankDetail = true;
+    //     this.bankAccount = {} as any;
+    //     let submitParam = {} as any;
+    //     submitParam = {...this.authService.userInfo, pledge_id: this.deal.pledge_id};
 
-        this.profileService.getBankDetailInfo(submitParam).subscribe(async res => {
-            if (res.RESPONSECODE === 1) {
-                this.bankAccount = res.data.bank;
-                console.log('bank_detail : ', this.bankAccount);
-            } else {
-                console.log('error : ', res);
-            }
-        });
-    }
+    //     this.profileService.getBankDetailInfo(submitParam).subscribe(async res => {
+    //         if (res.RESPONSECODE === 1) {
+    //             this.bankAccount = res.data.bank;
+    //             console.log('bank_detail : ', this.bankAccount);
+    //         } else {
+    //             console.log('error : ', res);
+    //         }
+    //     });
+    // }
 
-    async showBankDetailModal(bankInfo: any) {
+    async showBankDetailModal() {
+        const submitParam = {...this.authService.userInfo, pledge_id: this.deal.pledge_id};
         const modal = await this.modalCtrl.create({
             component: BankInfoComponent,
             cssClass: 'bankInfo-modal',
             enterAnimation: myEnterAnimation,
             leaveAnimation: myLeaveAnimation,
             componentProps: {
-                bankDetail: bankInfo,
+                params: submitParam,
                 deal: this.deal
             }
         });
         await modal.present();
     }
-
 }

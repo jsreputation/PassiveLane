@@ -13,7 +13,6 @@ export class ActivityDetailComponent implements OnInit {
 
     @Input() deal_id: any;
     @Input() amount: any;
-
     deal = {} as any;
 
     private dealInfo = {} as any;

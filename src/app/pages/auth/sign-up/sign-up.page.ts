@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {MenuController, ModalController, NavController, Platform} from '@ionic/angular';
-import {Router} from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 import {ConfirmModalComponent} from '../../../widgets/modals/confirm/confirm.modal';
 import {myEnterAnimation} from 'src/app/widgets/animations/enter.animation';
 import {myLeaveAnimation} from 'src/app/widgets/animations/leave.animation';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from 'src/app/services/auth/auth.service';
-import {ProfileService} from "../../../services/tabs/profile.service";
+import {ProfileService} from '../../../services/tabs/profile.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -77,7 +77,8 @@ export class SignUpPage implements OnInit {
       private platform: Platform,
       private menuCtrl: MenuController,
       private authService: AuthService,
-      private profileService: ProfileService
+      private profileService: ProfileService,
+      private route: ActivatedRoute
   ) {
     this.menuCtrl.enable(false);
     if (this.platform.is('ios')) {
@@ -135,6 +136,16 @@ export class SignUpPage implements OnInit {
       day_of_birth: new FormControl('', Validators.compose([
         Validators.required
       ])),
+    });
+    this.getParamsFromBranch();
+  }
+
+  getParamsFromBranch() {
+    this.route.queryParams.subscribe((params) => {
+      if (params) {
+        this.validate_signupform.value.email = params.referal_email;
+        this.validate_signupform.value.refer_by = params.referal_code;
+      }
     });
   }
 

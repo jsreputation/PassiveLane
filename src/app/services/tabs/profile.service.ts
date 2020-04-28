@@ -1418,11 +1418,15 @@ export class ProfileService {
     }
 
     getAddressInfo(data): Observable<any> {
-        return this.https.get('https://services.postcodeanywhere.co.uk/Capture/Interactive/Find/v1.10/json3.ws', {params: data});
+        const formdata = new FormData();
+        Object.keys(data).forEach((key) => { formdata.append(key, data[key])});
+        return this.https.post('https://services.postcodeanywhere.co.uk/Capture/Interactive/Find/v1.10/json3.ws', formdata);
     }
 
     getRetrieveAddressInfo(data): Observable<any> {
-        return this.https.get('https://services.postcodeanywhere.co.uk/Capture/Interactive/Retrieve/v1.00/json3.ws', {params: data});
+        const formdata = new FormData();
+        Object.keys(data).forEach((key) => { formdata.append(key, data[key])});
+        return this.https.post('https://services.postcodeanywhere.co.uk/Capture/Interactive/Retrieve/v1.00/json3.ws', formdata);
     }
 
     getBankInfo(data): Observable<any> {

@@ -1,0 +1,23 @@
+<ion-header #ionHeader mode="ios">
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-button (click)='fn_back()' color="dark" mode="ios">
+              <ion-icon class="arrow-left"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+      <ion-label #headerTxt class="header-txt">{{ deal_info.dealName }}</ion-label>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content #scrollArea (ionScroll)="scroll($event)" [scrollEvents]="true" mode="ios">
+  <div #headerTitle class="description-header">
+      <ion-label class="header-label">Fill In Your Address</ion-label>
+      <ion-label class="header-smalllabel">({{ deal_info.dealName }})</ion-label>
+  </div>
+  <app-stepper [max]="steps" [min]="1" [value]="deal_info?.step"></app-stepper>
+
+  <app-address-form [confirmRequest]="true"></app-address-form>
+</ion-content>
+<ion-footer class="footerarea">
+  <ion-button [disabled]="!readyToNext" (click)='gotoPaymentOptions()' class="btn-footer normal bg-blue" mode="ios">Next</ion-button>
+</ion-footer>

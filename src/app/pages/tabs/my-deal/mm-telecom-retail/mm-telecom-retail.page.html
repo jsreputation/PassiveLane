@@ -38,6 +38,8 @@
 
     <ion-button *ngIf="isWithdraw" class="margin-20-ex-top" (click)="onWithdraw()">Withdraw</ion-button>
 
+    <ion-button *ngIf="isCertificate" class="cert-btn bg-red" (click)="onCertificate()">Certificate</ion-button>
+
     <div class="spiner-content" *ngIf="!isReady">
         <ion-spinner name="lines"></ion-spinner>
     </div>

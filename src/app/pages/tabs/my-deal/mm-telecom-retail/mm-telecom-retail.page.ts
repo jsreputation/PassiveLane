@@ -7,6 +7,7 @@ import {AuthService} from '../../../../services/auth/auth.service';
 import {myEnterAnimation} from '../../../../widgets/animations/enter.animation';
 import {myLeaveAnimation} from '../../../../widgets/animations/leave.animation';
 import {MydealDetailComponent} from '../../../../widgets/modals/mydeal-detail/mydeal-detail.component';
+import { CertificatePage } from '../certificate/certificate.page';
 
 @Component({
     selector: 'app-mm-telecom-retail',
@@ -45,7 +46,8 @@ export class MmTelecomRetailPage implements OnInit {
     public myDealsYears = [];
 
     isWithdraw = false;
-
+    isCertificate: boolean;
+    certificateData: any;
     constructor(
         private renderer: Renderer2,
         private headerService: HeaderService,
@@ -58,11 +60,15 @@ export class MmTelecomRetailPage implements OnInit {
     }
 
     ionViewWillEnter() {
+        this.route.queryParams.subscribe((params) => {
+            if (params) {
+                this.dealInfo = { ... this.authService.userInfo, deal_id: params.deal_id };
+            }
+        });
         this.isReady = false;
         // withdraw state
         this.dealsService.withdrawState(this.dealInfo).subscribe(
             (res) => {
-                console.log('withdraw_status : ', res);
                 if (res.RESPONSECODE === 1) {
                     this.isWithdraw = res.data.withdraw;
                     // this.isWithdraw = true;
@@ -76,6 +82,19 @@ export class MmTelecomRetailPage implements OnInit {
                 this.isWithdraw = false;
             }
         );
+        // certificate detail
+        const paramsData = { ... this.authService.userInfo, deal_id: this.dealInfo.deal_id };
+        this.dealsService.checkCertificateAvailable(paramsData).subscribe((result) => {
+            if (result.RESPONSECODE === 1 && result.data.certificate) {
+                console.log('certificate params:  ', result);
+                this.isCertificate = true;
+                this.certificateData = result.data;
+            } else {
+                this.isCertificate = false;
+            }
+        }, err => {
+            this.isCertificate = false;
+        });
         // deal detail
         this.dealsService.getMMTelecomRetail(this.dealInfo).subscribe(
             (result) => {
@@ -103,7 +122,6 @@ export class MmTelecomRetailPage implements OnInit {
 
     initFilteredData() {
         this._changeSumAmount().then(result => {
-            console.log('=============', result);
             this.deals = [] as any;
             this.deals = result;
             this.filterdDealsByYear = this.filterBySelectedYear(this.deals);
@@ -314,5 +332,16 @@ export class MmTelecomRetailPage implements OnInit {
             }
         };
         this.router.navigate(['/main/cache-out'], navigationExtras);
+    }
+
+    async onCertificate() {
+        const modal = await this.modalCtrl.create({
+            component: CertificatePage,
+            cssClass: 'activityDetail-modal',
+            enterAnimation: myEnterAnimation,
+            leaveAnimation: myLeaveAnimation,
+            componentProps: this.certificateData
+        });
+        await modal.present();
     }
 }

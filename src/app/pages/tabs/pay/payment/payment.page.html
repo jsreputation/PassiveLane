@@ -14,39 +14,12 @@
 
 
 <ion-content #scrollArea (ionScroll)="scroll($event)" [scrollEvents]="true" mode="ios">
-
   <div #headerTitle *ngIf="deal" class="header-content">
-    <ion-item lines="none">
-      <ion-thumbnail *ngIf="deal.logo_image" slot="start">
-        <ion-img src="{{ deal.logo_image }}"></ion-img>
-      </ion-thumbnail>
-      <ion-thumbnail *ngIf="!deal.logo_image" slot="start">
-        <ngx-avatar [round]="true" bgColor="#4f8d9f0f" fgColor="#3a8093" initialsSize="3" name="{{ deal.deal_name }}"
-                    size="60"></ngx-avatar>
-      </ion-thumbnail>
-      <ion-label class="item-content">
-        <p class="opportunities-title color-blue">{{ deal.deal_name }}</p>
-        <p class="opportunities-content-txt">Pledged: <span>£{{ sumPledgeAmount(deal) }}</span></p>
-      </ion-label>
-    </ion-item>
+    <ion-label class="opportunities-title color-blue">{{ deal.deal_name }}</ion-label>
+    <ion-label class="opportunities-content-txt">Pledged: <span>£{{ deal.amount }}</span></ion-label>
+    <ion-label class="need-payment-detail ion-text-center" (click)="showBankDetailModal()">Need bank details?</ion-label>
   </div>
   <div class="card-content">
-    <ion-label *ngIf="deal.payments" class="need-payment-detail ion-text-center" (click)="showBankDetails()">Need payment details?</ion-label>
-    <div *ngIf="isBankDetail" class="bank-detail padding-side-5">
-      <div class="spiner-content" *ngIf="!bankAccount.bank_id">
-        <ion-spinner name="lines"></ion-spinner>
-      </div>
-      <ion-grid *ngIf="bankAccount.bank_id">
-        <ion-row class="title">
-          <ion-col class="bank-name">Bank name</ion-col>
-          <ion-col>Address</ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col class="bank-name" (click)="showBankDetailModal(bankAccount)">{{ bankAccount.bank_name }}</ion-col>
-          <ion-col>{{ bankAccount.address }}</ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
     <form (ngSubmit)="submitPayment(deal)" [formGroup]="validateAmount" class="custom-body">
       <div class="padding-side-5">
         <ion-label class="title-des">Confirm Payment</ion-label>
@@ -91,7 +64,7 @@
       <ion-spinner name="lines"></ion-spinner>
     </div>
 
-    <div class="padding-side-5" *ngIf="paymentLists">
+    <div class="padding-side-5" *ngIf="paymentLists.length > 0">
       <ion-label class="title-des">My Confirmed Payments</ion-label>
       <ion-grid *ngIf="paymentLists.length > 0">
         <ion-row class="title">

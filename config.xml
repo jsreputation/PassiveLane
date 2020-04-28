@@ -102,6 +102,13 @@
         <splash height="1792" src="resources/ios/splash/Default-1792h~iphone.png" width="828" />
         <splash height="828" src="resources/ios/splash/Default-Landscape-1792h~iphone.png" width="1792" />
     </platform>
+    <branch-config>
+        <branch-key value="key_live_elSU3r2U2CJLWk6UVyhY1nngyvbbafCU" />
+        <uri-scheme value="passivelane" />
+        <link-domain value="18qo2.app.link" />
+        <link-domain value="18qo2-alternate.app.link" />
+        <ios-team-release value="A6CJW2GNN7" />
+    </branch-config>
     <plugin name="cordova-plugin-whitelist" spec="1.3.3" />
     <plugin name="cordova-plugin-statusbar" spec="2.4.2" />
     <plugin name="cordova-plugin-device" spec="2.0.2" />

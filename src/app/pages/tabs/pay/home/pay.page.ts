@@ -49,7 +49,7 @@ export class PayPage implements OnInit {
     this.arrSegments = [
       { value: 0, label: 'All Pledges', searchWord: ''},
       { value: 1, label: 'Open', searchWord: 'Open'},
-      { value: 2, label: 'Close', searchWord: 'Closed'},
+      { value: 2, label: 'Closed', searchWord: 'Close'},
     ];
   }
 
@@ -87,6 +87,7 @@ export class PayPage implements OnInit {
     this.checked = ev.detail.value;
     this.filteredName = this.arrSegments[ev.detail.value].searchWord;
     this.pledges = this.filteredParams();
+    console.log(this.pledges.length);
   }
 
   filteredParams() {

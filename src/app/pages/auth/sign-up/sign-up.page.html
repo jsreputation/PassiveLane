@@ -116,7 +116,7 @@
           <ion-item mode='ios'>
             <ion-icon class="mail-box"></ion-icon>
             <ion-input (keyup)="userTypingSingin($event)" formControlName="email" name="email"
-                       placeholder="Enter your email address" type="text">
+                       placeholder="Enter your email address" type="text" [disabled]="true">
             </ion-input>
           </ion-item>
           <div class="validation-errors">
@@ -153,7 +153,7 @@
           <ion-item mode='ios'>
             <ion-icon class="id-icon"></ion-icon>
             <ion-input (keyup)="userTypingSingin($event)" formControlName="refer_by" name="refer_by"
-                       placeholder="Enter Referral Code" type="text">
+                       placeholder="Enter Referral Code" type="text"  [disabled]="true">
             </ion-input>
           </ion-item>
           <div class="validation-errors">

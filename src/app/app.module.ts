@@ -14,6 +14,7 @@ import {fadeAnimation} from './widgets/animations/animation';
 import {ModalsModule} from './widgets/modals/modals.module';
 
 import {Camera} from '@ionic-native/camera/ngx';
+import { BranchIo } from '@ionic-native/branch-io/ngx';
 import {HttpClientModule} from '@angular/common/http';
 
 import {IonicStorageModule} from '@ionic/storage';
@@ -22,7 +23,6 @@ import {AuthService} from './services/auth/auth.service';
 import {DatePipe} from '@angular/common';
 import {FCM} from '@ionic-native/fcm/ngx';
 import {ComponentsModule} from './widgets/components/component.module';
-import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import {VerifyPageModule} from './pages/verify/verify.module';
 
 @NgModule({
@@ -51,7 +51,7 @@ import {VerifyPageModule} from './pages/verify/verify.module';
     Camera,
     DatePipe,
     FCM,
-    SocialSharing,
+    BranchIo,
     {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
   ],
   bootstrap: [AppComponent]
