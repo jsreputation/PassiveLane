@@ -90,7 +90,6 @@ export class AppComponent {
     }
 
     treatWithBranch(data) {
-        alert(JSON.stringify(data));
         if (data['+clicked_branch_link']) {
             if (data.action === 'register') {
                 const params: NavigationExtras = {
