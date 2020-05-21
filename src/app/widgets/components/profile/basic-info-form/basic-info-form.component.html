@@ -68,7 +68,7 @@
       <div class="input-item">
         <ion-item mode='ios'>
           <ion-icon class="calendar" name="calendar"></ion-icon>
-          <ion-datetime (keypress)="userTypingForm($event)" displayFormat="DDDD D MMM, YYYY" formControlName="day_of_birth" placeholder="Enter your birthday"></ion-datetime>
+          <ion-datetime max="2002-12-31" (keypress)="userTypingForm($event)" displayFormat="DDDD D MMM, YYYY" formControlName="day_of_birth" placeholder="Enter your birthday"></ion-datetime>
         </ion-item>
         <div class="validation-errors">
           <ng-container *ngFor="let validation of validation_messages.day_of_birth">
