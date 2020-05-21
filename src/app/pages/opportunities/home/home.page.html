@@ -3,12 +3,12 @@
     <ion-buttons slot="primary">
       <ion-menu-button class="menu"></ion-menu-button>
     </ion-buttons>
-    <ion-label #headerTxt class="header-txt">Opportunities</ion-label>
+    <ion-label class="header-txt">Opportunities</ion-label>
   </ion-toolbar>
 </ion-header>
 
 
-<ion-content #scrollArea (ionScroll)="scroll($event)" [scrollEvents]="true" mode="ios">
+<ion-content mode="ios">
 
   <ion-fab *ngIf="!is_verify" vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button routerLink="/verify">
@@ -16,7 +16,7 @@
     </ion-fab-button>
   </ion-fab>
 
-  <div #headerTitle class="description-header">
+  <div class="description-header">
     <ion-label class="header-label">Opportunities</ion-label>
   </div>
 
