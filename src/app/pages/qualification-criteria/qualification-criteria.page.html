@@ -35,7 +35,7 @@
         <ion-item *ngFor="let qualificationCriteria of qualificationCriterias" lines="none" mode="ios">
             <ion-label>{{ qualificationCriteria.val}}</ion-label>
             <ion-checkbox (ionChange)="onSelect(qualificationCriteria.isChecked, qualificationCriteria.id, qualificationCriteria.turn)" [(ngModel)]="qualificationCriteria.isChecked" mode='ios'
-                          slot="start"></ion-checkbox>
+                slot="start"></ion-checkbox>
         </ion-item>
         <div *ngIf="qualificationCriterias_descriptions?.length > 0" class="list-content">
             <ul>
@@ -47,5 +47,5 @@
     </ion-list>
 
 
-    <ion-button (click)='gotoExperience_RiskAwareness()' class="normal bg-blue" mode="ios">Next</ion-button>
+    <ion-button (click)='gotoExperience_RiskAwareness()' [disabled]="!nextAvailable" class="normal bg-blue" mode="ios">Next</ion-button>
 </ion-content>
