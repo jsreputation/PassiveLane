@@ -28,9 +28,9 @@ export class SignUpPage implements OnInit {
     first_name: [
       {type: 'required', message: 'First name is required.'}
     ],
-    middle_name: [
-      {type: 'required', message: 'Middle name is required.'}
-    ],
+    // middle_name: [
+    //   {type: 'required', message: 'Middle name is required.'}
+    // ],
     last_name: [
       {type: 'required', message: 'Last name is required.'}
     ],
@@ -104,7 +104,7 @@ export class SignUpPage implements OnInit {
         Validators.required
       ])),
       middle_name: new FormControl('', Validators.compose([
-        Validators.required
+        // Validators.required
       ])),
       last_name: new FormControl('', Validators.compose([
         Validators.required
