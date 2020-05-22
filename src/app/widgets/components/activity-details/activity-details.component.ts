@@ -25,7 +25,7 @@ export class ActivityDetailsComponent implements OnInit {
 
   numberWithCommas(x) {
     const parts = (Math.round(x * 100) / 100).toString().split('.');
-    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',').trim();
     return parts.join('.');
   }
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../../../services/auth/auth.service';
 import {MenuController} from '@ionic/angular';
-import {Storage} from "@ionic/storage";
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-opportunities-your-investment',
@@ -58,8 +58,8 @@ export class OpportunitiesYourInvestmentPage implements OnInit {
         setTimeout(() => {
           this.authService.ifLoggedIn();
         }, 500);
-      })
-    })
+      });
+    });
   }
 
 }

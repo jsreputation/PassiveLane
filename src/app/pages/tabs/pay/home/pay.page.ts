@@ -116,12 +116,14 @@ export class PayPage implements OnInit {
     }
   }
 
-  gotoPayment(pledgeId) {
-    this.pledgeInfo = {...this.authService.userInfo, pledge_id: pledgeId};
-    const navigationExtras: NavigationExtras = {
-      queryParams: this.pledgeInfo
-    };
-    this.router.navigate(['main/pay/payment'], navigationExtras);
+  gotoPayment(pledgeId, status) {
+    if (status !== 'Close') {
+      this.pledgeInfo = {...this.authService.userInfo, pledge_id: pledgeId};
+      const navigationExtras: NavigationExtras = {
+        queryParams: this.pledgeInfo
+      };
+      this.router.navigate(['main/pay/payment'], navigationExtras);
+    }
   }
 
   numberWithCommas(x) {

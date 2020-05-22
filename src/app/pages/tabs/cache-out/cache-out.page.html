@@ -15,7 +15,7 @@
             <ion-label class="header-label">Cash Out</ion-label>
         </div>
         <div class="header-card">
-            <ion-label class="mm-header-txt"><span class="pound">£</span> {{ isValid? totalAmount: 0}}</ion-label>
+            <ion-label class="mm-header-txt"><span class="pound">£</span>{{ isValid? totalAmount: 0}}</ion-label>
 
             <form (ngSubmit)="onFormSubmit()" [formGroup]="validate_form" class="custom-body">
                 <div class="mm-card-content">

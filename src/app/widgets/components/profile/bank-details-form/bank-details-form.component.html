@@ -236,7 +236,7 @@
 
                         <ion-row class="flex-row">
                             <ion-button type="button" class="bg-red" mode='ios' (click)="deleteBank(i, bankInfo.value.bank_id)">
-                                delete
+                                Delete
                             </ion-button>
                             <ion-button type="button" *ngIf="!isAddedStates[i]" [disabled]="isSubmitReadies[i]" class="bg-blue ion-text-right" mode='ios' (click)="onFormUpdate(i)">
                                 <ion-spinner *ngIf="isSubmitReadies[i]" name="lines"></ion-spinner>

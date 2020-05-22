@@ -27,13 +27,14 @@ export class OpportunitiesAmountPage implements OnInit {
     investimentDetails = {} as any;
     private queryParams = {} as any;
 
-    constructor(
+    constructor (
         private renderer: Renderer2,
         private headerService: HeaderService,
         private router: Router,
         public route: ActivatedRoute,
-        private investService: InvestService,
+        private investService: InvestService
     ) {
+
     }
 
     ionViewWillEnter() {

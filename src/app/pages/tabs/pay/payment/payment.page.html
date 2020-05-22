@@ -53,7 +53,7 @@
             <ion-spinner *ngIf="isAmountTrue" name="bubbles"></ion-spinner>
             Submit
           </ion-button>
-          <ion-label *ngIf="isCancelpayment" class="need-payment-detail ion-text-center" (click)="cancelPaymentDialog(deal.pledge_id)">Cancel Pledge</ion-label>
+          <ion-label *ngIf="!paymentLists || paymentLists.length === 0" class="need-payment-detail ion-text-center" (click)="cancelPaymentDialog(deal.pledge_id)">Cancel Pledge</ion-label>
 
         </div>
       </div>
