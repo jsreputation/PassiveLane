@@ -27,12 +27,13 @@ export class ProfilePage implements OnInit {
 
   constructor(
   ) {
+    
   }
 
   ngOnInit() {
     this.items = [
       { headerTxt: 'Basic Information', expanded: true, componentClass: BasicInfoFormComponent },
-      { headerTxt: 'Proof of Id', expanded: false, componentClass: ProofOfIdComponent },
+      // { headerTxt: 'Proof of Id', expanded: false, componentClass: ProofOfIdComponent },
       { headerTxt: 'Address', expanded: false, componentClass: AddressFormComponent },
       { headerTxt: 'Contact Number', expanded: false, componentClass: ContactNumberFormComponent },
       { headerTxt: 'Change Password', expanded: false, componentClass: ChangePasswordFormComponent },

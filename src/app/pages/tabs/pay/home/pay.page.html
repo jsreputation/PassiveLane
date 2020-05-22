@@ -20,9 +20,7 @@
         </ion-segment-button>
     </ion-segment>
 
-    <div class="spiner-content" *ngIf="!isReady">
-        <ion-spinner name="lines"></ion-spinner>
-    </div>
+    <app-cards *ngIf="!isReady"></app-cards>
 
     <div class="deals-container" *ngIf="isReady">
         <ion-list>

@@ -42,7 +42,7 @@ export class MyDealMmTelecomRetailComponent implements OnInit, OnChanges {
         this.gotoMMTelecomRetail(this.myDeals[0]);
       }
     } else {
-      this.isReady = true;
+      // this.isReady = true;
     }
   }
 

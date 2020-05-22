@@ -3,19 +3,11 @@ ion-header {
   ion-toolbar {
     --background: rgb(249, 249, 249);
   }
-  ion-label {
-    &.header-txt {
-    }
-  }
 }
 
 ion-content {
   --background: rgb(249, 249, 249);
   --padding-top: 15px;
-  ion-label {
-    &.header-label {
-    }
-  }
 
   .header-content{
     margin-bottom: 10px;
@@ -168,6 +160,7 @@ ion-content {
       margin-bottom: 15px;
     }
     .padding-side-5{
+      margin-top: 25px;
       padding: 0 5px;
     }
 
