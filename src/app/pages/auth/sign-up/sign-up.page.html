@@ -27,14 +27,14 @@
                        placeholder="Enter your middle name" type="text">
             </ion-input>
           </ion-item>
-          <div class="validation-errors">
+          <!-- <div class="validation-errors">
             <ng-container *ngFor="let validation of validation_messages.middle_name">
               <div *ngIf="validate_signupform.get('middle_name').hasError(validation.type) && (validate_signupform.get('middle_name').dirty || validate_signupform.get('middle_name').touched || submitState)"
                    class="error-message">
                 <ion-label>{{ validation.message }}</ion-label>
               </div>
             </ng-container>
-          </div>
+          </div> -->
         </div>
         <div class="input-item">
           <ion-item mode='ios'>
@@ -167,9 +167,9 @@
         </div>
 
         <div class="input-item">
-          <ion-item mode='ios'>
+          <ion-item mode="ios">
             <ion-icon class="calendar" name="calendar"></ion-icon>
-            <ion-datetime (keypress)="userTypingSingin($event)" displayFormat="DDDD D MMM, YYYY" formControlName="day_of_birth" placeholder="Enter your birthday"></ion-datetime>
+            <ion-datetime max="2002-12-31" (keypress)="userTypingSingin($event)" displayFormat="DDDD D MMM, YYYY" formControlName="day_of_birth" placeholder="Enter your birthday"></ion-datetime>
           </ion-item>
           <div class="validation-errors">
             <ng-container *ngFor="let validation of validation_messages.day_of_birth">

@@ -256,10 +256,10 @@ export class CashOutPage implements OnInit, OnDestroy {
         this.submitState = true;
         this.isSubmitReady = true;
         this.duringSumbmit = true;
-        this.submitParams = {...this.params, amount: this.validate_form.value.amount};
+        this.submitParams = {...this.params, amount: this.validate_form.value.amount, bank_account: this.validate_form.value.bank_name};
         const response = await this.cashoutService.fnWithdraw(this.submitParams).toPromise();
         if (response.RESPONSECODE === 1) {
-          console.log('withdraw succeed : ', response);
+          this.fnGetCashOutDetail();
         }
       } catch (e) {
         console.log('submit withdraw error : ', e);

@@ -35,7 +35,7 @@ export class HomePage implements OnInit {
     private investService: InvestService,
     private authService: AuthService,
   ) {
-    this.menuCtrl.enable(false);
+    this.menuCtrl.enable(true);
   }
 
   ionViewWillEnter() {

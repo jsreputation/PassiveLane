@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../../../services/auth/auth.service';
 import {MenuController} from '@ionic/angular';
-import {Storage} from "@ionic/storage";
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-opportunities-your-investment',
@@ -23,9 +23,9 @@ export class OpportunitiesYourInvestmentPage implements OnInit {
     {title: 'Investment Status: ', content: 'Awaiting payment'},
     {title: 'Round Status: ', content: 'Live'},
     {title: 'Round invested in: ', content: 'MM Telecom Retail'},
-    {title: 'Amount invested: ', content: 'EIO,OOO'},
+    {title: 'Amount invested: ', content: '£1O,OOO'},
     {title: 'Investment type:  ', content: 'Profit share '},
-    {title: 'Date Of investment:  ', content: '4 July 2019'},
+    {title: 'Date Of investment:  ', content: this.customizeDate()},
     {title: 'Round pitch: ', content: 'original pitch page'},
     {title: 'Payment method: ', content: 'Bank transfer'},
   ];
@@ -49,6 +49,25 @@ export class OpportunitiesYourInvestmentPage implements OnInit {
     this.updateStorage();
   }
 
+  customizeDate(): string {
+    // tslint:disable-next-line: no-var-keyword
+    const today = new Date();
+    // tslint:disable-next-line: no-var-keyword
+    var dd = today.getDate().toString();
+    // tslint:disable-next-line: no-var-keyword
+    var mm = (today.getMonth() + 1).toString();
+    const yyyy = today.getFullYear();
+    if (parseInt(dd, 10) < 10) {
+      dd = '0' + dd;
+    }
+
+    if (parseInt(mm, 10) < 10) {
+      mm = '0' + mm;
+    }
+    const result = mm + ' ' + dd + ' ' + yyyy;
+    return result;
+  }
+
   updateStorage() {
     this.storage.get('current_user').then(res => {
       res.data.user_info.deals_added = true;
@@ -58,8 +77,8 @@ export class OpportunitiesYourInvestmentPage implements OnInit {
         setTimeout(() => {
           this.authService.ifLoggedIn();
         }, 500);
-      })
-    })
+      });
+    });
   }
 
 }

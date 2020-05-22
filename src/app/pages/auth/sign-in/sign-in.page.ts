@@ -127,7 +127,9 @@ export class SignInPage implements OnInit {
 
   gotoHomePage(param) {
     if (param.mail_verify) {
-      if (param.is_verify) {
+
+      // if (param.is_verify) {
+
         if (param.is_onboarding) {
           if (param.deals_added) {
             this.router.navigate(['main/my-deal']);
@@ -137,9 +139,9 @@ export class SignInPage implements OnInit {
         } else {
           this.router.navigate(['investor-type']);
         }
-      } else {
-        this.router.navigate(['verify']);
-      }
+      // } else {
+      //   this.router.navigate(['verify']);
+      // }
     } else {
       this.router.navigate(['mail-verify']);
     }

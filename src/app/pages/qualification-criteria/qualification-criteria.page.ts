@@ -14,7 +14,7 @@ export class QualificationCriteriaPage implements OnInit {
   @ViewChild('ionHeader', {static: false}) ionHeader: any;
   @ViewChild('headerTitle', {static: false}) headerTitle: any;
   @ViewChild('headerTxt', {static: false}) headerTxt: any;
-
+  nextAvailable: boolean = false;
   ScrollAnimation = '';
   qualificationCriterias = [];
   private hidden = false;
@@ -132,6 +132,7 @@ export class QualificationCriteriaPage implements OnInit {
       return this.qualificationCriterias[id - 5].isChecked = isChecked;
     }
     this.qualificationCriterias[id - 1].isChecked = isChecked;
+    this.checkNextAvailable();
   }
 
   gotoExperience_RiskAwareness() {
@@ -143,5 +144,14 @@ export class QualificationCriteriaPage implements OnInit {
       queryParams: this.sendParams
     };
     this.router.navigate(['experience-risk-awareness'], navigationExtras);
+  }
+
+  checkNextAvailable() {
+    this.nextAvailable = false;
+    this.qualificationCriterias.forEach((element) => {
+      if (element.isChecked) {
+        this.nextAvailable  = true;
+      }
+    });
   }
 }

@@ -117,8 +117,8 @@ export class MyDealBarchartComponent implements OnInit, OnChanges {
           case 11: orderIndex = 0; break;
           default: break;
         }
-        this.capitalData[orderIndex] = currentValue.capital_amount - currentValue.roi_amount;
-        this.roiData[orderIndex] = currentValue.roi_amount;
+        this.capitalData[orderIndex] = (currentValue.capital_amount - currentValue.roi_amount).toFixed(2);
+        this.roiData[orderIndex] = currentValue.roi_amount.toFixed(2);
       });
       this.barChartData = [
         {

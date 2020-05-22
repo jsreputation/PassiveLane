@@ -15,7 +15,7 @@
             <ion-label class="header-label">Cash Out</ion-label>
         </div>
         <div class="header-card">
-            <ion-label class="mm-header-txt"><span class="pound">£</span> {{ isValid? totalAmount: 0}}</ion-label>
+            <ion-label class="mm-header-txt"><span class="pound">£</span>{{ isValid? totalAmount: 0}}</ion-label>
 
             <form (ngSubmit)="onFormSubmit()" [formGroup]="validate_form" class="custom-body">
                 <div class="mm-card-content">
@@ -36,7 +36,7 @@
                         </ion-item>
                         <ion-select interface="action-sheet" mode="md" slot="end" formControlName="bank_name" placeholder="Select Bank Account"
                         (ionChange)="listenFormChange()">
-                            <ion-select-option *ngFor="let myBankAccount of myBankAccounts" [value]="myBankAccount.account_number">{{ myBankAccount.account_number }}({{ myBankAccount.bank_name }})</ion-select-option>
+                            <ion-select-option *ngFor="let myBankAccount of myBankAccounts" [value]="myBankAccount.id">{{ myBankAccount.account_number }}({{ myBankAccount.bank_name }})</ion-select-option>
                         </ion-select>
                         <div class="validation-errors">
                             <ng-container *ngFor="let validation of validation_messages.amount">

@@ -20,13 +20,11 @@
         </ion-segment-button>
     </ion-segment>
 
-    <div class="spiner-content" *ngIf="!isReady">
-        <ion-spinner name="lines"></ion-spinner>
-    </div>
+    <app-cards *ngIf="!isReady"></app-cards>
 
     <div class="deals-container" *ngIf="isReady">
         <ion-list>
-            <ion-item lines="none" *ngFor="let pledge of pledges; let i = index" (click)="gotoPayment(pledge.pledge_id)">
+            <ion-item lines="none" *ngFor="let pledge of pledges; let i = index"  [disabled]="pledge.status === 'Close' ? true: false"  (click)="gotoPayment(pledge.pledge_id, pledge.status)">
                 <ion-thumbnail *ngIf="pledge.logo_image" slot="start">
                     <ion-img src="{{ pledge.logo_image }}"></ion-img>
                 </ion-thumbnail>
@@ -38,7 +36,7 @@
                     <p class="opportunities-title color-blue">{{ pledge.deal_name }}</p>
                     <p class="opportunities-content-txt">Pledged: <span>£{{ numberWithCommas(pledge.amount) }}</span></p>
                 </ion-label>
-                <ion-icon name="arrow-forward"></ion-icon>
+                <ion-icon name="arrow-forward" *ngIf="pledge.status !== 'Close'"></ion-icon>
             </ion-item>
         </ion-list>
     </div>

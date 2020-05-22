@@ -4,8 +4,8 @@ import {Platform, ToastController} from '@ionic/angular';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {Router} from '@angular/router';
 import {Storage} from '@ionic/storage';
-import {tap} from "rxjs/operators";
-import {ToastService} from "../UI/toast.service";
+import {tap} from 'rxjs/operators';
+import {ToastService} from '../UI/toast.service';
 
 const TOKEN_KEY = 'current_user';
 
@@ -150,7 +150,7 @@ export class AuthService {
     }
 
     passwordRecover(data): Observable<any> {
-        return this.https.get('https://www.passivelane.com/apiusers/passwordrecover', {params: data});
+        return this.https.post('https://www.passivelane.com/apiusers/passwordrecover', {email: data.email});
     }
 
 }

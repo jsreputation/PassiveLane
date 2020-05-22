@@ -1,6 +1,4 @@
-<div class="spiner-content" *ngIf="!isReady">
-    <ion-spinner name="lines"></ion-spinner>
-</div>
+<app-cards *ngIf="!isReady"></app-cards>
 
 <div class="deals-container" *ngIf="all_deals.length > 0">
     <ion-list>
@@ -27,12 +25,12 @@
 </div>
 
 
-<div *ngIf="isReady && !all_deals" class="flex-content">
+<div *ngIf="isReady && all_deals.length === 0" class="flex-content">
     <div class="description">
         <ion-icon class="opportunities-icon"></ion-icon>
         <div class="ion-text-center">
             <ion-label class="opportunities-txt">
-                No Data Available
+                There are currently no investment opportunities available.
             </ion-label>
         </div>
     </div>

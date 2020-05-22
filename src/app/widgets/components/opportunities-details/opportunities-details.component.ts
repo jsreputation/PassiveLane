@@ -12,6 +12,7 @@ import {HeaderService} from '../../../services/UI/header.service';
 })
 export class OpportunitiesDetailsComponent implements OnInit {
 
+  // tslint:disable-next-line: no-input-rename
   @Input('data') Params: any = [];
   all_deals: any[] = [];
   private temps: any[] = [];

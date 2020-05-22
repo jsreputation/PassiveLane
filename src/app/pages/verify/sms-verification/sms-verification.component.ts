@@ -1,13 +1,13 @@
 import {Component, OnInit, Renderer2, ViewChild} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {MenuController, Platform} from "@ionic/angular";
-import {ProfileService} from "../../../services/tabs/profile.service";
-import {AuthService} from "../../../services/auth/auth.service";
-import {HeaderService} from "../../../services/UI/header.service";
-import {Storage} from "@ionic/storage";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {PhoneNumberValidator} from "../../../services/validator/phoneNumberValidator.validator";
-import {VerifyModalService} from "../../../widgets/components/profile/verifyModal.service";
+import {ActivatedRoute, Router} from '@angular/router';
+import {MenuController, Platform} from '@ionic/angular';
+import {ProfileService} from '../../../services/tabs/profile.service';
+import {AuthService} from '../../../services/auth/auth.service';
+import {HeaderService} from '../../../services/UI/header.service';
+import {Storage} from '@ionic/storage';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {PhoneNumberValidator} from '../../../services/validator/phoneNumberValidator.validator';
+import {VerifyModalService} from '../../../widgets/components/profile/verifyModal.service';
 
 
 @Component({
@@ -66,6 +66,7 @@ export class SmsVerificationComponent implements OnInit {
       this.menuCtrl.enable(false);
       this.userInfo = this.authService.userInfo;
       this.user_name_info = this.authService.user_name_info;
+      console.log(this.user_name_info);
     }
   }
 
@@ -98,8 +99,8 @@ export class SmsVerificationComponent implements OnInit {
           this.isSubmitReady = false;
           this.authService.ifLoggedIn();
         }, 500);
-      })
-    })
+      });
+    });
   }
 
   onFormSubmit() {
