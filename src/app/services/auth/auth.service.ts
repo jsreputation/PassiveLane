@@ -150,7 +150,7 @@ export class AuthService {
     }
 
     passwordRecover(data): Observable<any> {
-        return this.https.get('https://www.passivelane.com/apiusers/passwordrecover', {params: data});
+        return this.https.post('https://www.passivelane.com/apiusers/passwordrecover', {email: data.email});
     }
 
 }

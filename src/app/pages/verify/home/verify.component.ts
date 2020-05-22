@@ -58,7 +58,7 @@ export class VerifyComponent implements OnInit {
 
   ionViewWillEnter() {
     this.is_id = this.authService.user_name_info.verification.is_id;
-    this.is_sms = this.authService.user_name_info.verification.is_sms;
+    this.is_sms = this.authService.user_name_info.is_phonenumber;
     this.is_bank = this.authService.user_name_info.verification.is_bank;
     this.id_status = this.authService.user_name_info.verification.id_status;
 
