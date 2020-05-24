@@ -4,7 +4,7 @@
       <div class="input-item">
         <ion-item mode='ios'>
           <ion-icon name="pin" class="nomal-icon"></ion-icon>
-          <ion-select formControlName="country" (ionChange)="onChange()">
+          <ion-select formControlName="country" (ionChange)="onChange()" name="country">
             <ion-select-option *ngFor="let _country of countries" [value]="_country.country">{{_country.countryName}}</ion-select-option>
           </ion-select>
         </ion-item>
@@ -35,7 +35,7 @@
       </div>
     </ion-list>
     <ion-row class="save-button-right">
-      <ion-button [disabled]="isSubmitReady" class="bg-blue" mode='ios' type="submit">
+      <ion-button [disabled]="isSubmitReady" class="bg-blue" mode="ios" type="submit">
         <ion-spinner *ngIf="isSubmitReady" name="lines"></ion-spinner>
         Save
       </ion-button>

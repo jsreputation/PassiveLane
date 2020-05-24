@@ -7,6 +7,7 @@ import {ProfileService} from '../../../../services/tabs/profile.service';
 import {PhoneNumberValidator} from '../../../../services/validator/phoneNumberValidator.validator';
 import {VerifyModalService} from '../verifyModal.service';
 import { ToastService } from 'src/app/services/UI/toast.service';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-contact-number-form',
@@ -50,6 +51,7 @@ export class ContactNumberFormComponent implements OnInit {
 
   ngOnInit() {
     this.countries = this.profileService.countries;
+    console.log(this.countries);
     const firstCountryObject = this.countries[0];
     this.validate_form = this.formBuilder.group({
       country: new FormControl(firstCountryObject.country, Validators.compose([
@@ -72,6 +74,7 @@ export class ContactNumberFormComponent implements OnInit {
     contactInfo = await this.profileService.getContactNumber().toPromise();
     if (contactInfo.RESPONSECODE === 1) {
       const initVal = contactInfo.data.contact_info;
+      console.log(initVal);
       this.validate_form.patchValue({
         country: initVal.country,
         phone_prefix: '+' + initVal.phone_prefix,
@@ -81,7 +84,6 @@ export class ContactNumberFormComponent implements OnInit {
   }
 
   async onFormSubmit() {
-
     if (this.validate_form.valid) {
       this.submitState = true;
       this.isSubmitReady = true;
@@ -121,9 +123,9 @@ export class ContactNumberFormComponent implements OnInit {
               this.submitState = false;
               this.isSubmitReady = false;
               if (result.RESPONSECODE === 1) {
-                  this.toastCtrl.presentSpecificText('Saved successfully.');
+                  // this.toastCtrl.presentSpecificText('Saved successfully.');
               } else if (result.RESPONSECODE === 0) {
-                  this.toastCtrl.presentSpecificText('Failed saving.');
+                  // this.toastCtrl.presentSpecificText('Failed saving.');
               }
           },
           error => {
