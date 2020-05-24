@@ -24,7 +24,7 @@
 
     <div class="deals-container" *ngIf="isReady">
         <ion-list>
-            <ion-item lines="none" *ngFor="let pledge of pledges; let i = index"  [disabled]="pledge.status === 'Close' ? true: false"  (click)="gotoPayment(pledge.pledge_id, pledge.status)">
+            <ion-item lines="none" *ngFor="let pledge of pledges; let i = index"  (click)="gotoPayment(pledge.pledge_id, pledge.status)">
                 <ion-thumbnail *ngIf="pledge.logo_image" slot="start">
                     <ion-img src="{{ pledge.logo_image }}"></ion-img>
                 </ion-thumbnail>

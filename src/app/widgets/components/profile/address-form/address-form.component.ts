@@ -23,7 +23,7 @@ export class AddressFormComponent implements OnInit {
             {type: 'required', message: 'Build number is required.'}
         ],
         buildname: [
-            {type: 'required', message: 'Build name is required.'}
+            // {type: 'required', message: 'Build name is required.'}
         ],
         street: [
             {type: 'required', message: 'Street is required.'}
@@ -69,7 +69,7 @@ export class AddressFormComponent implements OnInit {
                 // Validators.required
             ])),
             buildname: new FormControl('', Validators.compose([
-                Validators.required
+                // Validators.required
             ])),
             street: new FormControl('', Validators.compose([
                 Validators.required

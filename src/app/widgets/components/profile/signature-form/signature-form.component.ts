@@ -19,7 +19,7 @@ export class SignatureFormComponent implements OnInit {
     signInfo = '';
     isSubmitReady = false;
     submitState = false;
-    private addUrl = 'https://www.passivelane.com/apiinvestor/addsignatured';
+    private addUrl = 'https://www.passivelane.com/apiinvestor/addsignature';
     private updateUrl = 'https://www.passivelane.com/apiinvestor/updatesignature';
 
     constructor(
