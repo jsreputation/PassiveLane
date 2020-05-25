@@ -77,7 +77,7 @@ export class ContactNumberFormComponent implements OnInit {
       console.log(initVal);
       this.validate_form.patchValue({
         country: initVal.country,
-        phone_prefix: '+' + initVal.phone_prefix,
+        phone_prefix: initVal.phone_prefix,
         phone: initVal.phone,
       });
     }

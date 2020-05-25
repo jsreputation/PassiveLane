@@ -30,7 +30,7 @@ export class CashOutPage implements OnInit, OnDestroy {
   public totalAmount: string;
   public submitParams = {} as any;
   private unsubscribeAll: Subject<any> = new Subject<any>();
-
+  private numberTotalAmount: number;
   selected_deal_id = 0;
 
   isValid = false;
@@ -77,7 +77,7 @@ export class CashOutPage implements OnInit, OnDestroy {
   }
 
   listenFormChange() {
-    if (this.validate_form.valid && this.validate_form.value.amount > 0) {
+    if (this.validate_form.valid && this.validate_form.value.amount > 0 && this.validate_form.value.amount <= this.numberTotalAmount) {
       this.isSubmitReady = true;
     } else {
       this.isSubmitReady = false;
@@ -231,6 +231,7 @@ export class CashOutPage implements OnInit, OnDestroy {
       this.cashoutService.getCashoutInfo(this.params).subscribe(response => {
         if (response.RESPONSECODE === 1) {
           console.log(response.data);
+          this.numberTotalAmount = response.data.total_amount;
           this.totalAmount = this.numberWithCommas(response.data.total_amount);
           this.myBankAccounts = response.data.bank_details;
           if (this.myBankAccounts.length > 0) {
