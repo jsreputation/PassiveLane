@@ -21,7 +21,7 @@ export class OpportunitiesRetailPage implements OnInit {
     public retail_params = '';
     private hidden = false;
     private triggerDistance = 42;
-    private deal_info: any;
+    public deal_info: any;
     public isReady = false;
     private queryParams = {} as any;
 
@@ -89,12 +89,12 @@ export class OpportunitiesRetailPage implements OnInit {
         }
     }
 
-
     fn_back() {
         this.router.navigate(['opportunities']);
     }
 
     gotoInvestmentAmount() {
+        this.deal_info = { ... this.deal_info, newurl: 1 };
         const navigationExtras: NavigationExtras = {
             queryParams: this.deal_info
         };

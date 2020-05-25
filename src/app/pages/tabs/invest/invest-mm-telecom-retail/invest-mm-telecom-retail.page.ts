@@ -37,6 +37,7 @@ export class InvestMmTelecomRetailPage implements OnInit {
     ngOnInit() {
         this.route.queryParams.subscribe(params => {
             if (params) {
+                console.log(params);
                 params = {...params, ...this.authService.userInfo};
                 this.deal_info = params;
                 this.queryParams = params;

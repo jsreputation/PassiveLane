@@ -143,10 +143,7 @@ export class CashOutPage implements OnInit, OnDestroy {
     this.myDeals.forEach(myDeal => {
       if (myDeal.deal_id === deal_id) {
         // this.isValid = myDeal.withdraw;
-        const dealInfo = this.authService.userInfo;
-        // tslint:disable-next-line: no-string-literal
-        dealInfo['deal_id'] = deal_id;
-        // alert(JSON.stringify(this.authService.userInfo));
+        let dealInfo = { ... this.authService.userInfo, deal_id: deal_id};
         this.dealsService.withdrawState(dealInfo).subscribe((res) => {
           if (res.RESPONSECODE === 1) {
             this.isValid = res.data.withdraw;

@@ -65,7 +65,11 @@ export class AddressConfirmPage implements OnInit {
         const navigationExtras: NavigationExtras = {
             queryParams: this.deal_info
         };
-        this.router.navigate(['main/invest/payment-options'], navigationExtras);
+        if (this.deal_info.newurl) {
+          this.router.navigate(['opportunities-payment-options'], navigationExtras);
+        } else {
+          this.router.navigate(['main/invest/payment-options'], navigationExtras);
+        }
       } else {
 
       }
