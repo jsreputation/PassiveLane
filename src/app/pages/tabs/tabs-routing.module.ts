@@ -1,3 +1,4 @@
+import { AuthGuard } from './../../guards/auth.guard';
 import {NgModule} from '@angular/core';
 import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 
@@ -21,6 +22,7 @@ import { CertificatePage } from './my-deal/certificate/certificate.page';
 const routes: Routes = [
   {
     path: '',
+    canActivate: [AuthGuard],
     component: TabsPage,
     children: [
       {

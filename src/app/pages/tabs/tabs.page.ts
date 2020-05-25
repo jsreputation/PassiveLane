@@ -29,7 +29,7 @@ export class TabsPage implements OnInit {
   }
 
   gotoInvest() {
-    this.router.navigate(['main/invest']);
+    this.router.navigateByUrl('main/invest');
   }
 
   gotoActivity() {
