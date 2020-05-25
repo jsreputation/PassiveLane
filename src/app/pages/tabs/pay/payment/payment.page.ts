@@ -109,7 +109,7 @@ export class PaymentPage implements OnInit {
                             this.paymentLists = [] as any;
                             paymentDetail = result.pledge;
                             this.deal = {...paymentDetail};
-                            console.log('%%%%%%%%%%%%%%', this.deal);
+                            console.log('Deal Info:', this.deal);
                             if ( paymentDetail.payments) {
                                 this.paymentLists = paymentDetail.payments.reverse();
                                 this.paymentLists.map(param => {
@@ -239,6 +239,8 @@ export class PaymentPage implements OnInit {
         console.log(parseInt(this.validateAmount.value.amount, 10));
         if (parseInt(this.validateAmount.value.amount, 10) > 0) {
             this.isAuthSubmitReady = true;
+        } else {
+            this.isAuthSubmitReady = false;
         }
     }
 

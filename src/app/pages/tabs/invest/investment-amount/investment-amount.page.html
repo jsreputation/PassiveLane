@@ -49,7 +49,7 @@
         <div class="amount-list bg-blue" lines="none">
             <ion-label class="amount-header">Enter Investment Amount</ion-label>
             <ion-input class="special-input" (ionBlur)="fn_focus($event, investimentDetails.min_amount, investimentDetails.max_amount)" 
-                [(ngModel)]="tempAmount" #amountInput (ionInput)="userTyping(amountInput.value, investimentDetails.min_amount, investimentDetails.max_amount)" 
+                [(ngModel)]="tempAmount" #amountInput (ionChange)="userTyping(amountInput.value, investimentDetails.min_amount, investimentDetails.max_amount)" 
                 type="number"
             >
                 <slot>£ </slot>

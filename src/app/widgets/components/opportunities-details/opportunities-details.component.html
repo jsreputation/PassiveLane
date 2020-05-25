@@ -1,4 +1,4 @@
-<app-cards *ngIf="!isReady"></app-cards>
+<!-- <app-cards *ngIf="!isReady"></app-cards> -->
 
 <div class="deals-container" *ngIf="all_deals.length > 0">
     <ion-list>
@@ -25,7 +25,7 @@
 </div>
 
 
-<div *ngIf="isReady && all_deals.length === 0" class="flex-content">
+<div *ngIf="all_deals.length === 0 || !all_deals" class="flex-content">
     <div class="description">
         <ion-icon class="opportunities-icon"></ion-icon>
         <div class="ion-text-center">

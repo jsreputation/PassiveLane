@@ -27,7 +27,7 @@ export class MyDealPage implements OnInit {
   checked = 1;
   private filteredName = 'Open';
   private subscribeData: any;
-
+  public duringFetching = true;
   constructor(
     private renderer: Renderer2,
     private headerService: HeaderService,
@@ -37,10 +37,12 @@ export class MyDealPage implements OnInit {
   }
 
   ionViewWillEnter() {
+    this.duringFetching = true;
     this.myDealsParams = '';
     this.subscribeData = this.dealsService.getMyDeals(this.authService.userInfo).subscribe(
       (result: any) => {
         console.log('============', result);
+        this.duringFetching = false;
         if (result.RESPONSECODE === 1) {
           this.arrFilteredParams = result.data.deals;
           this.defineFilterType(result.data.deals).then((res) => {

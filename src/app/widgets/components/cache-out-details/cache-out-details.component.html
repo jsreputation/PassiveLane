@@ -1,6 +1,6 @@
-<div class="spiner-content" *ngIf="showSpinner">
+<!-- <div class="spiner-content" *ngIf="showSpinner">
     <ion-spinner name="lines"></ion-spinner>
-</div>
+</div> -->
 
 <ion-list>
     <ion-item-group *ngFor="let item of dealInfo; let i = index" lines="none" mode='ios'>
@@ -18,7 +18,7 @@
     </ion-item-group>
 </ion-list>
 
-<div *ngIf="(!dealInfo || !dealInfo.length) && !showSpinner" class="empty-content">
+<div *ngIf="!dealInfo || !dealInfo.length" class="empty-content">
     <ion-label class="empty-txt">
         Once you have a made withdrawals it will appear here
     </ion-label>

@@ -1,4 +1,5 @@
-import {NgModule} from '@angular/core';
+import { TabsPageModule } from './pages/tabs/tabs.module';
+import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {RouteReuseStrategy} from '@angular/router';
 
@@ -20,28 +21,41 @@ import {HttpClientModule} from '@angular/common/http';
 import {IonicStorageModule} from '@ionic/storage';
 import {AuthGuard} from './guards/auth.guard';
 import {AuthService} from './services/auth/auth.service';
-import {DatePipe} from '@angular/common';
+import { DatePipe, CommonModule } from '@angular/common';
 import {FCM} from '@ionic-native/fcm/ngx';
 import {ComponentsModule} from './widgets/components/component.module';
 import {VerifyPageModule} from './pages/verify/verify.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent, 
+    // InvestMmTelecomRetailPage,
+    // YourInvestmentPage,
+    // PaymentOptionsPage,
+    // InvestmentConfirmaitonPage,
+    // AddressConfirmPage,
+    // InvestmentAmountPage
+  ],
   entryComponents: [],
   imports: [
+    CommonModule,
     BrowserModule,
     IonicModule.forRoot({
       navAnimation: fadeAnimation,
       swipeBackEnabled: false,
       mode: 'ios',
     }),
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ModalsModule,
     HttpClientModule,
     IonicStorageModule.forRoot(),
     ComponentsModule,
-    VerifyPageModule
+    VerifyPageModule,
+    TabsPageModule
   ],
   providers: [
     StatusBar,
@@ -54,7 +68,10 @@ import {VerifyPageModule} from './pages/verify/verify.module';
     BranchIo,
     {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ],
 })
 export class AppModule {
 }

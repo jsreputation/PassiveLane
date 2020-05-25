@@ -112,7 +112,11 @@ export class AddressConfirmPage implements OnInit {
     const backNavigationExtras: NavigationExtras = {
       queryParams: this.deal_info
     };
-    this.router.navigate(['main/invest/investment-amount'], backNavigationExtras);
+    if (this.deal_info.newurl) {
+      this.router.navigate(['opportunities-amount', backNavigationExtras]);
+    } else {
+      this.router.navigate(['main/invest/investment-amount'], backNavigationExtras);
+    }
   }
 
   async showloading() {

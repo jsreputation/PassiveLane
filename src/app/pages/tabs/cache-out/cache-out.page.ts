@@ -37,8 +37,7 @@ export class CashOutPage implements OnInit, OnDestroy {
 
   // cash out detail handling
   dealInfo;
-  showCashOutSpinner = false;
-
+  showCashOutSpinner = true;
   validate_form: FormGroup;
   isSubmitReady = false;
   submitState = false;
@@ -169,6 +168,7 @@ export class CashOutPage implements OnInit, OnDestroy {
       let dealsParams: any;
       dealsParams = {...this.params, type: 'all'}; // withdraw
       this.dealsService.getMMTelecomRetail(dealsParams).subscribe(response => {
+        this.showCashOutSpinner = false;
         if (response.RESPONSECODE === 1) {
           this.fnFillterDetailByDate(this.setColorInData(response.data.transaction)).then((result) => {
             const temp = {};
@@ -184,7 +184,6 @@ export class CashOutPage implements OnInit, OnDestroy {
       });
     } catch (e) {
       console.log('error occurred' + e);
-    } finally {
       this.showCashOutSpinner = false;
     }
   }

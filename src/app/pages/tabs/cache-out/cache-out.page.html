@@ -58,7 +58,8 @@
     </div>
 
     <div class="cache-out-content">
-        <app-cache-out-details [dealInfo]="dealInfo" [showSpinner]="showCashOutSpinner"></app-cache-out-details>
+        <app-rows *ngIf="showCashOutSpinner"></app-rows>
+        <app-cache-out-details [dealInfo]="dealInfo" *ngIf="!showCashOutSpinner"></app-cache-out-details>
     </div>
 
 </ion-content>

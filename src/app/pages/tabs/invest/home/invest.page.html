@@ -18,6 +18,6 @@
             <ion-label>{{ arrSegment.label }}</ion-label>
         </ion-segment-button>
     </ion-segment>
-
+    <app-cards *ngIf="duringFetching"></app-cards>
     <app-opportunities-details [data]="Params"></app-opportunities-details>
 </ion-content>

@@ -23,7 +23,7 @@ export class InvestPage implements OnInit {
   public arrSegments = [] as any;
   public checked = 0;
   public filteredName = '';
-
+  public duringFetching = true;
   constructor(
     private renderer: Renderer2,
     private headerService: HeaderService,
@@ -56,8 +56,10 @@ export class InvestPage implements OnInit {
       filterName = 'alldeals';
     }
     this.Params = '';
+    this.duringFetching = true;
     this.investService.getDeals(filterName, userInfo).subscribe(
       (result: any) => {
+        this.duringFetching = false;
         if (result.RESPONSECODE === 1) {
           console.log('invest data : ', result);
           this.Params = JSON.stringify(result.data.deals);
