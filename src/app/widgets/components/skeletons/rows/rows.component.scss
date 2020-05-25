@@ -1,0 +1,9 @@
+ion-list {
+    display: block;
+    margin: auto 20px;
+    ion-skeleton-text {
+        height: 40px;
+        --border-radius: 10px;
+        margin-bottom: 15px;
+    }
+}

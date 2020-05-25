@@ -22,6 +22,6 @@
             <ion-label>{{ arrSegment.label }}</ion-label>
         </ion-segment-button>
     </ion-segment>
-
+    <app-cards *ngIf="duringFetching"></app-cards>
     <app-my-deal-mm-telecom-retail [data]='myDealsParams' [plength]="arrFilteredParams.length"></app-my-deal-mm-telecom-retail>
 </ion-content>

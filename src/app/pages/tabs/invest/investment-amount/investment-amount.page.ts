@@ -120,6 +120,7 @@ export class InvestmentAmountPage implements OnInit {
     }
 
     validAmount(val, min, max) {
+        console.log(val, min, max);
         if (this.cvm(min) <= this.cvm(val) && this.cvm(val) <= this.cvm(max)) {
             // console.log(this.cvm(min), this.cvm(val));
             // this.amountVal = this.cvm(val);
@@ -134,6 +135,7 @@ export class InvestmentAmountPage implements OnInit {
         } else {
             this.isValidError = true;
             this.showOffers = false;
+            this.readyToNext = false;
         }
     }
 
@@ -185,7 +187,11 @@ export class InvestmentAmountPage implements OnInit {
         const backNavigationExtras: NavigationExtras = {
             queryParams: this.deal_info
         };
-        this.router.navigate(['main/invest/invest-mm-telecom-retail'], backNavigationExtras);
+        if (this.deal_info.newurl) {
+            this.router.navigate(['opportunities-retail'], backNavigationExtras);
+        } else {
+            this.router.navigate(['main/invest/invest-mm-telecom-retail'], backNavigationExtras);
+        }
     }
 
     gotoPaymentOptions() {

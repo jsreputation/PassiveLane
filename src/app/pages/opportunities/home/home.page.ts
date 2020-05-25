@@ -27,7 +27,7 @@ export class HomePage implements OnInit {
   public checked = 0;
   public filteredName = '';
   is_verify = false;
-
+  public duringFetching = true;
   constructor(
     private renderer: Renderer2,
     private headerService: HeaderService,
@@ -45,6 +45,7 @@ export class HomePage implements OnInit {
     this.is_verify = this.authService.user_name_info.is_verify;
     this.investService.getAllDeals(this.authService.userInfo).subscribe(
       (result: any) => {
+        this.duringFetching = false;
         if (result.RESPONSECODE === 1) {
           console.log(result);
           this.arrFilteredParams = result.data.deals;

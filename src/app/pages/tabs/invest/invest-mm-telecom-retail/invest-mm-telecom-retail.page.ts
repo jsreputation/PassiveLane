@@ -94,7 +94,11 @@ export class InvestMmTelecomRetailPage implements OnInit {
 
 
     fn_back() {
-        this.router.navigate(['main/invest/']);
+        if (this.deal_info.newurl) {
+            this.router.navigate(['opportunities']);
+        } else {
+            this.router.navigate(['main/invest/']);
+        }
     }
 
     gotoInvestmentAmount() {
@@ -103,7 +107,11 @@ export class InvestMmTelecomRetailPage implements OnInit {
         const navigationExtras: NavigationExtras = {
             queryParams: this.deal_info
         };
-        this.router.navigate(['main/invest/investment-amount'], navigationExtras);
+        if (this.deal_info.newurl) {
+            this.router.navigate(['opportunities-amount'], navigationExtras);
+        } else {
+            this.router.navigate(['main/invest/investment-amount'], navigationExtras);
+        }
     }
 
     numberWithCommas(x) {

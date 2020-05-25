@@ -7,7 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class CacheOutDetailsComponent implements OnInit {
 
-  @Input() showSpinner = false;
+  // @Input() showSpinner = false;
   @Input() dealInfo: any[];
 
   constructor() {

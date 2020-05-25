@@ -219,7 +219,11 @@ export class InvestmentConfirmaitonPage implements OnInit {
         const backNavigationExtras: NavigationExtras = {
             queryParams: this.submitparams
         };
-        this.router.navigate(['main/invest/payment-options'], backNavigationExtras);
+        if (this.submitparams.newurl) {
+            this.router.navigate(['opportunities-payment-options'], backNavigationExtras);
+        } else {
+            this.router.navigate(['main/invest/payment-options'], backNavigationExtras);
+        }
     }
 
     gotoYourInvestment() {

@@ -2,6 +2,13 @@ import {NgModule} from '@angular/core';
 import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 import {AuthGuard} from './guards/auth.guard';
 
+import { YourInvestmentPage } from './pages/tabs/invest/your-investment/your-investment.page';
+import { PaymentOptionsPage } from './pages/tabs/invest/payment-options/payment-options.page';
+import { InvestmentConfirmaitonPage } from './pages/tabs/invest/investment-confirmaiton/investment-confirmaiton.page';
+import { AddressConfirmPage } from './pages/tabs/invest/address-confirm/address-confirm.page';
+import { InvestmentAmountPage } from './pages/tabs/invest/investment-amount/investment-amount.page';
+import { InvestMmTelecomRetailPage } from './pages/tabs/invest/invest-mm-telecom-retail/invest-mm-telecom-retail.page';
+
 const routes: Routes = [
   {path: '', redirectTo: 'welcome', pathMatch: 'full'},
   {
@@ -77,27 +84,33 @@ const routes: Routes = [
       // },
       {
         path: 'opportunities-retail',
-        loadChildren: () => import('./pages/tabs/invest/invest-mm-telecom-retail/invest-mm-telecom-retail.page').then( m => m.InvestMmTelecomRetailPage)
+        // loadChildren: () => import('./pages/opportunities/opportunities-retail/opportunities-retail.module').then( m => m.OpportunitiesRetailPageModule)
+        component: InvestMmTelecomRetailPage
       },
       {
         path: 'opportunities-amount',
-        loadChildren: () => import('./pages/tabs/invest/investment-amount/investment-amount.page').then( m => m.InvestmentAmountPage)
+        // loadChildren: () => import('./pages/tabs/invest/investment-amount/investment-amount.page').then( m => m.InvestmentAmountPage)
+        component: InvestmentAmountPage
       },
       {
         path: 'opportunities-confirmation',
-        loadChildren: () => import('./pages/tabs/invest/investment-confirmaiton/investment-confirmaiton.page').then( m => m.InvestmentConfirmaitonPage)
+        // loadChildren: () => import('./pages/tabs/invest/investment-confirmaiton/investment-confirmaiton.page').then( m => m.InvestmentConfirmaitonPage)
+        component: InvestmentConfirmaitonPage
       },
       {
         path: 'opportunities-payment-options',
-        loadChildren: () => import('./pages/tabs/invest/payment-options/payment-options.page').then( m => m.PaymentOptionsPage)
+        // loadChildren: () => import('./pages/tabs/invest/payment-options/payment-options.page').then( m => m.PaymentOptionsPage)
+        component:PaymentOptionsPage
       },
       {
         path: 'opportunities-your-investment',
-        loadChildren: () => import('./pages/tabs/invest/your-investment/your-investment.page').then( m => m.YourInvestmentPage)
+        // loadChildren: () => import('./pages/tabs/invest/your-investment/your-investment.page').then( m => m.YourInvestmentPage)
+        component: YourInvestmentPage
       },
       {
         path: 'opportunities-address-confirm',
-        loadChildren: () => import('./pages/tabs/invest/address-confirm/address-confirm.page').then( m => m.AddressConfirmPage)
+        // loadChildren: () => import('./pages/tabs/invest/address-confirm/address-confirm.page').then( m => m.AddressConfirmPage)
+        component: AddressConfirmPage
       }
     ]
   },
@@ -109,8 +122,10 @@ const routes: Routes = [
 
 ];
 
-@NgModule({
+@NgModule ({
   imports: [
+    // IonicModule,
+    // NgModule,
     RouterModule.forRoot(routes,
         {
           preloadingStrategy: PreloadAllModules,

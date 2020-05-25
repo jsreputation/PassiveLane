@@ -31,6 +31,7 @@ import {ProofOfIdComponent} from './profile/proof-of-id/proof-of-id.component';
 import {WhiteLogoComponent} from './white-logo/white-logo.component';
 import {PopoverComponent} from './popover/popover.component';
 // skeletons
+import { RowsComponent } from './skeletons/rows/rows.component';
 import { CardsComponent } from './skeletons/cards/cards.component';
 
 @NgModule({
@@ -39,7 +40,8 @@ import { CardsComponent } from './skeletons/cards/cards.component';
         // tslint:disable-next-line: max-line-length
         SignaturePad, BasicInfoFormComponent, AddressFormComponent, ContactNumberFormComponent, ChangePasswordFormComponent, BankDetailsFormComponent, GotoInvestorTypeFormComponent, SignatureFormComponent, GetMatiVerificationComponent, ProofOfIdComponent,
         PopoverComponent,
-        CardsComponent
+        CardsComponent,
+        RowsComponent
     ],
     imports: [
         IonicModule,
@@ -71,7 +73,8 @@ import { CardsComponent } from './skeletons/cards/cards.component';
         // tslint:disable-next-line: max-line-length
         SignaturePad, BasicInfoFormComponent, AddressFormComponent, ContactNumberFormComponent, ChangePasswordFormComponent, BankDetailsFormComponent, GotoInvestorTypeFormComponent, SignatureFormComponent, GetMatiVerificationComponent, ProofOfIdComponent,
         PopoverComponent,
-        CardsComponent
+        CardsComponent,
+        RowsComponent
     ],
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA

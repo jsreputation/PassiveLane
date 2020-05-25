@@ -1,6 +1,4 @@
 
-<app-cards *ngIf="!isReady"></app-cards>
-
 <div class="deals-container">
     <ion-list>
         <ion-item lines="none" (click)="gotoMMTelecomRetail(deal)" *ngFor="let deal of myDeals">
@@ -21,7 +19,7 @@
 </div>
 
 
-<div *ngIf="isReady && !myDeals" class="flex-content">
+<div *ngIf="!myDeals" class="flex-content">
     <div class="description">
         <ion-icon class="opportunities-icon"></ion-icon>
         <div class="ion-text-center">

@@ -59,13 +59,13 @@
             <ion-item  mode="ios" lines="none">
                 <ion-label class="pre">Round invested in: </ion-label>
                 <ion-label class="lat">
-                    {{ completeData?.deal_name ? completeData?.deal_name: '' }}
+                    {{ completeData?.investor_roi ? completeData?.investor_roi + '%': '' }}
                 </ion-label>
             </ion-item>
             <ion-item  mode="ios" lines="none">
                 <ion-label class="pre">Amount invested: </ion-label>
                 <ion-label class="lat">
-                    {{ completeData?.amount ? completeData?.amount: '' }}
+                    {{ completeData?.amount ? '£' + completeData?.amount: '' }}
                 </ion-label>
             </ion-item>
             <ion-item  mode="ios" lines="none">

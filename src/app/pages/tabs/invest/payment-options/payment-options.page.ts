@@ -78,10 +78,18 @@ export class PaymentOptionsPage implements OnInit {
     const backNavigationExtras: NavigationExtras = {
       queryParams: this.submitparams
     };
-    if (this.totalSteps === 3) {
-      this.router.navigate(['main/invest/investment-amount'], backNavigationExtras);
+    if (this.submitparams.newurl) {
+      if (this.totalSteps === 3) {
+        this.router.navigate(['opportunities-amount'], backNavigationExtras);
+      } else {
+        this.router.navigate(['opportunities-address-confirm'], backNavigationExtras);
+      }
     } else {
-      this.router.navigate(['main/invest/address-confirm'], backNavigationExtras);
+      if (this.totalSteps === 3) {
+        this.router.navigate(['main/invest/investment-amount'], backNavigationExtras);
+      } else {
+        this.router.navigate(['main/invest/address-confirm'], backNavigationExtras);
+      }
     }
   }
 
