@@ -55,26 +55,50 @@ const routes: Routes = [
         path: 'opportunities',
         loadChildren: () => import('./pages/opportunities/home/home.module').then( m => m.HomePageModule)
       },
+      // {
+      //   path: 'opportunities-retail',
+      //   loadChildren: () => import('./pages/opportunities/opportunities-retail/opportunities-retail.module').then( m => m.OpportunitiesRetailPageModule)
+      // },
+      // {
+      //   path: 'opportunities-amount',
+      //   loadChildren: () => import('./pages/opportunities/opportunities-amount/opportunities-amount.module').then( m => m.OpportunitiesAmountPageModule)
+      // },
+      // {
+      //   path: 'opportunities-confirmation',
+      //   loadChildren: () => import('./pages/opportunities/opportunities-confirmation/opportunities-confirmation.module').then( m => m.OpportunitiesConfirmationPageModule)
+      // },
+      // {
+      //   path: 'opportunities-payment-options',
+      //   loadChildren: () => import('./pages/opportunities/opportunities-payment-options/opportunities-payment-options.module').then( m => m.OpportunitiesPaymentOptionsPageModule)
+      // },
+      // {
+      //   path: 'opportunities-your-investment',
+      //   loadChildren: () => import('./pages/opportunities/opportunities-your-investment/opportunities-your-investment.module').then( m => m.OpportunitiesYourInvestmentPageModule)
+      // },
       {
         path: 'opportunities-retail',
-        loadChildren: () => import('./pages/opportunities/opportunities-retail/opportunities-retail.module').then( m => m.OpportunitiesRetailPageModule)
+        loadChildren: () => import('./pages/tabs/invest/invest-mm-telecom-retail/invest-mm-telecom-retail.page').then( m => m.InvestMmTelecomRetailPage)
       },
       {
         path: 'opportunities-amount',
-        loadChildren: () => import('./pages/opportunities/opportunities-amount/opportunities-amount.module').then( m => m.OpportunitiesAmountPageModule)
+        loadChildren: () => import('./pages/tabs/invest/investment-amount/investment-amount.page').then( m => m.InvestmentAmountPage)
       },
       {
         path: 'opportunities-confirmation',
-        loadChildren: () => import('./pages/opportunities/opportunities-confirmation/opportunities-confirmation.module').then( m => m.OpportunitiesConfirmationPageModule)
+        loadChildren: () => import('./pages/tabs/invest/investment-confirmaiton/investment-confirmaiton.page').then( m => m.InvestmentConfirmaitonPage)
       },
       {
         path: 'opportunities-payment-options',
-        loadChildren: () => import('./pages/opportunities/opportunities-payment-options/opportunities-payment-options.module').then( m => m.OpportunitiesPaymentOptionsPageModule)
+        loadChildren: () => import('./pages/tabs/invest/payment-options/payment-options.page').then( m => m.PaymentOptionsPage)
       },
       {
         path: 'opportunities-your-investment',
-        loadChildren: () => import('./pages/opportunities/opportunities-your-investment/opportunities-your-investment.module').then( m => m.OpportunitiesYourInvestmentPageModule)
+        loadChildren: () => import('./pages/tabs/invest/your-investment/your-investment.page').then( m => m.YourInvestmentPage)
       },
+      {
+        path: 'opportunities-address-confirm',
+        loadChildren: () => import('./pages/tabs/invest/address-confirm/address-confirm.page').then( m => m.AddressConfirmPage)
+      }
     ]
   },
   // tab pages

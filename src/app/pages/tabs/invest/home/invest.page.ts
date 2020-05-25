@@ -86,6 +86,4 @@ export class InvestPage implements OnInit {
       return this.headerService.headerShow(this.renderer, this.ionHeader.el, this.headerTitle.nativeElement, this.headerTxt.el);
     }
   }
-
-
 }

@@ -1,7 +1,8 @@
+import { ToastService } from './../../../../services/UI/toast.service';
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {ModalController, Platform} from '@ionic/angular';
+import { ModalController, Platform } from '@ionic/angular';
 import {ProfileService} from '../../../../services/tabs/profile.service';
 import {AuthService} from '../../../../services/auth/auth.service';
 import {VerifyModalService} from '../verifyModal.service';
@@ -41,7 +42,8 @@ export class ChangePasswordFormComponent implements OnInit {
     private platform: Platform,
     private profileService: ProfileService,
     private authService: AuthService,
-    private verifyMdlService: VerifyModalService
+    private verifyMdlService: VerifyModalService,
+    private toastCtrl: ToastService
   ) {
     if (this.platform.is('ios')) {
       this.isIosPlatform = true;
@@ -88,17 +90,33 @@ export class ChangePasswordFormComponent implements OnInit {
       this.isSubmitReady = true;
       let submitParams = {} as any;
       submitParams = {...this.authService.userInfo, ...this.validate_form.value};
-      this.profileService.sendSMS(this.authService.userInfo).subscribe(async res => {
-        console.log(res);
-        if (res.RESPONSECODE === 1) {
-          await this.verifyMdlService.showMdl(this.sendUrl, submitParams);
-          this.submitState = false;
-          this.isSubmitReady = false;
-        } else {
-          console.log('error : ', res);
-          this.isSubmitReady = false;
+      // this.profileService.sendSMS(this.authService.userInfo).subscribe(async res => {
+      //   console.log(res);
+      //   if (res.RESPONSECODE === 1) {
+      //     await this.verifyMdlService.showMdl(this.sendUrl, submitParams);
+      //     this.submitState = false;
+      //     this.isSubmitReady = false;
+      //   } else {
+      //     console.log('error : ', res);
+      //     this.isSubmitReady = false;
+      //   }
+      // });
+      this.profileService.saveProfile(this.sendUrl, submitParams).subscribe(
+        (result: any) => {
+            this.submitState = false;
+            this.isSubmitReady = false;
+            if (result.RESPONSECODE === 1) {
+                // this.toastCtrl.presentSpecificText('Saved successfully.');
+            } else if (result.RESPONSECODE === 0) {
+                // this.toastCtrl.presentSpecificText('Failed saving.');
+            }
+        },
+        error => {
+            this.submitState = false;
+            this.isSubmitReady = false;
+            this.toastCtrl.presentSpecificText('Sever Api problem.');
         }
-      });
+      );
     } else {
       this.submitState = true;
       this.isSubmitReady = false;

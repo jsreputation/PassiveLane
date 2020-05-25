@@ -47,9 +47,9 @@ export class PayPage implements OnInit {
 
   ngOnInit() {
     this.arrSegments = [
-      { value: 0, label: 'All Pledges', searchWord: ''},
-      { value: 1, label: 'Open', searchWord: 'Open'},
-      { value: 2, label: 'Closed', searchWord: 'Close'},
+      // { value: 0, label: 'All Pledges', searchWord: ''},
+      { value: 0, label: 'Open', searchWord: 'Open'},
+      { value: 1, label: 'Closed', searchWord: 'Close'},
     ];
   }
 
@@ -61,7 +61,9 @@ export class PayPage implements OnInit {
         if (result) {
           this.arrFilteredParams = result.pledge;
           this.pledges = {...result}.pledge;
-          console.log(result);
+          this.filteredName = 'Open';
+          this.pledges = this.filteredParams();
+          console.log(this.pledges);
           this.isReady = true;
         } else {
           console.log('RESPONSECODE : 0');

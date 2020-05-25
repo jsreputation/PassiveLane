@@ -1,51 +1,51 @@
 <ion-header #ionHeader mode="ios">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button (click)='fn_back()' color="dark" mode="ios">
-        <ion-icon class="arrow-left"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-label #headerTxt class="header-txt">{{ detail.deal_name }}</ion-label>
-    <ion-buttons slot="primary">
-      <ion-menu-button class="menu"></ion-menu-button>
-    </ion-buttons>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)='fn_back()' color="dark" mode="ios">
+                <ion-icon class="arrow-left"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-label #headerTxt class="header-txt">{{ detail.deal_name }}</ion-label>
+        <ion-buttons slot="primary">
+            <ion-menu-button class="menu"></ion-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
 
 <ion-content #scrollArea (ionScroll)="scroll($event)" [scrollEvents]="true" mode="ios">
 
-  <div class="spiner-content" *ngIf="!isReady">
-    <ion-spinner name="lines"></ion-spinner>
-  </div>
-
-  <div *ngIf="isReady">
-    <div #headerTitle class="description-header">
-      <ion-label class="header-label">{{ detail.deal_name }}</ion-label>
+    <div class="spiner-content" *ngIf="!isReady">
+        <ion-spinner name="lines"></ion-spinner>
     </div>
-    <app-telecom-retail [params]="retail_params"></app-telecom-retail>
 
-    <div class="content">
-      <ion-label class="header-title">Overview</ion-label>
-      <ion-label [innerHTML]="detail.overview" class="content-title">
-      </ion-label>
-      <!-- <ion-label class="read-more color-blue">Read More</ion-label> -->
+    <div *ngIf="isReady">
+        <div #headerTitle class="description-header">
+            <ion-label class="header-label">{{ detail.deal_name }}</ion-label>
+        </div>
+        <app-telecom-retail [params]="retail_params" [dataParams]="deal_info"></app-telecom-retail>
 
-      <ion-label class="header-title">Pitch Details</ion-label>
-      <ion-label [innerHTML]="detail.pitch_details" class="content-title">
-      </ion-label>
+        <div class="content">
+            <ion-label class="header-title">Overview</ion-label>
+            <ion-label [innerHTML]="detail.overview" class="content-title">
+            </ion-label>
 
-      <div *ngIf="detail.document">
-        <ion-label class="header-title">Documents</ion-label>
-        <ion-row class="file-content">
-          <ion-col *ngFor="let document_detail of detail.document" size="4">
-            <ion-img src="../../assets/icon/pdf_file.svg"></ion-img>
-            <ion-label class="color-blue"> {{ document_detail.name }} </ion-label>
-          </ion-col>
-        </ion-row>
-      </div>
+            <ion-label class="header-title">Pitch Details</ion-label>
+            <ion-label [innerHTML]="detail.pitch_details" class="content-title">
+            </ion-label>
+
+            <div *ngIf="detail.document">
+                <ion-label class="header-title">Documents</ion-label>
+                <ion-row class="file-content">
+                    <ion-col *ngFor="let document_detail of detail.document" size="4">
+                        <ion-img src="../../assets/icon/pdf_file.svg"></ion-img>
+                        <ion-label class="color-blue"> {{ document_detail.name }} </ion-label>
+                    </ion-col>
+                </ion-row>
+            </div>
+        </div>
     </div>
-  </div>
-
-  <ion-button (click)='gotoInvestmentAmount()' class="normal bg-blue invest-today" mode="ios">Invest Today</ion-button>
 </ion-content>
+<ion-footer class="footerarea">
+    <ion-button (click)='gotoInvestmentAmount()' class="btn-footer normal bg-blue" mode="ios">Invest Today</ion-button>
+</ion-footer>

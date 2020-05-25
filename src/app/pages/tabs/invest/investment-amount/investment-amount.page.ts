@@ -195,10 +195,18 @@ export class InvestmentAmountPage implements OnInit {
             const navigationExtras: NavigationExtras = {
                 queryParams: this.deal_info
             };
-            if (this.steps === 4) {
-                this.router.navigate(['main/invest/address-confirm'], navigationExtras);
+            if (this.deal_info.newurl) {
+                if (this.steps === 4) {
+                    this.router.navigate(['opportunities-address-confirm'], navigationExtras);
+                } else {
+                    this.router.navigate(['opportunities-payment-options'], navigationExtras);
+                }
             } else {
-                this.router.navigate(['main/invest/payment-options'], navigationExtras);
+                if (this.steps === 4) {
+                    this.router.navigate(['main/invest/address-confirm'], navigationExtras);
+                } else {
+                    this.router.navigate(['main/invest/payment-options'], navigationExtras);
+                }
             }
         } else {
             this.isError = true;

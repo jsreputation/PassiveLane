@@ -233,7 +233,11 @@ export class InvestmentConfirmaitonPage implements OnInit {
                 const navigationExtras: NavigationExtras = {
                     queryParams: this.submitparams
                 };
-                this.router.navigate(['main/invest/your-investment'], navigationExtras);
+                if (this.submitparams.newurl) {
+                    this.router.navigate(['opportunities-your-investment'], navigationExtras);
+                } else {
+                    this.router.navigate(['main/invest/your-investment'], navigationExtras);
+                }
             }
         });
     }
