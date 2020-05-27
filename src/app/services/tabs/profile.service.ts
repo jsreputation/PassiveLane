@@ -1411,6 +1411,12 @@ export class ProfileService {
         }));
     }
 
+    changePassword(data): Observable<any> {
+        return this.https.post('https://www.passivelane.com/apiinvestor/changepassword', data).pipe(tap((res) => {
+            this.toastUIService.presentToast(res, 'all');
+        }));
+    }
+
     saveSignature(url, data): Observable<any> {
         return this.https.post(url, data).pipe(tap((res) => {
             this.toastUIService.presentToast(res, 'all');
