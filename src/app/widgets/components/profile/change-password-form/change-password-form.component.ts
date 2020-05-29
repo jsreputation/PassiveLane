@@ -33,7 +33,7 @@ export class ChangePasswordFormComponent implements OnInit {
       {type: 'minlength', message: 'New password must be at least 6 characters long.'},
     ],
   };
-  private sendUrl = 'https://www.passivelane.com/apiinvestor/changepassword';
+  // private sendUrl = 'https://www.passivelane.com/apiinvestor/changepassword';
 
   constructor(
     private router: Router,
@@ -101,7 +101,7 @@ export class ChangePasswordFormComponent implements OnInit {
       //     this.isSubmitReady = false;
       //   }
       // });
-      this.profileService.saveProfile(this.sendUrl, submitParams).subscribe(
+      this.profileService.changePassword(submitParams).subscribe(
         (result: any) => {
             this.submitState = false;
             this.isSubmitReady = false;

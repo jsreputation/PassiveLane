@@ -6,7 +6,7 @@ import {AuthService} from '../../../../services/auth/auth.service';
 import {ProfileService} from '../../../../services/tabs/profile.service';
 import {VerifyModalService} from '../verifyModal.service';
 import { ToastService } from 'src/app/services/UI/toast.service';
-
+import { Storage } from '@ionic/storage';
 @Component({
     selector: 'app-bank-details-form',
     templateUrl: './bank-details-form.component.html',
@@ -24,7 +24,8 @@ export class BankDetailsFormComponent implements OnInit {
         private authService: AuthService,
         private profileService: ProfileService,
         private verifyMdlService: VerifyModalService,
-        private toastCtrl: ToastService
+        private toastCtrl: ToastService,
+        private storage: Storage
     ) {
         if (this.platform.is('ios')) {
             this.isIosPlatform = true;
@@ -125,14 +126,14 @@ export class BankDetailsFormComponent implements OnInit {
         this.isAddedStates.push(true);
     }
 
-    deleteBank(index: any, bankID: any) {
+    async deleteBank(index: any, bankID: any) {
         const control = this.validate_form.controls.bankDetails as FormArray;
         if (bankID > 0) {
             let submitParams = {} as any;
             submitParams = {...this.authService.userInfo, bank_id: bankID};
             console.log(submitParams, '###############');
-            this.profileService.sendSMS(this.authService.userInfo).subscribe(async res => {
-                if (res.RESPONSECODE === 1) {
+            // this.profileService.sendSMS(this.authService.userInfo).subscribe(async res => {
+            //     if (res.RESPONSECODE === 1) {
                     await this.verifyMdlService.showMdl(this.deleteUrl, submitParams).then(() => {
                         if (this.profileService.savedProfileDetail.bank_id) {
                             control.removeAt(index);
@@ -142,10 +143,10 @@ export class BankDetailsFormComponent implements OnInit {
                             this.bankDetails.splice(index, 1);
                         }
                     });
-                } else {
-                    console.log('error : ', res);
-                }
-            });
+                // } else {
+                //     console.log('error : ', res);
+                // }
+            // });
         } else {
             control.removeAt(index);
             this.isSubmitReadies.splice(index, 1);
@@ -190,8 +191,8 @@ export class BankDetailsFormComponent implements OnInit {
             //         this.isSubmitReadies[index] = false;
             //     }
             // });
-            this.profileService.sendSMS(this.authService.userInfo).subscribe((res) => {
-                if (res.RESPONSECODE === 1) {
+            // this.profileService.sendSMS(this.authService.userInfo).subscribe((res) => {
+            //     if (res.RESPONSECODE === 1) {
                     this.profileService.saveProfile(this.addUrl, submitParams).subscribe(
                         (result: any) => {
                             this.submitStates[index] = false;
@@ -208,15 +209,41 @@ export class BankDetailsFormComponent implements OnInit {
                             this.toastCtrl.presentSpecificText('Sever Api problem.');
                         }
                     );
-                }
-            });
+            //     }
+            // });
         } else {
             this.submitStates[index] = true;
             this.isSubmitReadies[index] = false;
         }
     }
 
-    onFormUpdate(index: any) {
+    updateStorage() {
+        const type = this.authService.verification_type;
+        this.storage.get('current_user').then(res => {
+    
+          if(type === 'sms') {
+            res.data.user_info.verification.is_sms = true;
+    
+          } else if (type === 'bank') {
+            res.data.user_info.verification.is_bank = true;
+          } else if (type === 'id') {
+            res.data.user_info.verification.is_id = true;
+          }
+    
+          if (res.data.user_info.verification.is_id && res.data.user_info.verification.is_sms && res.data.user_info.verification.is_bank) {
+            res.data.user_info.verification.is_verify = true;
+            this.authService.is_verify = true;
+          }
+          this.storage.set('current_user', res).then(result => {
+            console.log('set_result : ', result);
+            // setTimeout(() => {
+            //   this.authService.ifLoggedIn();
+            // }, 500);
+          })
+        })
+      }
+
+    async onFormUpdate(index: any) {
         const control = this.validate_form.controls.bankDetails as FormArray;
         if (control.controls[index].valid) {
             this.submitStates[index] = true;
@@ -225,16 +252,31 @@ export class BankDetailsFormComponent implements OnInit {
             submitParams = {...this.authService.userInfo, user_type: this.authService.user_name_info.user_type, ...this.validate_form.value.bankDetails[index]};
             console.log(' ####### updating ######## ', submitParams);
 
-            this.profileService.sendSMS(this.authService.userInfo).subscribe(async res => {
-                if (res.RESPONSECODE === 1) {
-                    await this.verifyMdlService.showMdl(this.upadteUrl, submitParams);
-                    this.submitStates[index] = false;
-                    this.isSubmitReadies[index] = false;
-                } else {
-                    console.log('error : ', res);
-                    this.isSubmitReadies[index] = false;
-                }
-            });
+            // this.profileService.sendSMS(this.authService.userInfo).subscribe(async res => {
+            //     if (res.RESPONSECODE === 1) {
+                    // await this.verifyMdlService.showMdl(this.upadteUrl, submitParams);
+                    this.profileService.saveProfile(this.upadteUrl, submitParams).subscribe(
+                        (result: any) => {
+                          console.log('result => ', result);
+                          if (result.RESPONSECODE === 1) {
+                            this.profileService.savedProfileDetail = submitParams;
+                            console.log('success: ', result.RESPONSE);
+                            this.submitStates[index] = false;
+                            this.isSubmitReadies[index] = false;
+                            this.updateStorage();
+                          } else if (result.RESPONSECODE === 0) {
+                            console.log('error: ', result.RESPONSE);
+                          }
+                        },
+                        error => {
+                          console.log('error => ', error);
+                        }
+                    );
+            //     } else {
+            //         console.log('error : ', res);
+            //         this.isSubmitReadies[index] = false;
+            //     }
+            // });
         } else {
             this.submitStates[index] = true;
             this.isSubmitReadies[index] = false;
