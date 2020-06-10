@@ -1,0 +1,64 @@
+<ion-header #ionHeader mode="ios">
+    <ion-toolbar>
+        <ion-buttons slot="primary">
+            <ion-menu-button class="white-menu"></ion-menu-button>
+        </ion-buttons>
+        <ion-label #headerTxt class="header-txt">Cash Out</ion-label>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content #scrollArea (ionScroll)="scroll($event)" [scrollEvents]="true" mode="ios">
+    <div class="cache-out-header-bg"></div>
+    <div class="cache-out-header">
+        <div #headerTitle class="description-header">
+            <ion-label class="header-label">Cash Out</ion-label>
+        </div>
+        <div class="header-card">
+            <ion-label class="mm-header-txt"><span class="pound">£</span> {{ isValid? totalAmount: 0}}</ion-label>
+
+            <form (ngSubmit)="onFormSubmit()" [formGroup]="validate_form" class="custom-body">
+                <div class="mm-card-content">
+                    <ion-row class="card-description">
+                        <ion-label class="mm-content-txt">Available for cash out</ion-label>
+                        <ion-icon class="black-question-icon"></ion-icon>
+                    </ion-row>
+                    <ion-list>
+                        <ion-select interface="action-sheet" mode="md" slot="end" formControlName="deal_id" placeholder="Select Deal Name">
+                            <ion-select-option *ngFor="let myDeal of myDeals" [value]="myDeal.deal_id">{{ myDeal.deal_name }}</ion-select-option>
+                        </ion-select>
+                        <ion-item mode='ios'>
+                            <ion-label class="pound-txt">£</ion-label>
+                            <ion-input (keypress)="userTypingForm($event)" formControlName="amount" placeholder="Enter withdrawal amount" type="number"
+                                (ionChange)="listenFormChange()"
+                            >
+                            </ion-input>
+                        </ion-item>
+                        <ion-select interface="action-sheet" mode="md" slot="end" formControlName="bank_name" placeholder="Select Bank Account"
+                        (ionChange)="listenFormChange()">
+                            <ion-select-option *ngFor="let myBankAccount of myBankAccounts" [value]="myBankAccount.id">{{ myBankAccount.account_number }}({{ myBankAccount.bank_name }})</ion-select-option>
+                        </ion-select>
+                        <div class="validation-errors">
+                            <ng-container *ngFor="let validation of validation_messages.amount">
+                                <div *ngIf="validate_form.get('amount').hasError(validation.type) && (validate_form.get('amount').dirty || validate_form.get('amount').touched || submitState)"
+                                     class="error-message">
+                                    <ion-label>{{ validation.message }}</ion-label>
+                                </div>
+                            </ng-container>
+                        </div>
+                        <ion-button [disabled]="!isSubmitReady" class="normal" mode='ios' type="submit">
+                            <ion-spinner *ngIf="duringSumbmit" name="bubbles"></ion-spinner>
+                            Submit
+                        </ion-button>
+                    </ion-list>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <div class="cache-out-content">
+        <app-cache-out-details [dealInfo]="dealInfo" [showSpinner]="showCashOutSpinner"></app-cache-out-details>
+    </div>
+
+</ion-content>

@@ -1,0 +1,33 @@
+<div class="form-content">
+  <div *ngIf="signInfo" class="signature-content real-sign">
+    <ion-img [src]="signInfo"></ion-img>
+  </div>
+  <form (ngSubmit)="onFormSubmit()" [formGroup]="validate_form" class="custom-body">
+    <div class="signature-content">
+      <ion-icon name="trash" (click)="clear()"></ion-icon>
+      <div class="sign-pad">
+        <signature-pad (onBeginEvent)="drawStart()" (onEndEvent)="drawComplete()"
+                       [options]="signaturePadOptions"></signature-pad>
+        <div class="card-footer">
+          <ion-label class="sign-here">Please Sign Here</ion-label>
+        </div>
+      </div>
+
+      <ion-input formControlName="user_id" name="user_id" hidden></ion-input>
+      <ion-input formControlName="token" name="token" hidden></ion-input>
+      <ion-input formControlName="sign" name="sign" hidden></ion-input>
+
+    </div>
+
+    <ion-row *ngIf="signInfo" class="save-button-right">
+      <ion-button class="bg-blue" mode='ios' type="submit">
+        Update
+      </ion-button>
+    </ion-row>
+    <ion-row *ngIf="!signInfo" class="save-button-right">
+      <ion-button class="bg-blue" mode='ios' type="submit">
+        Add
+      </ion-button>
+    </ion-row>
+  </form>
+</div>

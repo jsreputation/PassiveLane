@@ -1,0 +1,97 @@
+ion-content {
+    --background: rgb(249, 249, 249);
+    .spiner-content {
+        height: calc(100% - 540px);
+    }
+    ion-row {
+        padding: 15px 0px 15px;
+        background: #f9f9f9;
+        .mm-card {
+            border-radius: 10px;
+            width: 100%;
+            text-align: center;
+            margin: 0 20px;
+            ion-icon {
+                font-size: 25px;
+                color: white;
+                width: 100%;
+            }
+            .mm-card-content {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding-bottom: 10px;
+                padding-top: 10px;
+                position: relative;
+                ion-img {
+                    width: 30px;
+                    height: auto;
+                    margin-right: 7px;
+                    position: absolute;
+                    left: 10px;
+                }
+                .question-icon {
+                    margin-left: 20px;
+                }
+            }
+            ion-label {
+                color: white;
+                &.mm-header-txt {
+                    font-size: 35px;
+                    line-height: 40px;
+                    display: block;
+                    padding-bottom: 15px;
+                    font-weight: bold;
+                    .pound {
+                        font-size: 30px;
+                    }
+                }
+                &.mm-content-txt {
+                    font-size: 17px;
+                    line-height: 17px;
+                    padding: 5px 0;
+                }
+            }
+        }
+    }
+    .description-header {
+        margin-bottom: 15px;
+        margin-top: 15px;
+    }
+}
+
+
+.select-content {
+    padding: 0 20px!important;
+    display: flex;
+    justify-content: flex-end;
+    ion-select {
+        margin-bottom: 5px;
+        min-width: 80px;
+        /* border-bottom: 1px solid #d6d6d6; */
+        /* background: #f5f8fd; */
+        /* border-radius: 5px; */
+        font-size: 16px;
+        text-align: center;
+        padding: 5px 10px;
+    }
+}
+
+.margin-20-ex-top{
+    margin: 0 20px 20px;
+    --background: #333959;
+    --background-activated: #454d77;
+}
+.cert-btn {
+    margin: 0 20px 20px;
+}
+
+ion-header {
+    background: rgb(249, 249, 249);
+    ion-toolbar {
+        --background: rgb(249, 249, 249);
+    }
+    ion-label {
+        &.header-txt {}
+    }
+}

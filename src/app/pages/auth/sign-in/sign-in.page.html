@@ -1,0 +1,70 @@
+<ion-content>
+    <div class="flex-custom">
+        <app-logo></app-logo>
+        <form (ngSubmit)="onSinginSubmit()" [formGroup]="validate_signinform" class="custom-body">
+            <div class="signin-content">
+                <ion-label class="signin">Sign In</ion-label>
+                <ion-list>
+                    <div class="input-item">
+                        <ion-item mode='ios'>
+                            <ion-icon class="person"></ion-icon>
+                            <ion-input (keyup)="userTypingSingin($event)" formControlName="email" name="email"
+                                       placeholder="Enter your email address" type="text" [(ngModel)]="email">
+                            </ion-input>
+                        </ion-item>
+                        <div class="validation-errors">
+                            <ng-container *ngFor="let validation of validation_messages.email">
+                                <div *ngIf="validate_signinform.get('email').hasError(validation.type) && (validate_signinform.get('email').dirty || validate_signinform.get('email').touched || submitState)"
+                                     class="error-message">
+                                    <ion-label>{{ validation.message }}</ion-label>
+                                </div>
+                            </ng-container>
+
+                            <ng-container *ngIf="errorMessage">
+                                <div class="error-message">
+                                    <ion-label>{{ errorMessage.error_email }}</ion-label>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <div class="input-item">
+
+                        <ion-item mode='ios'>
+                            <ion-icon class="lock"></ion-icon>
+                            <ion-input (keyup)="userTypingSingin($event)" formControlName="password"
+                                       name="password" placeholder="Enter your password"
+                                       type="password" [(ngModel)]="password">
+                            </ion-input>
+                        </ion-item>
+
+                        <div class="validation-errors">
+                            <ng-container *ngFor="let validation of validation_messages.password">
+                                <div *ngIf="validate_signinform.get('password').hasError(validation.type) && (validate_signinform.get('password').dirty || validate_signinform.get('password').touched || submitState)"
+                                     class="error-message">
+                                    <ion-label>{{ validation.message }}</ion-label>
+                                </div>
+                            </ng-container>
+
+                            <ng-container *ngIf="errorMessage">
+                                <div class="error-message">
+                                    <ion-label>{{ errorMessage.error_password }}</ion-label>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+
+                </ion-list>
+                <ion-button [disabled]="isAuthSignin" class="sign bg-blue" mode="ios" type="submit">
+                    <ion-spinner *ngIf="isAuthSignin" name="lines"></ion-spinner>
+                    Sign In
+                </ion-button>
+                <ion-label (click)="gotoForgotPassword()" class="forgot">Forgot password?</ion-label>
+                <!-- <ion-button class="sign bg-blue" mode="ios" routerLink="/sign-up" type="button">
+                    Sign Up
+                </ion-button> -->
+            </div>
+        </form>
+        <div class="accident">
+        </div>
+    </div>
+</ion-content>

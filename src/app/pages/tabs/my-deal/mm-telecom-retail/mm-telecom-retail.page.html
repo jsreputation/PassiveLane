@@ -1,0 +1,49 @@
+<ion-header #ionHeader mode="ios">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)='fn_back()' color="dark" mode="ios">
+                <ion-icon class="arrow-left"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-label #headerTxt class="header-txt">{{ title }}</ion-label>
+        <ion-buttons slot="primary">
+            <ion-menu-button class="menu"></ion-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content #scrollArea (ionScroll)="scroll($event)" [scrollEvents]="true" mode="ios">
+    <div #headerTitle class="description-header">
+        <ion-label class="header-label">{{ title }}</ion-label>
+    </div>
+
+    <ion-row class="select-content">
+        <ion-select mode="ios" [(ngModel)]="currentYear" (ionChange)="onChange($event)">
+            <ion-select-option *ngFor="let myDealsYear of myDealsYears; let i = index;" [value]="myDealsYear">{{myDealsYear}}</ion-select-option>
+        </ion-select>
+    </ion-row>
+
+    <app-my-deal-barchart [filterdDealsByYear]="filterdDealsByYear" [currentYear]="currentYear"></app-my-deal-barchart>
+
+    <ion-row>
+        <div class="mm-card card-bg-icon">
+            <div  class="mm-card-content">
+                <ion-label class="mm-content-txt">Total Balance</ion-label>
+            </div>
+            <ion-label class="mm-header-txt"><span class="pound">£</span>{{ dealDetail.balance }}</ion-label>
+            <ion-icon name="arrow-down" (click)="presentModal()"></ion-icon>
+        </div>
+    </ion-row>
+
+    <ion-button *ngIf="isWithdraw" class="margin-20-ex-top" (click)="onWithdraw()">Withdraw</ion-button>
+
+    <ion-button *ngIf="isCertificate" class="cert-btn bg-red" (click)="onCertificate()">Certificate</ion-button>
+
+    <div class="spiner-content" *ngIf="!isReady">
+        <ion-spinner name="lines"></ion-spinner>
+    </div>
+    <div *ngIf="isReady">
+        <app-activity-details [deals]="deals" [isReadyAmounts]="isReadyAmounts"></app-activity-details>
+    </div>
+</ion-content>

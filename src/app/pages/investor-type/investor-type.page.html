@@ -1,0 +1,62 @@
+<ion-header #ionHeader mode="ios">
+    <ion-toolbar>
+        <ion-buttons slot="start" *ngIf="isUpdated">
+            <ion-button (click)='fn_back()' color="dark" mode="ios">
+                <ion-icon class="arrow-left"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-label #headerTxt class="header-txt">Investor Type</ion-label>
+        <ion-buttons slot="primary" *ngIf="isUpdated">
+            <ion-menu-button class="menu"></ion-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content #scrollArea (ionScroll)="scroll($event)" [scrollEvents]="true" mode="ios">
+
+    <ion-fab *ngIf="!is_verify" vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button routerLink="/verify">
+            <ion-icon name="person"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+    <div #headerTitle class="description-header">
+        <ion-label class="header-label">Investor Type</ion-label>
+    </div>
+
+    <app-stepper [max]="4" [min]="1" [value]="1"></app-stepper>
+
+    <div class="content">
+        <div class="description">
+            <ion-label>
+                Early stage investing is risky. The type Of investor you register as may impact which investment
+                products are suitable for you to review. We collect and store this information as part of your investor
+                profile.
+            </ion-label>
+        </div>
+        <div class="description">
+            <ion-label>
+                If you're unsure whether you qualify for any of these categories, get in touch and we'll walk you
+                through it.
+            </ion-label>
+        </div>
+        <ion-row>
+            <ion-col *ngFor="let item of items" class="padding-0" size="6">
+                <div (click)='gotoQualificationCriteria(item.value , (item.secondTxt + item.lastTxt))'
+                     class="nomal-card bg-light-blue {{ item.direction }}">
+                    <div class="nomal-card-header">
+                        <ion-label class="card-header-txt">{{ item.firstTxt }}</ion-label>
+                        <ion-label class="card-header-txt color-blue">{{ item.secondTxt }} </ion-label>
+                        <ion-label class="card-header-txt">{{ item.lastTxt }}</ion-label>
+                    </div>
+                    <div class="nomal-card-content">
+                        <ion-label class="card-content-txt">{{ item.contentTxt }}</ion-label>
+                    </div>
+                    <div class="forward">
+                        <ion-icon class="arrow-right"></ion-icon>
+                    </div>
+                </div>
+            </ion-col>
+        </ion-row>
+    </div>
+</ion-content>

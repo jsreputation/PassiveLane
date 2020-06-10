@@ -1,0 +1,21 @@
+ion-content {
+  --padding-top: 15px;
+  --background: rgb(249, 249, 249);
+  ion-fab-button{
+    --background-focused: #3a8093c7;
+    --background-activated: #3a8093c7;
+  }
+}
+
+ion-header {
+  background: rgb(249, 249, 249);
+  ion-toolbar {
+    --background: rgb(249, 249, 249);
+  }
+  ion-label {
+    &.header-txt {
+      padding-left: 24px;
+    }
+  }
+}
+

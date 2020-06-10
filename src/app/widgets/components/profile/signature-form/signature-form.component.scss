@@ -1,0 +1,65 @@
+
+.form-content{
+  padding-top: 15px;
+  .save-button-right {
+    display: block;
+    text-align: right;
+
+    ion-button {
+      height: 40px;
+      width: 80px;
+      margin: unset;
+      display: inline-block;
+    }
+  }
+  ion-label{
+    &.form-title{
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+  }
+  .real-sign{
+    border: 1px solid #dddddd45;
+    border-radius: 0px;
+  }
+
+  .signature-content {
+    margin-bottom: 15px;
+    border-radius: 8px;
+    ion-icon{
+      position: absolute;
+      right: 10px;
+      padding: 5px;
+      font-size: 20px;
+      border-radius: 7px;
+      background: #f6d7df;
+      color: #f95368;
+    }
+    ion-icon:active{
+      background: #3a8093;
+      color: #3a809326;
+    }
+    .card {
+      padding: 10px 15px 20px;
+      border: 1px solid #DDDDDD;
+      border-radius: 8.5px;
+      margin-top: 20px;
+    }
+
+    .sign-pad {
+      border: 1px solid #DDDDDD;
+      border-radius: 8.5px;
+
+      .card-footer {
+        text-align: center;
+        font-size: 12px;
+        line-height: 12px;
+        display: block;
+        padding: 10px 10px 14px;
+        background-color: #3a809326;
+        color: #3a8093;
+      }
+    }
+  }
+}
+

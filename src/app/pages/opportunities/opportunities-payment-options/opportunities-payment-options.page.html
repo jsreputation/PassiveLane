@@ -1,0 +1,46 @@
+<ion-header #ionHeader mode="ios">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)='fn_back()' color="dark" mode="ios">
+        <ion-icon class="arrow-left"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-label #headerTxt class="header-txt">Payment Options</ion-label>
+
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content #scrollArea (ionScroll)="scroll($event)" [scrollEvents]="true" mode="ios">
+  <div class="flex-custom">
+    <div>
+      <div #headerTitle class="description-header">
+        <ion-label class="header-label">Payment Options</ion-label>
+      </div>
+      <app-stepper [max]="3" [min]="1" [value]="2"></app-stepper>
+
+      <div class="content">
+        <ion-label class="description-label">Bank Transfer</ion-label>
+        <div class="description">
+
+          <ion-label>
+            Transfer details will be shown after confirming your investment. Investments must transact
+            within 7 working days of the opportunity closing on the passive lane platform, and should funds
+            not be received not within this time we may be unable to reserve
+            your commitment in the opportunity.
+          </ion-label>
+        </div>
+      </div>
+      <ion-list class="custom" mode='ios'>
+        <ion-item *ngFor="let entry of form" lines="none" mode='ios'>
+          <ion-label>{{entry.val}}</ion-label>
+          <ion-checkbox (ionChange)="onSelect($event)" [(ngModel)]="entry.isChecked" mode='ios'
+                        slot="start"></ion-checkbox>
+        </ion-item>
+      </ion-list>
+    </div>
+    <div class="footer-btn">
+      <ion-button [disabled]="!isSubmit" (click)='gotoInvestmentConfirmation()' class=" normal bg-blue" mode="ios">Next</ion-button>
+    </div>
+  </div>
+</ion-content>

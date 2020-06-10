@@ -1,0 +1,84 @@
+ion-list {
+    ion-item {
+        margin: 15px 0;
+        border-radius: 7px;
+        box-shadow: 0px 1px 3px #ebebebcf;
+        ion-thumbnail {
+            width: 70px;
+            height: auto;
+            min-height: 100px;
+            margin: auto 10px auto 0px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        ion-label {
+            &.item-content {
+                padding-left: 10px;
+                .status {
+                    text-overflow: unset;
+                    white-space: unset;
+                    font-size: 12px;
+                }
+            }
+            &.opportunities-money {
+                display: block;
+                font-size: 16px;
+                line-height: 25px;
+                letter-spacing: 0.4pt;
+                span {
+                    font-weight: 500;
+                }
+            }
+            .opportunities-title {
+                font-weight: 500;
+                color: #3a8093 !important;
+                display: block;
+                font-size: 17px;
+                line-height: 20px;
+                letter-spacing: 0.4pt;
+                white-space: pre-wrap;
+            }
+        }
+    }
+}
+
+.flex-content {
+    align-items: center;
+    height: 70%;
+    ion-label {
+        &.opportunities-txt {
+            padding-top: 20px;
+            font-size: 12px;
+            display: block;
+            line-height: 20px;
+            letter-spacing: 0.6pt;
+            color: #707070;
+        }
+    }
+}
+
+.progress {
+    width: 100%;
+    border-radius: 0 !important;
+    progress-bar {
+        width: 90%;
+        font-size: 15px;
+        border-radius: 0 !important;
+    }
+}
+
+::ng-deep .progress progress-bar .progress-outer {
+    border-radius: 5px;
+    padding: 0px;
+    border: 1px solid #6083e912;
+}
+
+::ng-deep .progress progress-bar .progress-inner {
+    border-radius: 5px;
+    min-width: 20px;
+}
+
+.deals-container {
+    padding: 0 20px;
+}

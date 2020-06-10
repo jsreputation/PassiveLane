@@ -1,0 +1,39 @@
+<div class="spiner-content" *ngIf="!isReady">
+    <ion-spinner name="lines"></ion-spinner>
+</div>
+
+<div class="deals-container" *ngIf="all_deals.length > 0">
+    <ion-list>
+        <ion-item lines="none" (click)="gotoMMTelecomRetail(deal.id)" *ngFor="let deal of all_deals">
+            <ion-thumbnail *ngIf="deal.company_image" slot="start">
+                <ion-img src="{{ deal.company_image }}"></ion-img>
+                <!-- <ngx-avatar size="100"  bgColor="blue" initialsSize="2" fgColor="white" cornerRadius="0"  [round]="false" src="{{ deal.company_image }}" ></ngx-avatar> -->
+            </ion-thumbnail>
+            <ion-thumbnail *ngIf="!deal.company_image" slot="start">
+                <ngx-avatar [round]="true" bgColor="#4f8d9f0f" fgColor="#3a8093" initialsSize="3" name="{{ deal.deal_name }}" size="70"></ngx-avatar>
+            </ion-thumbnail>
+
+            <ion-label class="item-content">
+                <p class="opportunities-title color-blue">{{ deal.deal_name }}</p>
+                <ion-label class="opportunities-money">Target: <span>£{{ deal.target_amount }}</span></ion-label>
+                <div class="progress">
+                    <progress-bar [progress]="deal.pledge_percentage" [color-degraded]="{'0': '#E51034',  '30': '#FF9100', '75': '#2CB737'}">
+                    </progress-bar>
+                </div>
+                <ion-label class="status">{{ deal.live_status }}</ion-label>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+</div>
+
+
+<div *ngIf="isReady && !all_deals" class="flex-content">
+    <div class="description">
+        <ion-icon class="opportunities-icon"></ion-icon>
+        <div class="ion-text-center">
+            <ion-label class="opportunities-txt">
+                No Data Available
+            </ion-label>
+        </div>
+    </div>
+</div>

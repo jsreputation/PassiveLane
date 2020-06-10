@@ -1,0 +1,263 @@
+ion-header {
+  background: rgb(249, 249, 249);
+  ion-toolbar {
+    --background: rgb(249, 249, 249);
+  }
+  ion-label {
+    &.header-txt {
+    }
+  }
+}
+
+ion-content {
+  --background: rgb(249, 249, 249);
+  --padding-top: 15px;
+  ion-label {
+    &.header-label {
+    }
+  }
+
+  .header-content{
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    ion-icon{
+      font-size: 25px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #65b4b9;
+      border: 1px solid;
+      border-radius: 30px;
+      margin: 10px;
+    }
+
+    ion-item {
+      width: 90%;
+      border-radius: 7px;
+      box-shadow: 0px 1px 3px #ebebebcf;
+      --background: white;
+      --padding-start: 0;
+      ion-icon{
+        color: #3a8093;
+        font-size: 22px;
+      }
+      ion-thumbnail {
+        width: 70px;
+        height: auto;
+        min-height: 100px;
+        margin: auto 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+    }
+  }
+  ion-label {
+    &.item-content{
+      padding-left: 15px;
+    }
+    &.opportunities-title {
+      font-weight: 500;
+      display: block;
+      font-size: 20px;
+      line-height: 20px;
+      letter-spacing: 0.4pt;
+      color: #3a8093!important;
+      white-space: pre-wrap;
+    }
+
+    &.opportunities-content-txt {
+      display: block;
+      font-size: 18px;
+      line-height: 30px;
+      color: #666674;
+      white-space: pre-wrap;
+      padding-top: 10px;
+      span{
+        font-weight: 500;
+      }
+    }
+
+    &.title-des{
+      font-weight: bold;
+      display: block;
+      font-size: 17px;
+      line-height: 20px;
+      letter-spacing: 0.4pt;
+      color: #333f6a;
+      padding-bottom: 15px;
+    }
+    &.card-title{
+      display: block;
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.4pt;
+      color: gray;
+      padding-bottom: 10px;
+      padding-top: 15px;
+    }
+    &.card-des{
+      display: block;
+      font-size: 17px;
+      line-height: 20px;
+      letter-spacing: 0.6pt;
+      color: #333f6a;
+      padding-bottom: 20px;
+      font-weight: bold;
+    }
+    &.enter-amount{
+      display: flex;
+      letter-spacing: 0.4pt;
+      color: #333f6a;
+      align-items: center;
+      span{
+        font-size: 18px;
+        line-height: 20px;
+        font-weight: bold;
+        margin-bottom: -10px;
+      }
+      ion-input{
+        font-size: 17px;
+        line-height: 22px;
+        max-width: 60%;
+        border-bottom: 1px solid;
+        --padding-bottom: 0px;
+        --padding-top: 0px;
+        --padding-start: 5px;
+      }
+    }
+    &.need-payment-detail{
+      font-size: 15px;
+      line-height: 20px;
+      letter-spacing: 0.4pt;
+      color: #323959;
+      margin: 25px auto;
+      min-width: 180px;
+      width: 180px;
+      display: block;
+      text-decoration: underline;
+    }
+    &.bank-detail-txt{
+      font-size: 12px;
+      line-height: 18px;
+      letter-spacing: 0.4pt;
+      color: black;
+      margin: 0 auto;
+      display: block;
+    }
+  }
+  .bank-detail{
+    margin: 30px 0;
+  }
+  .spiner-content{
+    height: 61px;
+  }
+  .card-content{
+    padding: 0 20px;
+    ion-icon{
+      font-size: 60px;
+    }
+    .margin-bottom-30{
+      margin-bottom: 30px;
+    }
+    .margin-bottom-15{
+      margin-bottom: 15px;
+    }
+    .padding-side-5{
+      padding: 0 5px;
+    }
+
+    .validation-errors {
+      .error-message {
+        padding: 5px 10px 0;
+        font-size: 10px;
+        color: #d12a27;
+      }
+    }
+
+    .picture {
+      .pay-content{
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        .picture-content {
+          position: relative;
+
+          .image {
+            width: 60px;
+            height: 60px;
+            margin: 5px;
+            min-width: 60px;
+            border-radius: 6px;
+          }
+
+          ion-icon {
+            &.close-icon {
+              color: #C1C1C1;
+              position: absolute;
+              width: 15px;
+              height: 15px;
+              top: 1px;
+              right: 1px;
+            }
+          }
+        }
+      }
+    }
+    .flex-content {
+      align-items: center;
+      height: 60%;
+
+      ion-label {
+        &.opportunities-txt {
+          padding-top: 20px;
+          font-size: 12px;
+          display: block;
+          line-height: 20px;
+          letter-spacing: 0.6pt;
+          color: #707070;
+        }
+      }
+    }
+  }
+  ion-grid{
+    ion-row{
+      padding-bottom: 10px;
+      &.title{
+        ion-col{
+          font-size: 14px;
+          color: gray;
+          &.bank-name{
+            text-decoration: none;
+          }
+        }
+      }
+      ion-col{
+        font-size: 13px;
+        color: #333f6a;
+        &.bank-name{
+          min-width: 170px;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  ion-button {
+    &.modal-btn {
+      display: block;
+      width: 100%;
+      font-size: 16px;
+      font-weight: 400;
+      --background: #65b4b9;
+      margin: 0;
+    }
+    &.bg-red{
+      --background: #e0342f;
+    }
+  }
+}
+

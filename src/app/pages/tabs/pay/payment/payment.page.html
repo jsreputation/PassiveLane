@@ -1,0 +1,87 @@
+<ion-header #ionHeader mode="ios">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)='fn_back()' color="dark" mode="ios">
+        <ion-icon class="arrow-left"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-label #headerTxt class="header-txt" *ngIf="deal">{{ deal.deal_name }}</ion-label>
+    <ion-buttons slot="primary">
+      <ion-menu-button class="menu"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content #scrollArea (ionScroll)="scroll($event)" [scrollEvents]="true" mode="ios">
+  <div #headerTitle *ngIf="deal" class="header-content">
+    <ion-label class="opportunities-title color-blue">{{ deal.deal_name }}</ion-label>
+    <ion-label class="opportunities-content-txt">Pledged: <span>£{{ deal.amount }}</span></ion-label>
+    <ion-label class="need-payment-detail ion-text-center" (click)="showBankDetailModal()">Need bank details?</ion-label>
+  </div>
+  <div class="card-content">
+    <form (ngSubmit)="submitPayment(deal)" [formGroup]="validateAmount" class="custom-body">
+      <div class="padding-side-5">
+        <ion-label class="title-des">Confirm Payment</ion-label>
+        <ion-label class="card-title">Enter Amount</ion-label>
+        <ion-label class="enter-amount">
+          <span>£ </span>
+          <ion-input formControlName="amount" type="number" name="amount" placeholder="Enter the amount" (ionChange)="listenAmountChange()"></ion-input>
+        </ion-label>
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validation_messages.amount">
+            <div *ngIf="validateAmount.get('amount').hasError(validation.type) && (validateAmount.get('amount').dirty || validateAmount.get('amount').touched || submitState)"
+                 class="error-message">
+              <ion-label>{{ validation.message }}</ion-label>
+            </div>
+          </ng-container>
+        </div>
+        <ion-label class="card-title">Reference</ion-label>
+        <ion-label class="card-des">MMj32</ion-label>
+        <ion-label class="card-title">Upload Screenshot</ion-label>
+        <div>
+          <ion-icon name="camera" (click)="confirmPaymenDialog()"></ion-icon>
+          <div class="picture" *ngIf="deal.images">
+            <div *ngIf="deal.images.length > 0" class="pay-content" >
+              <div *ngFor="let image of deal.images" class="picture-content">
+                <img class="image" src="{{ image.image_data }}">
+                <ion-icon (click)="removePicture(image.no)" class="close-icon" ios="ios-close-circle" md="md-close-circle"></ion-icon>
+              </div>
+            </div>
+          </div>
+          <ion-button [disabled]="!isAuthSubmitReady" class='normal bg-red modal-btn margin-bottom-15' mode='ios' type="submit">
+            <ion-spinner *ngIf="isAmountTrue" name="bubbles"></ion-spinner>
+            Submit
+          </ion-button>
+          <ion-label *ngIf="isCancelpayment" class="need-payment-detail ion-text-center" (click)="cancelPaymentDialog(deal.pledge_id)">Cancel Pledge</ion-label>
+
+        </div>
+      </div>
+    </form>
+
+
+    <div class="spiner-content" *ngIf="!deal.pledge_id">
+      <ion-spinner name="lines"></ion-spinner>
+    </div>
+
+    <div class="padding-side-5" *ngIf="paymentLists.length > 0">
+      <ion-label class="title-des">My Confirmed Payments</ion-label>
+      <ion-grid *ngIf="paymentLists.length > 0">
+        <ion-row class="title">
+          <ion-col>Date</ion-col>
+          <ion-col>Amount</ion-col>
+          <ion-col>Status</ion-col>
+        </ion-row>
+
+        <ion-row *ngFor="let payment of paymentLists">
+          <ion-col>{{ payment.date | date: 'MMM, d, y' }}</ion-col>
+          <ion-col class="amount-val">£{{ numberWithCommas(payment.amount) }}</ion-col>
+          <ion-col>{{ payment.status }}</ion-col>
+        </ion-row>
+
+      </ion-grid>
+    </div>
+
+  </div>
+
+</ion-content>

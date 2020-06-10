@@ -1,0 +1,89 @@
+ion-content {
+    --background: rgb(249, 249, 249);
+    ion-row {
+        padding: 15px 0px 25px;
+        ion-slides {
+            width: 100%;
+        }
+        .mm-card {
+            border-radius: 10px;
+            width: 100%;
+            text-align: center;
+            margin: 0 10px;
+            ion-icon {
+                font-size: 25px;
+                color: white;
+                width: 100%;
+            }
+            .mm-card-content {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                position: relative;
+                ion-img {
+                    width: 30px;
+                    height: auto;
+                    margin-right: 7px;
+                    position: absolute;
+                    left: 10px;
+                }
+                ngx-avatar {
+                    border-radius: 30px;
+                    margin-right: 7px;
+                    position: absolute;
+                    left: 10px;
+                }
+                .question-icon {
+                    margin-left: 20px;
+                }
+            }
+            ion-label {
+                color: white;
+                &.mm-header-txt {
+                    font-size: 35px;
+                    line-height: 40px;
+                    display: block;
+                    padding-bottom: 15px;
+                    font-weight: bold;
+                    .pound {
+                        font-size: 30px;
+                    }
+                }
+                &.mm-content-txt {
+                    font-size: 17px;
+                    line-height: 17px;
+                    padding: 5px 0;
+                }
+            }
+        }
+    }
+    ion-label {
+        &.mm-header-txt {
+            .pound {
+                font-size: 30px;
+            }
+        }
+        &.mm-content-txt {
+            font-size: 16px;
+            line-height: 14.4px;
+            padding: 5px 0;
+        }
+        &.header-label {
+            margin-bottom: 15px;
+        }
+    }
+}
+
+ion-header {
+    background: rgb(249, 249, 249);
+    ion-toolbar {
+        --background: rgb(249, 249, 249);
+    }
+    ion-label {
+        &.header-txt {
+            padding-left: 24px;
+        }
+    }
+}

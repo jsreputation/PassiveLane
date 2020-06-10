@@ -1,0 +1,162 @@
+<form (ngSubmit)="onFormSubmit()" [formGroup]="validate_form" class="custom-body">
+  <div class="form-content" [ngClass]="{'padding': confirmRequest}">
+    <ion-list mode="ios">
+      <div class="input-item">
+        <ion-radio-group (ionChange)="onCheck($event)">
+          <ion-item lines="none">
+            <ion-label>Manual</ion-label>
+            <ion-radio slot="start" mode="md" [value]="false" checked="true"></ion-radio>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-label>Auto</ion-label>
+            <ion-radio slot="start" mode="md" [value]="true"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+        <div *ngIf="isAutoSelect">
+          <ion-item mode='ios' lines="none" class="search-content">
+            <ion-icon name="pin" class="nomal-icon"></ion-icon>
+            <ion-input (keyup)="searchAddressTyping($event)"
+                       placeholder="Enter your address" type="text">
+            </ion-input>
+            <ion-icon class="close" name="close-circle" *ngIf="findAddressData.length>0" (click)="clearAddressInfo()"></ion-icon>
+          </ion-item>
+
+          <ion-list class="address-info" mode="ios">
+            <ion-item *ngFor="let address of findAddressData" mode="ios" (click)="selectAddress(address.Id, address.Type)">
+              <ion-label>{{ address.Text + ' - ' + address.Description }}</ion-label>
+            </ion-item>
+          </ion-list>
+        </div>
+
+        <ion-list>
+          <div class="input-item">
+            <ion-item mode='ios'>
+              <ion-input (keypress)="userTypingForm($event)" formControlName="buildno" name="buildno"
+                         placeholder="Enter your build number." type="text">
+              </ion-input>
+            </ion-item>
+            <div class="validation-errors">
+              <ng-container *ngFor="let validation of validation_messages.buildno">
+                <div *ngIf="validate_form.get('buildno').hasError(validation.type) && (validate_form.get('buildno').dirty || validate_form.get('buildno').touched || submitState)"
+                     class="error-message">
+                  <ion-label>{{ validation.message }}</ion-label>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+
+          <div class="input-item">
+            <ion-item mode='ios'>
+              <ion-input (keypress)="userTypingForm($event)" formControlName="buildname" name="buildname"
+                         placeholder="Enter your build name." type="text">
+              </ion-input>
+            </ion-item>
+            <div class="validation-errors">
+              <ng-container *ngFor="let validation of validation_messages.buildname">
+                <div *ngIf="validate_form.get('buildname').hasError(validation.type) && (validate_form.get('buildname').dirty || validate_form.get('buildname').touched || submitState)"
+                     class="error-message">
+                  <ion-label>{{ validation.message }}</ion-label>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+
+          <div class="input-item">
+            <ion-item mode='ios'>
+              <ion-input (keypress)="userTypingForm($event)" formControlName="street" name="street"
+                         placeholder="Enter your street." type="text">
+              </ion-input>
+            </ion-item>
+            <div class="validation-errors">
+              <ng-container *ngFor="let validation of validation_messages.street">
+                <div *ngIf="validate_form.get('street').hasError(validation.type) && (validate_form.get('street').dirty || validate_form.get('street').touched || submitState)"
+                     class="error-message">
+                  <ion-label>{{ validation.message }}</ion-label>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+
+          <div class="input-item">
+            <ion-item mode='ios'>
+              <ion-input (keypress)="userTypingForm($event)" formControlName="substreet" name="substreet"
+                         placeholder="Enter your sub street." type="text">
+              </ion-input>
+            </ion-item>
+            <div class="validation-errors">
+              <ng-container *ngFor="let validation of validation_messages.substreet">
+                <div *ngIf="validate_form.get('substreet').hasError(validation.type) && (validate_form.get('substreet').dirty || validate_form.get('substreet').touched || submitState)"
+                     class="error-message">
+                  <ion-label>{{ validation.message }}</ion-label>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+
+          <div class="input-item">
+            <ion-item mode="ios">
+              <ion-input (keypress)="userTypingForm($event)" formControlName="town" name="town"
+                         placeholder="Enter your town." type="text">
+              </ion-input>
+            </ion-item>
+            <div class="validation-errors">
+              <ng-container *ngFor="let validation of validation_messages.town">
+                <div *ngIf="validate_form.get('town').hasError(validation.type) && (validate_form.get('town').dirty || validate_form.get('town').touched || submitState)"
+                     class="error-message">
+                  <ion-label>{{ validation.message }}</ion-label>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+
+          <div class="input-item">
+            <ion-item mode="ios">
+              <ion-input (keypress)="userTypingForm($event)" formControlName="postcode" name="postcode"
+                         placeholder="Enter your postcode." type="text">
+              </ion-input>
+            </ion-item>
+            <div class="validation-errors">
+              <ng-container *ngFor="let validation of validation_messages.postcode">
+                <div *ngIf="validate_form.get('postcode').hasError(validation.type) && (validate_form.get('postcode').dirty || validate_form.get('postcode').touched || submitState)"
+                     class="error-message">
+                  <ion-label>{{ validation.message }}</ion-label>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+
+<!--          <div class="input-item">-->
+<!--            <ion-item mode='ios'>-->
+<!--              <ion-input (keypress)="userTypingForm($event)" formControlName="country" name="country"-->
+<!--                         placeholder="Enter your country." type="text">-->
+<!--              </ion-input>-->
+<!--            </ion-item>-->
+<!--            <div class="validation-errors">-->
+<!--              <ng-container *ngFor="let validation of validation_messages.country">-->
+<!--                <div *ngIf="validate_form.get('country').hasError(validation.type) && (validate_form.get('country').dirty || validate_form.get('country').touched || submitState)"-->
+<!--                     class="error-message">-->
+<!--                  <ion-label>{{ validation.message }}</ion-label>-->
+<!--                </div>-->
+<!--              </ng-container>-->
+<!--            </div>-->
+<!--          </div>-->
+          <div class="input-item">
+            <ion-item mode="ios">
+              <ion-icon name="pin" class="nomal-icon"></ion-icon>
+              <ion-select formControlName="country" [disabled]="true">
+                <ion-select-option *ngFor="let _country of countries" [value]="_country.country">{{_country.countryName}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </div>
+        </ion-list>
+
+      </div>
+    </ion-list>
+    <ion-row class="save-button-right" *ngIf="!confirmRequest">
+      <ion-button [disabled]="!readytoSave" class="bg-blue" mode='ios' type="submit">
+        <ion-spinner *ngIf="isSubmitReady" name="lines"></ion-spinner>
+        Save
+      </ion-button>
+    </ion-row>
+  </div>
+</form>

@@ -1,0 +1,45 @@
+<ion-app>
+    <ion-menu menuId="first" side="end" type="overlay" (ionDidOpen)="onMenuOpen($event)" (ionDidClose)="onMenuClose()">
+        <ion-content>
+            <div class="header-content">
+                <app-white-logo [isLoad]="isload"></app-white-logo>
+                <ion-label *ngIf="user_name_info" class="email-title">{{ user_name_info.first_name }} {{ user_name_info.last_name }}</ion-label>
+            </div>
+            <div class="flex-custom">
+                <ion-list>
+                    <ion-item (click)="gotoProfilePage()" lines="none">
+                        <ion-icon class="profile-icon"></ion-icon>
+                        <ion-label>Profile</ion-label>
+                    </ion-item>
+                    <ion-item (click)="gotoMyDealPage()" lines="none">
+                        <ion-icon class="my-deal-icon"></ion-icon>
+                        <ion-label>My Deal</ion-label>
+                    </ion-item>
+                    <ion-item (click)="gotoInvestPage()" lines="none">
+                        <ion-icon class="invest-icon"></ion-icon>
+                        <ion-label>Invest</ion-label>
+                    </ion-item>
+                    <ion-item (click)="gotoActivityPage()" lines="none">
+                        <ion-icon class="activity-icon"></ion-icon>
+                        <ion-label>Activity</ion-label>
+                    </ion-item>
+                    <ion-item (click)="gotoPayPage()" lines="none">
+                        <ion-icon class="pay-icon"></ion-icon>
+                        <ion-label>Pay</ion-label>
+                    </ion-item>
+                    <ion-item (click)="gotoCashOutPage()" lines="none">
+                        <ion-icon class="cache-out-icon"></ion-icon>
+                        <ion-label>Cash Out</ion-label>
+                    </ion-item>
+                </ion-list>
+            </div>
+            <div class="footer">
+                <ion-button (click)="logout()" class="bg-blue" mode="ios">
+                    <ion-icon class="logout-icon"></ion-icon>
+                    <ion-label>Log out</ion-label>
+                </ion-button>
+            </div>
+        </ion-content>
+    </ion-menu>
+    <ion-router-outlet main></ion-router-outlet>
+</ion-app>

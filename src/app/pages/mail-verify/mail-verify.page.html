@@ -1,0 +1,41 @@
+<ion-header #ionHeader mode="ios">
+  <ion-toolbar>
+    <ion-label #headerTxt class="header-txt">2-Step Verification</ion-label>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content #scrollArea (ionScroll)="scroll($event)" [scrollEvents]="true" mode="ios">
+  <form (ngSubmit)="onSinginSubmit()" [formGroup]="validate_form" class="custom-body">
+    <div class="flex-custom">
+      <div #headerTitle>
+        <ion-label class="mdl-title color-blue"> 2-Step Verification </ion-label>
+      </div>
+      <div>
+        <div class="ion-text-center">
+          <ion-icon class="email-verify-logo"></ion-icon>
+        </div>
+        <ion-label class="mdl-content-txt">
+          Enter the 6 digit verification code we sent to your registration email.
+        </ion-label>
+        <ion-list mode='ios'>
+          <ion-input formControlName="verify_code" mode="ios" name="verify_code" placeholder="Enter your 2-step verification code."
+                     type="number"></ion-input>
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.verify_code">
+              <div *ngIf="validate_form.get('verify_code').hasError(validation.type) && (validate_form.get('verify_code').dirty || validate_form.get('verify_code').touched || submitState)"
+                   class="error-message">
+                <ion-label>{{ validation.message }}</ion-label>
+              </div>
+            </ng-container>
+          </div>
+        </ion-list>
+      </div>
+      <div>
+        <ion-button [disabled]="isAuthSignin" class="bg-blue" mode="ios" type="submit">
+          <ion-spinner *ngIf="isAuthSignin" name="lines"></ion-spinner>
+          Verify
+        </ion-button>
+      </div>
+    </div>
+  </form>
+</ion-content>

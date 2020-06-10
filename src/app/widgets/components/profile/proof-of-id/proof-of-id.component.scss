@@ -1,0 +1,24 @@
+
+.form-content{
+  padding-top: 15px;
+  .save-button-right{
+    ion-button{
+      height: 35px;
+      width: 150px;
+      margin: auto;
+    }
+  }
+  ion-label{
+    &.form-title{
+      font-size: 18px;
+    }
+  }
+}
+
+ion-label.verified {
+  font-size: 16px;
+  display: block;
+  text-align: center;
+  color: green;
+}
+

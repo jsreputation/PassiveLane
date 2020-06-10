@@ -1,0 +1,25 @@
+<div class="spiner-content" *ngIf="showSpinner">
+    <ion-spinner name="lines"></ion-spinner>
+</div>
+
+<ion-list>
+    <ion-item-group *ngFor="let item of dealInfo; let i = index" lines="none" mode='ios'>
+        <ion-item-divider>
+            <ion-label class="date">{{ item.id | date: 'EEEE, d MMMM, y' }}</ion-label>
+        </ion-item-divider>
+
+        <ion-item lines="none" *ngFor="let realDeal of item.realData" >
+            <div *ngIf="realDeal.logo_image"><ion-img [src]="realDeal.logo_image"></ion-img></div>
+            <ngx-avatar *ngIf="!realDeal.logo_image" [round]="true" bgColor="#4f8d9f0f" fgColor="#3a8093" initialsSize="3" name="{{ realDeal.deal_name }}"
+                        size="32"></ngx-avatar>
+            <ion-label class="content-txt color-blue">{{realDeal.deal_name}}</ion-label>
+            <ion-label class="amount {{ realDeal.color }}">{{realDeal.type === 'Withdraw' ? '-' : '+'}}£{{realDeal.amount}}<br><p class="{{ realDeal.color }}">{{realDeal.status}}</p></ion-label>
+        </ion-item>
+    </ion-item-group>
+</ion-list>
+
+<div *ngIf="(!dealInfo || !dealInfo.length) && !showSpinner" class="empty-content">
+    <ion-label class="empty-txt">
+        Once you have a made withdrawals it will appear here
+    </ion-label>
+</div>

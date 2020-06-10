@@ -1,0 +1,90 @@
+<form (ngSubmit)="onFormSubmit()" [formGroup]="validate_form" class="custom-body">
+  <div class="form-content">
+    <ion-list>
+      <div class="input-item">
+        <ion-item mode='ios'>
+          <ion-icon class="person"></ion-icon>
+          <ion-input (keypress)="userTypingForm($event)" formControlName="first_name" name="first_name"
+                     placeholder="Enter your first name" type="text">
+          </ion-input>
+        </ion-item>
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validation_messages.first_name">
+            <div *ngIf="validate_form.get('first_name').hasError(validation.type) && (validate_form.get('first_name').dirty || validate_form.get('first_name').touched || submitState)"
+                 class="error-message">
+              <ion-label>{{ validation.message }}</ion-label>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <div class="input-item">
+        <ion-item mode='ios'>
+          <ion-icon class="person"></ion-icon>
+          <ion-input (keypress)="userTypingForm($event)" formControlName="middle_name" name="middle_name"
+                     placeholder="Enter your middle name" type="text">
+          </ion-input>
+        </ion-item>
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validation_messages.middle_name">
+            <div *ngIf="validate_form.get('middle_name').hasError(validation.type) && (validate_form.get('middle_name').dirty || validate_form.get('middle_name').touched || submitState)"
+                 class="error-message">
+              <ion-label>{{ validation.message }}</ion-label>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <div class="input-item">
+        <ion-item mode='ios'>
+          <ion-icon class="person"></ion-icon>
+          <ion-input (keypress)="userTypingForm($event)" formControlName="last_name" name="last_name"
+                     placeholder="Enter your last name" type="text">
+          </ion-input>
+        </ion-item>
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validation_messages.last_name">
+            <div *ngIf="validate_form.get('last_name').hasError(validation.type) && (validate_form.get('last_name').dirty || validate_form.get('last_name').touched || submitState)"
+                 class="error-message">
+              <ion-label>{{ validation.message }}</ion-label>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <div class="input-item">
+        <ion-item mode='ios'>
+          <ion-icon class="mail-box"></ion-icon>
+          <ion-input (keypress)="userTypingForm($event)" formControlName="email" name="email"
+                     placeholder="Enter your email address" type="text">
+          </ion-input>
+        </ion-item>
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validation_messages.email">
+            <div *ngIf="validate_form.get('email').hasError(validation.type) && (validate_form.get('email').dirty || validate_form.get('email').touched || submitState)"
+                 class="error-message">
+              <ion-label>{{ validation.message }}</ion-label>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <div class="input-item">
+        <ion-item mode='ios'>
+          <ion-icon class="calendar" name="calendar"></ion-icon>
+          <ion-datetime (keypress)="userTypingForm($event)" displayFormat="DDDD D MMM, YYYY" formControlName="day_of_birth" placeholder="Enter your birthday"></ion-datetime>
+        </ion-item>
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validation_messages.day_of_birth">
+            <div *ngIf="validate_form.get('day_of_birth').hasError(validation.type) && (validate_form.get('day_of_birth').dirty || validate_form.get('day_of_birth').touched || submitState)"
+                 class="error-message">
+              <ion-label>{{ validation.message }}</ion-label>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </ion-list>
+    <ion-row class="save-button-right">
+      <ion-button [disabled]="isSubmitReady" class="bg-blue" mode='ios' type="submit">
+        <ion-spinner *ngIf="isSubmitReady" name="lines"></ion-spinner>
+        Save
+      </ion-button>
+    </ion-row>
+  </div>
+</form>

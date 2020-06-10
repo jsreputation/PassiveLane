@@ -1,0 +1,185 @@
+<ion-header #ionHeader mode="ios">
+    <ion-toolbar>
+        <!-- <ion-buttons slot="start">
+            <ion-button (click)='fn_back()' color="dark" mode="ios">
+                <ion-icon class="arrow-left"></ion-icon>
+            </ion-button>
+        </ion-buttons> -->
+        <ion-label #headerTxt class="header-txt">{{ submitparams.dealName }}</ion-label>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content #scrollArea (ionScroll)="scroll($event)" [scrollEvents]="true" mode="ios">
+        <div>
+            <div #headerTitle class="description-header">
+                <ion-label class="header-label">Investment Confirmation</ion-label>
+                <ion-label class="header-smalllabel">({{ submitparams.dealName }})</ion-label>
+            </div>
+            <app-stepper [max]="totalSteps" [min]="1" [value]="submitparams?.step"></app-stepper>
+
+            <div class="spiner-content" *ngIf="!isReady">
+                <ion-spinner name="lines"></ion-spinner>
+            </div>
+
+            <div class="content" *ngIf="isReady">
+                <ion-label [innerHTML]="agreementTxt" class="content-text">
+                </ion-label>
+            </div>
+
+            <div class="content" *ngIf="!signInfo">
+                <div class="sign-pad">
+                    <ion-icon name="trash" (click)="clear()"></ion-icon>
+                    <signature-pad (onBeginEvent)="drawStart()" (onEndEvent)="drawComplete()"
+                                   [options]="signaturePadOptions"></signature-pad>
+                    <div class="card-footer">
+                        <ion-label class="sign-here">Please Sign Here</ion-label>
+                    </div>
+                </div>
+            </div>
+
+            <ion-list class="custom" mode="ios">
+                <ion-item *ngFor="let entry of checkBoxForm; let i = index;" lines="none" mode='ios'>
+                    <ion-label>{{entry.val}}</ion-label>
+                    <ion-checkbox (ionChange)="onSelect($event, i)" [(ngModel)]="entry.isChecked" mode='ios'
+                                  slot="start"></ion-checkbox>
+                </ion-item>
+            </ion-list>
+        </div>
+
+        <!-- <form *ngIf="DealType === 'Equity'" (ngSubmit)="onFormSubmit()" [formGroup]="validate_form" class="custom-body">
+            <div class="form-content">
+                <ion-list>
+                    <div class="input-item">
+                        <ion-item mode='ios'>
+                            <ion-input (keypress)="userTypingForm($event)" formControlName="flatno" name="flatno"
+                                       placeholder="Enter your flat number" type="number">
+                            </ion-input>
+                        </ion-item>
+                        <div class="validation-errors">
+                            <ng-container *ngFor="let validation of validation_messages.flatno">
+                                <div *ngIf="validate_form.get('flatno').hasError(validation.type) && (validate_form.get('flatno').dirty || validate_form.get('flatno').touched || submitState)"
+                                     class="error-message">
+                                    <ion-label>{{ validation.message }}</ion-label>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <div class="input-item">
+                        <ion-item mode='ios'>
+                            <ion-input (keypress)="userTypingForm($event)" formControlName="buildno" name="buildno"
+                                       placeholder="Enter your build number" type="number">
+                            </ion-input>
+                        </ion-item>
+                        <div class="validation-errors">
+                            <ng-container *ngFor="let validation of validation_messages.buildno">
+                                <div *ngIf="validate_form.get('buildno').hasError(validation.type) && (validate_form.get('buildno').dirty || validate_form.get('buildno').touched || submitState)"
+                                     class="error-message">
+                                    <ion-label>{{ validation.message }}</ion-label>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <div class="input-item">
+                        <ion-item mode='ios'>
+                            <ion-input (keypress)="userTypingForm($event)" formControlName="buildname" name="flatno"
+                                       placeholder="Enter your build name" type="text">
+                            </ion-input>
+                        </ion-item>
+                        <div class="validation-errors">
+                            <ng-container *ngFor="let validation of validation_messages.buildname">
+                                <div *ngIf="validate_form.get('buildname').hasError(validation.type) && (validate_form.get('buildname').dirty || validate_form.get('buildname').touched || submitState)"
+                                     class="error-message">
+                                    <ion-label>{{ validation.message }}</ion-label>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <div class="input-item">
+                        <ion-item mode='ios'>
+                            <ion-input (keypress)="userTypingForm($event)" formControlName="street" name="street"
+                                       placeholder="Enter your street name" type="text">
+                            </ion-input>
+                        </ion-item>
+                        <div class="validation-errors">
+                            <ng-container *ngFor="let validation of validation_messages.street">
+                                <div *ngIf="validate_form.get('street').hasError(validation.type) && (validate_form.get('street').dirty || validate_form.get('street').touched || submitState)"
+                                     class="error-message">
+                                    <ion-label>{{ validation.message }}</ion-label>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <div class="input-item">
+                        <ion-item mode='ios'>
+                            <ion-input (keypress)="userTypingForm($event)" formControlName="substreet" name="substreet"
+                                       placeholder="Enter your sub street name" type="text">
+                            </ion-input>
+                        </ion-item>
+                        <div class="validation-errors">
+                            <ng-container *ngFor="let validation of validation_messages.substreet">
+                                <div *ngIf="validate_form.get('substreet').hasError(validation.type) && (validate_form.get('substreet').dirty || validate_form.get('substreet').touched || submitState)"
+                                     class="error-message">
+                                    <ion-label>{{ validation.message }}</ion-label>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <div class="input-item">
+                        <ion-item mode='ios'>
+                            <ion-input (keypress)="userTypingForm($event)" formControlName="town" name="town"
+                                       placeholder="Enter your town name" type="text">
+                            </ion-input>
+                        </ion-item>
+                        <div class="validation-errors">
+                            <ng-container *ngFor="let validation of validation_messages.town">
+                                <div *ngIf="validate_form.get('town').hasError(validation.type) && (validate_form.get('town').dirty || validate_form.get('town').touched || submitState)"
+                                     class="error-message">
+                                    <ion-label>{{ validation.message }}</ion-label>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <div class="input-item">
+                        <ion-item mode='ios'>
+                            <ion-input (keypress)="userTypingForm($event)" formControlName="postcode" name="postcode"
+                                       placeholder="Enter your postcode" type="number">
+                            </ion-input>
+                        </ion-item>
+                        <div class="validation-errors">
+                            <ng-container *ngFor="let validation of validation_messages.postcode">
+                                <div *ngIf="validate_form.get('postcode').hasError(validation.type) && (validate_form.get('postcode').dirty || validate_form.get('postcode').touched || submitState)"
+                                     class="error-message">
+                                    <ion-label>{{ validation.message }}</ion-label>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <div class="input-item">
+                        <ion-item mode='ios'>
+                            <ion-input (keypress)="userTypingForm($event)" formControlName="country" name="country"
+                                       placeholder="Enter your country name" type="text">
+                            </ion-input>
+                        </ion-item>
+                        <div class="validation-errors">
+                            <ng-container *ngFor="let validation of validation_messages.country">
+                                <div *ngIf="validate_form.get('country').hasError(validation.type) && (validate_form.get('country').dirty || validate_form.get('country').touched || submitState)"
+                                     class="error-message">
+                                    <ion-label>{{ validation.message }}</ion-label>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </ion-list>
+                <div class="next-btn">
+                    <ion-button [disabled]="!isCheckedSubmitReady" class="bg-blue" mode="ios" type="submit">
+                        <ion-spinner *ngIf="isSubmitReady" name="bubbles"></ion-spinner>
+                        Next
+                    </ion-button>
+                </div>
+            </div>
+        </form> -->
+</ion-content>
+<ion-footer class="footerarea">
+    <ion-button [disabled]="!isCheckedSubmitReady" (click)='gotoYourInvestment()' class="btn-footer normal bg-blue" mode="ios">Next</ion-button>
+</ion-footer>

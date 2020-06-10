@@ -1,0 +1,89 @@
+ion-content {
+  --padding-bottom: 40px;
+  --overflow: hidden;
+  --background: rgb(249, 249, 249);
+
+  .flex-custom {
+    padding: 0 30px;
+    height: 100%;
+  }
+
+  ion-label {
+    &.mdl-title {
+      margin-bottom: 5px;
+      text-align: center;
+      font-size: 21px;
+      line-height: 38px;
+      letter-spacing: 0.4pt;
+    }
+    &.skip{
+      color: rgba(0,0,0,.87);
+      text-decoration: underline;
+    }
+
+  }
+
+  .verified{
+    color: #0ec254;
+  }
+
+  .manual{
+    color: #ffce00;
+  }
+
+  .rejected{
+    color: #d12a27;
+  }
+
+  mati-button {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  ion-button {
+    display: block;
+    width: 90%;
+    height: 43px;
+  }
+
+  ion-list {
+    padding-top: 30px;
+    ion-item{
+      --background: rgb(249, 249, 249);
+    }
+    ion-item + ion-item {
+      margin-top: 20px;
+    }
+  }
+
+  ion-icon{
+    &.success{
+      color: #3a8093;
+    }
+    &.close{
+      color: #d12a27;
+    }
+  }
+  .mar-auto{
+    margin: 0 auto;
+  }
+  .flex-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+
+ion-header {
+  background: rgb(249, 249, 249);
+  ion-toolbar {
+    --background: rgb(249, 249, 249);
+  }
+  ion-label {
+    &.header-txt {
+      padding-left: 24px;
+    }
+  }
+}
+

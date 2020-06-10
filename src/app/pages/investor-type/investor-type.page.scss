@@ -1,0 +1,62 @@
+ion-content {
+  --padding-top: 15px;
+  --padding-bottom: 40px;
+
+  .nomal-card {
+    height: 200px;
+    border-left: 4px solid #3a8093;
+    border-radius: 8px;
+    margin-bottom: 18px;
+
+    .nomal-card-header {
+      padding: 14px 14px 11px;
+
+      .card-header-txt {
+        font-size: 16px;
+        letter-spacing: 0.6pt;
+      }
+    }
+
+    .nomal-card-content {
+      padding: 0px 14px 11px;
+
+      .card-content-txt {
+        font-size: 10px;
+        line-height: 12px;
+        color: #666674;
+      }
+    }
+
+    .forward {
+      text-align: right;
+
+      ion-icon {
+        right: 0px;
+        bottom: 0;
+        padding: 10px;
+        color: #C9C9C9;
+      }
+    }
+  }
+
+  .nomal-card.left {
+    margin-right: 10px;
+  }
+
+  .nomal-card.right {
+    margin-left: 10px;
+  }
+}
+
+ion-header {
+  ion-label {
+    &.header-txt {
+      padding-right: 34px;
+    }
+  }
+  ion-toolbar{
+    height: 60px;
+    display: flex;
+    align-items: center;
+  }
+}

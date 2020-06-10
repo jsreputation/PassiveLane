@@ -1,0 +1,59 @@
+ion-content {
+  --padding-top: 15px;
+  --padding-bottom: 0px;
+  ion-card {
+    ion-card-header{
+      &.warning {
+        padding-bottom: 0px;
+      }
+      ion-label {
+        font-size: 18px;
+        text-align: center;
+        display: block;
+      } 
+    }
+    &.back-warning {
+      background: #bd1a1f !important;
+      border-color: #bd1a1f !important;
+    }
+    &.back-blue {
+      background: #323959;
+    }
+    &.back-white {
+      background: white;
+    }
+  }
+  ion-item {
+    --background: transparent;
+    ion-label {
+      text-overflow: unset;
+      white-space: unset;
+    }
+  }
+  ion-label {
+    &.white {
+      color: white;
+    }
+    &.block {
+      display: block;
+    }
+    &.pre {
+      font-size: 14px;
+      font-weight: 500;
+    }
+    &.lat {
+      font-size: 14px;
+    }
+    &.bank-details {
+      margin: 20px auto;
+      text-align: center;
+    }
+  }
+  div.horizontal-flex {
+    display: flex;
+    flex-direction: column;
+    ion-label {
+      font-size: 12px;
+    }
+  }
+}

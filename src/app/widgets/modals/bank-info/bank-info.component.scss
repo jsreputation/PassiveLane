@@ -1,0 +1,86 @@
+ion-header {
+  .header-content{
+    ion-icon{
+      font-size: 25px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #65b4b9;
+      border: 1px solid;
+      border-radius: 30px;
+      margin: 10px;
+    }
+    ion-icon:active{
+      background: #65b4b9;
+      color: white;
+    }
+    ion-label {
+      font-size: 22px;
+      color: red;
+      &.bank-title {
+        color: #323959;
+      }
+    }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 70px;
+    justify-content: center;
+  }
+}
+
+ion-content {
+  --padding-bottom: 40px;
+  ion-card {
+    &.back-blue {
+      background: #323959;
+    }
+    ion-item {
+      --background: transparent;
+      ion-label {
+        text-overflow: unset;
+        white-space: unset;
+      }
+    }
+    ion-label {
+      &.white {
+        color: white;
+      }
+      &.block {
+        display: block;
+      }
+      &.pre {
+        font-size: 14px;
+        font-weight: 500;
+      }
+      &.lat {
+        font-size: 14px;
+      }
+    }
+    div.horizontal-flex {
+      display: flex;
+      flex-direction: column;
+      ion-label {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+ion-footer {
+    ion-button {
+      &.modal-btn {
+        margin: auto;
+        display: block;
+        width: 100%;
+        height: 50px;
+        font-size: 16px;
+        line-height: 24px;
+        --border-radius: 0px;
+        bottom: 0;
+        position: absolute;
+        font-weight: 400;
+        --background: #e0352e;
+    }
+  }
+}
