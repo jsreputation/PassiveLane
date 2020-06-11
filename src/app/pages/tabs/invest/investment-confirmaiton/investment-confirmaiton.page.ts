@@ -103,7 +103,7 @@ export class InvestmentConfirmaitonPage implements OnInit {
                 this.submitparams = {...params};
                 this.totalSteps = parseInt(params.totalSteps, 10);
                 this.DealType = params.type;
-                const apiParams = { ... this.authService.userInfo, deal_id: this.submitparams.deal_id };
+                const apiParams = { ... this.authService.userInfo, deal_id: this.submitparams.deal_id , targetAmount: this.submitparams.targetAmount };
                 this.investService.getAgreeText(apiParams).subscribe(
                     (result) => {
                         if (result.RESPONSECODE === 1) {
